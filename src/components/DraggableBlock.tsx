@@ -85,7 +85,10 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
 
   const renderHTMLBlock = (): React.ReactElement => {
     const cells: React.ReactElement[] = [];
-    
+
+    // Scale the gap based on the scale factor
+    const gap = Math.max(1, Math.round(scale * 2));
+
     currentPattern.forEach((row, rowIndex) => {
       row.forEach((isOccupied, colIndex) => {
         if (isOccupied) {
@@ -94,25 +97,35 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
               key={`${block.id}-${rowIndex}-${colIndex}`}
               style={{
                 position: 'absolute',
-                left: colIndex * cellSize,
-                top: rowIndex * cellSize,
-                width: cellSize - 2,
-                height: cellSize - 2,
+                left: colIndex * cellSize + gap,
+                top: rowIndex * cellSize + gap,
+                width: cellSize - gap * 2,
+                height: cellSize - gap * 2,
                 backgroundColor: block.color,
-                border: isSelected ? '2px solid #4f46e5' : '1px solid #000000',
-                borderRadius: '2px',
-                boxShadow: isSelected 
-                  ? '0 0 8px rgba(79, 70, 229, 0.6)' 
-                  : '1px 1px 3px rgba(0, 0, 0, 0.2)'
+                borderRadius: `${Math.max(1, Math.round(scale * 2))}px`,
+                background: `linear-gradient(135deg, ${block.color} 0%, ${block.color}e6 100%)`
               }}
             />
           );
         }
       });
     });
-    
+
     return (
-      <div style={{ position: 'relative', width: blockWidth, height: blockHeight }}>
+      <div style={{
+        position: 'relative',
+        width: blockWidth,
+        height: blockHeight,
+        borderRadius: `${Math.max(2, Math.round(scale * 3))}px`,
+        // Simple background for block separation when selected
+        backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'transparent',
+        border: isSelected ? `2px solid #4f46e5` : 'none',
+        // Shadow for depth when selected
+        boxShadow: isSelected
+          ? `0 0 ${Math.round(scale * 8)}px rgba(79, 70, 229, 0.6)`
+          : 'none',
+        boxSizing: 'border-box'
+      }}>
         {cells}
       </div>
     );
@@ -135,11 +148,6 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
           left: x,
           top: y,
           cursor: enableDrag ? (isDragging ? 'grabbing' : 'grab') : 'pointer',
-          padding: '0px',
-          borderRadius: '2px',
-          backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'transparent',
-          border: isSelected ? '2px solid #4f46e5' : 'none',
-          boxShadow: isSelected ? '0 0 8px rgba(79, 70, 229, 0.3)' : 'none',
           zIndex: isDragging ? 1000 : (isSelected ? 50 : 10),
           willChange: 'transform',
           ...dragStyle,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDroppable } from '@dnd-kit/core';
 import DraggableBlock from './DraggableBlock';
 import { BlockShape, CELL_SIZE } from '../types/game';
 import { getBlockById } from '../data/blocks';
@@ -20,6 +21,12 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
   blockRotations = {},
   onBlockRotate
 }) => {
+  const { isOver, setNodeRef } = useDroppable({
+    id: 'block-inventory',
+    data: {
+      type: 'inventory'
+    }
+  });
   const getBlockRotation = (blockId: string): number => {
     return blockRotations[blockId] || 0;
   };
@@ -72,18 +79,40 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
     <div className="block-inventory">
       <h3 className="inventory-title">Available Blocks</h3>
       
-      <div 
+      <div
+        ref={setNodeRef}
         className="inventory-container"
         style={{
           position: 'relative',
           width: inventorySize.width,
           height: inventorySize.height,
-          border: '2px solid #e5e7eb',
+          border: isOver ? '3px solid #10b981' : '2px solid #e5e7eb',
           borderRadius: '8px',
-          backgroundColor: '#f8fafc'
+          backgroundColor: isOver ? '#ecfdf5' : '#f8fafc',
+          transition: 'all 0.2s ease'
         }}
       >
         {renderBlockGrid()}
+        {isOver && (
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            borderRadius: '6px',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            color: '#059669',
+            pointerEvents: 'none'
+          }}>
+            Drop here to return block
+          </div>
+        )}
       </div>
       
       {selectedBlock && (

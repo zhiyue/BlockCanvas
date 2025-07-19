@@ -264,14 +264,17 @@ function App() {
             // If placement failed and was dragged from board, put it back to original position
             placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
           }
-        } else if (lastMousePosition) {
-          // Fallback: use mouse position
+        } else if (lastMousePosition && dragStartOffset) {
+          // Fallback: use mouse position with block's top-left corner calculation
           const gameBoardOverlay = document.querySelector('.game-board-container [style*="position: absolute"]') as HTMLElement
           if (gameBoardOverlay) {
             const rect = gameBoardOverlay.getBoundingClientRect()
-            const canvasX = lastMousePosition.x - rect.left
-            const canvasY = lastMousePosition.y - rect.top
-            const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY)
+
+            // Calculate where the block's top-left corner would be
+            const blockTopLeftX = lastMousePosition.x - dragStartOffset.x - rect.left
+            const blockTopLeftY = lastMousePosition.y - dragStartOffset.y - rect.top
+
+            const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
 
             if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
               const success = placeBlock(blockId, gridX, gridY, rotation)
@@ -285,6 +288,17 @@ function App() {
             }
           }
         }
+      } else if (over.id === 'block-inventory') {
+        // If dropped on inventory, remove from board (return to available blocks)
+        if (draggedFromBoard) {
+          // Block was already removed from board in handleDragStart, so just don't put it back
+          console.log(`Block ${blockId} returned to inventory`)
+        }
+        // Reset rotation when returning to inventory
+        setBlockRotations(prev => ({
+          ...prev,
+          [blockId]: 0
+        }))
       } else if (draggedFromBoard && originalPosition) {
         // If dropped outside valid area and was from board, put it back
         placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
@@ -300,6 +314,7 @@ function App() {
     setOriginalPosition(null)
     setLastMousePosition(null)
     setPreviewPosition(null)
+    setDragStartOffset(null)
     selectBlock(null)
   }
 

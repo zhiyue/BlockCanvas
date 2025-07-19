@@ -42,6 +42,7 @@ export interface GameState {
 
 export const BOARD_SIZE = 8;
 export const CELL_SIZE = 50;
+export const BLOCK_GAP = 2; // Gap between blocks for visual separation
 
 // Coordinate system constants
 export const BOARD_CONFIG = {

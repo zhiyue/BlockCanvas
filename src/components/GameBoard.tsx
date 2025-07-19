@@ -274,9 +274,9 @@ const GameBoard: React.FC<GameBoardProps> = ({
           height: boardDimensions.height,
           backgroundColor: isOver ? 'rgba(14, 165, 233, 0.1)' : 'transparent',
           border: isOver ? '2px dashed #0ea5e9' : 'none',
-          pointerEvents: 'auto',
+          pointerEvents: draggedBlock ? 'auto' : 'none',
           cursor: draggedBlock ? 'crosshair' : 'default',
-          zIndex: 100,
+          zIndex: draggedBlock ? 100 : 1,
           transition: 'all 0.2s ease',
           borderRadius: '4px'
         }}

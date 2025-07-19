@@ -52,6 +52,21 @@ function App() {
   const [draggedBlock, setDraggedBlock] = useState<string | null>(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
   const [originalPosition, setOriginalPosition] = useState<{x: number, y: number, rotation: number} | null>(null)
+  const [lastMousePosition, setLastMousePosition] = useState<{x: number, y: number} | null>(null)
+
+  // Track mouse position during drag
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (draggedBlock) {
+        setLastMousePosition({ x: event.clientX, y: event.clientY })
+      }
+    }
+
+    if (draggedBlock) {
+      document.addEventListener('mousemove', handleMouseMove)
+      return () => document.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [draggedBlock])
   
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -139,6 +154,7 @@ function App() {
 
   const handleDragStart = (event: DragStartEvent) => {
     const blockId = event.active.id as string
+    console.log('Drag started for block:', blockId)
     setDraggedBlock(blockId)
 
     // Check if dragging from board (already placed block)
@@ -164,28 +180,27 @@ function App() {
   }
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over, activatorEvent } = event
-    
-    if (over && draggedBlock) {
+    const { active, over } = event
+
+    if (over && draggedBlock && lastMousePosition) {
       const blockId = active.id as string
-      
+
       if (over.id === 'game-board') {
         const rotation = blockRotations[blockId] || 0
-        
-        // Get the game board element to calculate relative coordinates
-        const gameBoardElement = document.querySelector('.game-board-container canvas')
-        if (gameBoardElement && activatorEvent && 'clientX' in activatorEvent && 'clientY' in activatorEvent) {
-          const rect = gameBoardElement.getBoundingClientRect()
-          const mouseEvent = activatorEvent as MouseEvent
-          const canvasX = mouseEvent.clientX - rect.left
-          const canvasY = mouseEvent.clientY - rect.top
+
+        // Get the game board overlay element to calculate relative coordinates
+        const gameBoardOverlay = document.querySelector('.game-board-container [style*="position: absolute"]') as HTMLElement
+        if (gameBoardOverlay) {
+          const rect = gameBoardOverlay.getBoundingClientRect()
+          const canvasX = lastMousePosition.x - rect.left
+          const canvasY = lastMousePosition.y - rect.top
 
           const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY)
-          
+
           // Ensure coordinates are within bounds
           if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
             const success = placeBlock(blockId, gridX, gridY, rotation)
-            
+
             if (success) {
               // Reset rotation for this block after placing
               setBlockRotations(prev => ({
@@ -214,6 +229,7 @@ function App() {
     setDraggedBlock(null)
     setDraggedFromBoard(false)
     setOriginalPosition(null)
+    setLastMousePosition(null)
     selectBlock(null)
   }
 

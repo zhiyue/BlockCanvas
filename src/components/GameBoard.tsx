@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stage, Layer, Rect } from 'react-konva';
 import { useDroppable } from '@dnd-kit/core';
-import { BOARD_SIZE, CELL_SIZE, Position, CoordinateSystem, BOARD_CONFIG } from '../types/game';
+import { BOARD_SIZE, Position, CoordinateSystem, BOARD_CONFIG } from '../types/game';
 import DraggableBlock from './DraggableBlock';
 import { getBlockById } from '../data/blocks';
 import { useGameStore } from '../store/gameStore';
@@ -65,12 +65,11 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    const x = event.clientX - rect.left - 1; // Subtract border offset
-    const y = event.clientY - rect.top - 1;
-    
-    const gridX = Math.floor(x / CELL_SIZE);
-    const gridY = Math.floor(y / CELL_SIZE);
-    
+    const canvasX = event.clientX - rect.left;
+    const canvasY = event.clientY - rect.top;
+
+    const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY);
+
     if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
       handleCellClick(gridX, gridY);
     }

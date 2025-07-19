@@ -16,8 +16,9 @@ interface GameStore extends GameState {
   incrementMoves: () => void;
   
   // Helper functions
-  isPositionValid: (blockId: string, x: number, y: number, rotation?: number) => boolean;
+  isPositionValid: (blockId: string, x: number, y: number, rotation?: number, ignoreBlockId?: string) => boolean;
   getAvailableBlocks: () => string[];
+  getAllBlocks: () => string[];
 }
 
 const createEmptyBoard = (): GameBoard => ({
@@ -199,7 +200,7 @@ export const useGameStore = create<GameStore>()(
         });
       },
 
-      isPositionValid: (blockId, x, y, rotation = 0) => {
+      isPositionValid: (blockId, x, y, rotation = 0, ignoreBlockId) => {
         const state = get();
         const block = getBlockById(blockId);
         if (!block) return false;
@@ -219,8 +220,10 @@ export const useGameStore = create<GameStore>()(
             if (rotatedPattern[row][col]) {
               const gridX = x + col;
               const gridY = y + row;
-              
-              if (state.board.grid[gridY][gridX] !== null) {
+
+              const occupyingBlockId = state.board.grid[gridY][gridX];
+              // 忽略指定的 block（通常是当前被拖拽的 block）
+              if (occupyingBlockId !== null && occupyingBlockId !== ignoreBlockId) {
                 return false;
               }
             }
@@ -233,9 +236,16 @@ export const useGameStore = create<GameStore>()(
       getAvailableBlocks: () => {
         const state = get();
         if (!state.currentChallenge) return [];
-        
+
         const placedBlockIds = state.board.placedBlocks.map(pb => pb.blockId);
         return state.currentChallenge.availableBlocks.filter(blockId => !placedBlockIds.includes(blockId));
+      },
+
+      getAllBlocks: () => {
+        const state = get();
+        if (!state.currentChallenge) return [];
+
+        return state.currentChallenge.availableBlocks;
       },
 
       checkWinCondition: () => {

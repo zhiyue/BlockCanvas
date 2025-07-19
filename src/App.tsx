@@ -26,6 +26,7 @@ function App() {
     selectBlock,
     resetBoard,
     getAvailableBlocks,
+    getAllBlocks,
     incrementTime,
     isPositionValid
   } = useGameStore()
@@ -56,6 +57,13 @@ function App() {
   const [lastMousePosition, setLastMousePosition] = useState<{x: number, y: number} | null>(null)
   const [previewPosition, setPreviewPosition] = useState<{x: number, y: number} | null>(null)
   const [dragStartOffset, setDragStartOffset] = useState<{x: number, y: number} | null>(null)
+  const [returnMessage, setReturnMessage] = useState<string | null>(null)
+
+  // 显示返回消息的函数
+  const showReturnMessage = (message: string) => {
+    setReturnMessage(message)
+    setTimeout(() => setReturnMessage(null), 2000) // 2秒后自动消失
+  }
 
   // DragMonitor component using useDndMonitor
   const DragMonitor: React.FC = () => {
@@ -97,7 +105,8 @@ function App() {
             // Only set preview if within bounds and position is valid
             if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
               const rotation = blockRotations[draggedBlock] || 0
-              if (isPositionValid(draggedBlock, gridX, gridY, rotation)) {
+              // 在检查预览位置时，忽略当前被拖拽的 block
+              if (isPositionValid(draggedBlock, gridX, gridY, rotation, draggedBlock)) {
                 setPreviewPosition({ x: gridX, y: gridY })
                 return
               }
@@ -223,7 +232,7 @@ function App() {
     const isOnBoard = board.placedBlocks.some(pb => pb.blockId === blockId)
     setDraggedFromBoard(isOnBoard)
 
-    // If dragging from board, store original position and remove it temporarily
+    // If dragging from board, store original position but DON'T remove it yet
     if (isOnBoard) {
       const placedBlock = board.placedBlocks.find(pb => pb.blockId === blockId)
       if (placedBlock) {
@@ -233,7 +242,7 @@ function App() {
           rotation: placedBlock.rotation
         })
       }
-      removeBlock(blockId)
+      // 不在这里移除 block，避免影响 availableBlocks 列表
     } else {
       setOriginalPosition(null)
     }
@@ -252,6 +261,11 @@ function App() {
 
         // Use preview position if available (calculated by DragMonitor)
         if (previewPosition) {
+          // If dragging from board, remove the original block first
+          if (draggedFromBoard) {
+            removeBlock(blockId)
+          }
+
           const success = placeBlock(blockId, previewPosition.x, previewPosition.y, rotation)
 
           if (success) {
@@ -260,9 +274,15 @@ function App() {
               ...prev,
               [blockId]: 0
             }))
-          } else if (draggedFromBoard && originalPosition) {
-            // If placement failed and was dragged from board, put it back to original position
-            placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
+          } else if (draggedFromBoard) {
+            // If placement failed and was dragged from board, return to inventory
+            console.log(`Block ${blockId} automatically returned to inventory (placement failed)`)
+            showReturnMessage('Block returned to available blocks')
+            // Reset rotation when returning to inventory
+            setBlockRotations(prev => ({
+              ...prev,
+              [blockId]: 0
+            }))
           }
         } else if (lastMousePosition && dragStartOffset) {
           // Fallback: use mouse position with block's top-left corner calculation
@@ -277,21 +297,33 @@ function App() {
             const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
 
             if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
+              // If dragging from board, remove the original block first
+              if (draggedFromBoard) {
+                removeBlock(blockId)
+              }
+
               const success = placeBlock(blockId, gridX, gridY, rotation)
               if (success) {
                 setBlockRotations(prev => ({ ...prev, [blockId]: 0 }))
-              } else if (draggedFromBoard && originalPosition) {
-                placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
+              } else if (draggedFromBoard) {
+                // If placement failed and was dragged from board, return to inventory
+                console.log(`Block ${blockId} automatically returned to inventory (fallback placement failed)`)
+                showReturnMessage('Block returned to available blocks')
+                setBlockRotations(prev => ({ ...prev, [blockId]: 0 }))
               }
-            } else if (draggedFromBoard && originalPosition) {
-              placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
+            } else if (draggedFromBoard) {
+              // If dropped outside board bounds and was from board, return to inventory
+              removeBlock(blockId)
+              console.log(`Block ${blockId} automatically returned to inventory (dropped outside board)`)
+              showReturnMessage('Block returned to available blocks')
+              setBlockRotations(prev => ({ ...prev, [blockId]: 0 }))
             }
           }
         }
       } else if (over.id === 'block-inventory') {
         // If dropped on inventory, remove from board (return to available blocks)
         if (draggedFromBoard) {
-          // Block was already removed from board in handleDragStart, so just don't put it back
+          removeBlock(blockId)
           console.log(`Block ${blockId} returned to inventory`)
         }
         // Reset rotation when returning to inventory
@@ -299,13 +331,28 @@ function App() {
           ...prev,
           [blockId]: 0
         }))
-      } else if (draggedFromBoard && originalPosition) {
-        // If dropped outside valid area and was from board, put it back
-        placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
+      } else {
+        // If dropped outside valid drop zones, return to inventory
+        if (draggedFromBoard) {
+          // Remove from board and return to inventory
+          removeBlock(blockId)
+          console.log(`Block ${blockId} automatically returned to inventory (dropped outside valid area)`)
+        }
+        // Reset rotation when returning to inventory
+        setBlockRotations(prev => ({
+          ...prev,
+          [blockId]: 0
+        }))
       }
-    } else if (draggedFromBoard && draggedBlock && originalPosition) {
-      // If dropped in invalid area and was from board, put it back to original position
-      placeBlock(draggedBlock, originalPosition.x, originalPosition.y, originalPosition.rotation)
+    } else if (draggedFromBoard && draggedBlock) {
+      // If dropped in invalid area and was from board, return to inventory
+      removeBlock(draggedBlock)
+      console.log(`Block ${draggedBlock} automatically returned to inventory (no drop target)`)
+      // Reset rotation when returning to inventory
+      setBlockRotations(prev => ({
+        ...prev,
+        [draggedBlock]: 0
+      }))
     }
 
     // Clean up drag state
@@ -397,6 +444,7 @@ function App() {
               
               <BlockInventory
                 availableBlocks={getAvailableBlocks()}
+                allBlocks={getAllBlocks()}
                 selectedBlock={selectedBlock}
                 onBlockSelect={selectBlock}
                 onBlockPlace={handleBlockPlace}

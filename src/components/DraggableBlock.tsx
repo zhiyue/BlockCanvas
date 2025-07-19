@@ -134,7 +134,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
   if (renderAsHTML) {
     const dragStyle = transform ? {
       transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      opacity: isDragging ? 0.3 : 1,
+      opacity: isDragging ? 0 : 1, // 完全隐藏拖拽中的原始 block
       transition: isDragging ? 'none' : 'all 0.2s ease',
     } : {};
 

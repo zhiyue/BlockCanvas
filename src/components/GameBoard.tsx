@@ -50,7 +50,8 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
     for (let y = 0; y < BOARD_SIZE; y++) {
       for (let x = 0; x < BOARD_SIZE; x++) {
-        if (isPositionValid(draggedBlock, x, y, rotation)) {
+        // 在检查位置有效性时，忽略当前被拖拽的 block
+        if (isPositionValid(draggedBlock, x, y, rotation, draggedBlock)) {
           validPositions.push({ x, y });
         }
       }
@@ -86,10 +87,14 @@ const GameBoard: React.FC<GameBoardProps> = ({
               width={cellBounds.width}
               height={cellBounds.height}
               fill={block.color}
-              opacity={0.5}
+              opacity={0.4}
               stroke="#4f46e5"
               strokeWidth={2}
-              dash={[5, 5]}
+              dash={[8, 4]}
+              cornerRadius={3}
+              shadowColor="#4f46e5"
+              shadowBlur={8}
+              shadowOpacity={0.3}
             />
           );
         }
@@ -138,7 +143,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
   const renderGrid = () => {
     const gridLines = [];
 
-    // Vertical lines
+    // Vertical lines with subtle gradient
     for (let i = 0; i <= BOARD_SIZE; i++) {
       const { x } = CoordinateSystem.gridToCanvas(i, 0);
       gridLines.push(
@@ -148,12 +153,13 @@ const GameBoard: React.FC<GameBoardProps> = ({
           y={BOARD_CONFIG.BORDER_WIDTH}
           width={BOARD_CONFIG.GRID_LINE_WIDTH}
           height={boardDimensions.height}
-          fill="#cccccc"
+          fill="#e2e8f0"
+          opacity={0.6}
         />
       );
     }
 
-    // Horizontal lines
+    // Horizontal lines with subtle gradient
     for (let i = 0; i <= BOARD_SIZE; i++) {
       const { y } = CoordinateSystem.gridToCanvas(0, i);
       gridLines.push(
@@ -163,7 +169,8 @@ const GameBoard: React.FC<GameBoardProps> = ({
           y={y}
           width={boardDimensions.width}
           height={BOARD_CONFIG.GRID_LINE_WIDTH}
-          fill="#cccccc"
+          fill="#e2e8f0"
+          opacity={0.6}
         />
       );
     }
@@ -188,9 +195,14 @@ const GameBoard: React.FC<GameBoardProps> = ({
             y={cellBounds.y}
             width={cellBounds.width}
             height={cellBounds.height}
-            fill={isValidPosition ? "#e0f2fe" : "#ffffff"}
-            stroke={isValidPosition ? "#0284c7" : "#f0f0f0"}
-            strokeWidth={isValidPosition ? 2 : 1}
+            fill={isValidPosition ? "rgba(79, 70, 229, 0.08)" : "rgba(248, 250, 252, 0.9)"}
+            stroke={isValidPosition ? "rgba(79, 70, 229, 0.3)" : "rgba(226, 232, 240, 0.5)"}
+            strokeWidth={isValidPosition ? 1.5 : 0.5}
+            cornerRadius={2}
+            shadowColor={isValidPosition ? "rgba(79, 70, 229, 0.1)" : "transparent"}
+            shadowBlur={isValidPosition ? 4 : 0}
+            shadowOffset={{ x: 0, y: 1 }}
+            shadowOpacity={0.3}
             onClick={() => handleCellClick(col, row)}
             onTap={() => handleCellClick(col, row)}
           />
@@ -207,6 +219,11 @@ const GameBoard: React.FC<GameBoardProps> = ({
     const draggableBlocks: React.ReactElement[] = [];
 
     Object.entries(placedBlocks).forEach(([blockId, blockData]) => {
+      // 如果这个 block 正在被拖拽，就不渲染它
+      if (draggedBlock === blockId) {
+        return;
+      }
+
       const { position, rotation } = blockData;
       const block = getBlockById(blockId);
 
@@ -236,15 +253,20 @@ const GameBoard: React.FC<GameBoardProps> = ({
     <div className="game-board-container" style={{ position: 'relative' }}>
       <Stage width={boardDimensions.totalWidth} height={boardDimensions.totalHeight}>
         <Layer>
-          {/* Board background */}
+          {/* Board background with clean modern look */}
           <Rect
             x={0}
             y={0}
             width={boardDimensions.totalWidth}
             height={boardDimensions.totalHeight}
-            fill="#f8f9fa"
-            stroke="#dee2e6"
-            strokeWidth={BOARD_CONFIG.BORDER_WIDTH}
+            fill="#f8fafc"
+            stroke="#e2e8f0"
+            strokeWidth={1}
+            cornerRadius={8}
+            shadowColor="rgba(0, 0, 0, 0.08)"
+            shadowBlur={8}
+            shadowOffset={{ x: 0, y: 2 }}
+            shadowOpacity={1}
           />
 
           {/* Grid cells */}
@@ -272,13 +294,14 @@ const GameBoard: React.FC<GameBoardProps> = ({
           left: BOARD_CONFIG.BORDER_WIDTH,
           width: boardDimensions.width,
           height: boardDimensions.height,
-          backgroundColor: isOver ? 'rgba(14, 165, 233, 0.1)' : 'transparent',
-          border: isOver ? '2px dashed #0ea5e9' : 'none',
+          backgroundColor: isOver ? 'rgba(79, 70, 229, 0.08)' : 'transparent',
+          border: isOver ? '2px dashed rgba(79, 70, 229, 0.6)' : 'none',
           pointerEvents: draggedBlock ? 'auto' : 'none',
           cursor: draggedBlock ? 'crosshair' : 'default',
           zIndex: draggedBlock ? 100 : 1,
-          transition: 'all 0.2s ease',
-          borderRadius: '4px'
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          borderRadius: '6px',
+          boxShadow: isOver ? 'inset 0 0 20px rgba(79, 70, 229, 0.1)' : 'none'
         }}
         onClick={handleOverlayClick}
       />

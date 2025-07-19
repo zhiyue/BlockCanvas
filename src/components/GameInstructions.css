@@ -1,0 +1,244 @@
+.instructions-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.instructions-modal {
+  background: white;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.instructions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem 2rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.instructions-header h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.instructions-content {
+  padding: 1.5rem 2rem;
+}
+
+.instruction-section {
+  margin-bottom: 2rem;
+}
+
+.instruction-section h3 {
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.instruction-section p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.instruction-section ol {
+  color: #4b5563;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+}
+
+.instruction-section ul {
+  color: #4b5563;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+}
+
+.instruction-section li {
+  margin-bottom: 0.5rem;
+}
+
+.instruction-section strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.difficulty-item {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.difficulty-item p {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.difficulty {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.difficulty-beginner {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.difficulty-advanced {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.difficulty-master {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.difficulty-grandmaster {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.instructions-footer {
+  padding: 1rem 2rem 2rem 2rem;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.instructions-footer .btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .instructions-overlay {
+    padding: 0.5rem;
+  }
+
+  .instructions-modal {
+    border-radius: 12px;
+    max-height: 95vh;
+  }
+
+  .instructions-header {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+
+  .instructions-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .instructions-content {
+    padding: 1rem 1.5rem;
+  }
+
+  .instruction-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .instruction-section h3 {
+    font-size: 1.125rem;
+  }
+
+  .difficulty-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .instructions-footer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .instructions-footer .btn {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+/* Scrollbar styling for the modal */
+.instructions-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.instructions-modal::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.instructions-modal::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.instructions-modal::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

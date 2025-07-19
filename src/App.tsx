@@ -7,7 +7,7 @@ import DraggableBlock from './components/DraggableBlock'
 import { useGameStore } from './store/gameStore'
 import { SAMPLE_CHALLENGES } from './data/challenges'
 import { getBlockById } from './data/blocks'
-import { BOARD_SIZE, CELL_SIZE } from './types/game'
+import { BOARD_SIZE, CELL_SIZE, CoordinateSystem } from './types/game'
 import { StagewiseToolbar } from '@stagewise/toolbar-react'
 import ReactPlugin from '@stagewise-plugins/react'
 import './App.css'
@@ -166,11 +166,10 @@ function App() {
         if (gameBoardElement && activatorEvent && 'clientX' in activatorEvent && 'clientY' in activatorEvent) {
           const rect = gameBoardElement.getBoundingClientRect()
           const mouseEvent = activatorEvent as MouseEvent
-          const x = mouseEvent.clientX - rect.left - 2 // Subtract border offset (2px for Stage border)
-          const y = mouseEvent.clientY - rect.top - 2
-          
-          const gridX = Math.floor(x / CELL_SIZE)
-          const gridY = Math.floor(y / CELL_SIZE)
+          const canvasX = mouseEvent.clientX - rect.left
+          const canvasY = mouseEvent.clientY - rect.top
+
+          const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY)
           
           // Ensure coordinates are within bounds
           if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {

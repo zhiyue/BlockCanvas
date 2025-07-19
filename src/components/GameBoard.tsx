@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stage, Layer, Rect, Group } from 'react-konva';
 import { useDroppable } from '@dnd-kit/core';
-import { BOARD_SIZE, CELL_SIZE, Position } from '../types/game';
+import { BOARD_SIZE, CELL_SIZE, Position, CoordinateSystem, BOARD_CONFIG } from '../types/game';
 import DraggableBlock from './DraggableBlock';
 import { getBlockById } from '../data/blocks';
 import './GameBoard.css';
@@ -14,8 +14,7 @@ interface GameBoardProps {
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, selectedBlock, onBlockSelect }) => {
-  const boardWidth = BOARD_SIZE * CELL_SIZE;
-  const boardHeight = BOARD_SIZE * CELL_SIZE;
+  const boardDimensions = CoordinateSystem.getBoardDimensions();
 
   const { isOver, setNodeRef } = useDroppable({
     id: 'game-board',
@@ -45,16 +44,17 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
 
   const renderGrid = () => {
     const gridLines = [];
-    
+
     // Vertical lines
     for (let i = 0; i <= BOARD_SIZE; i++) {
+      const { x } = CoordinateSystem.gridToCanvas(i, 0);
       gridLines.push(
         <Rect
           key={`v-line-${i}`}
-          x={i * CELL_SIZE + 2}
-          y={2}
-          width={1}
-          height={boardHeight}
+          x={x}
+          y={BOARD_CONFIG.BORDER_WIDTH}
+          width={BOARD_CONFIG.GRID_LINE_WIDTH}
+          height={boardDimensions.height}
           fill="#cccccc"
         />
       );
@@ -62,33 +62,35 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
 
     // Horizontal lines
     for (let i = 0; i <= BOARD_SIZE; i++) {
+      const { y } = CoordinateSystem.gridToCanvas(0, i);
       gridLines.push(
         <Rect
           key={`h-line-${i}`}
-          x={2}
-          y={i * CELL_SIZE + 2}
-          width={boardWidth}
-          height={1}
+          x={BOARD_CONFIG.BORDER_WIDTH}
+          y={y}
+          width={boardDimensions.width}
+          height={BOARD_CONFIG.GRID_LINE_WIDTH}
           fill="#cccccc"
         />
       );
     }
-    
+
     return gridLines;
   };
 
   const renderCells = () => {
     const cells = [];
-    
+
     for (let row = 0; row < BOARD_SIZE; row++) {
       for (let col = 0; col < BOARD_SIZE; col++) {
+        const cellBounds = CoordinateSystem.getCellBounds(col, row);
         cells.push(
           <Rect
             key={`cell-${row}-${col}`}
-            x={col * CELL_SIZE + 2}
-            y={row * CELL_SIZE + 2}
-            width={CELL_SIZE - 2}
-            height={CELL_SIZE - 2}
+            x={cellBounds.x}
+            y={cellBounds.y}
+            width={cellBounds.width}
+            height={cellBounds.height}
             fill="#ffffff"
             stroke="#f0f0f0"
             strokeWidth={1}
@@ -98,29 +100,31 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
         );
       }
     }
-    
+
     return cells;
   };
 
   const renderPlacedBlocks = (): React.ReactElement[] => {
     const blocks: React.ReactElement[] = [];
-    
+
     Object.entries(placedBlocks).forEach(([blockId, blockData]) => {
       const { position, color, pattern } = blockData;
-      
+
       pattern.forEach((row, rowIndex) => {
         row.forEach((isOccupied, colIndex) => {
           if (isOccupied) {
-            const x = (position.x + colIndex) * CELL_SIZE + 2;
-            const y = (position.y + rowIndex) * CELL_SIZE + 2;
-            
+            const cellBounds = CoordinateSystem.getCellBounds(
+              position.x + colIndex,
+              position.y + rowIndex
+            );
+
             blocks.push(
               <Rect
                 key={`block-${blockId}-${rowIndex}-${colIndex}`}
-                x={x}
-                y={y}
-                width={CELL_SIZE - 2}
-                height={CELL_SIZE - 2}
+                x={cellBounds.x}
+                y={cellBounds.y}
+                width={cellBounds.width}
+                height={cellBounds.height}
                 fill={color}
                 stroke="#ffffff"
                 strokeWidth={2}
@@ -134,7 +138,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
         });
       });
     });
-    
+
     return blocks;
   };
 
@@ -146,6 +150,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
       const block = getBlockById(blockId);
 
       if (block) {
+        const blockPosition = CoordinateSystem.gridToCanvas(position.x, position.y);
         draggableBlocks.push(
           <DraggableBlock
             key={`draggable-${blockId}`}
@@ -154,8 +159,8 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
             onSelect={() => onBlockSelect && onBlockSelect(selectedBlock === blockId ? null : blockId)}
             rotation={rotation}
             scale={1}
-            x={position.x * CELL_SIZE + 2}
-            y={position.y * CELL_SIZE + 2}
+            x={blockPosition.x}
+            y={blockPosition.y}
             enableDrag={true}
             renderAsHTML={true}
           />
@@ -168,41 +173,41 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
 
   return (
     <div className="game-board-container" style={{ position: 'relative' }}>
-      <Stage width={boardWidth + 2} height={boardHeight + 2}>
+      <Stage width={boardDimensions.totalWidth} height={boardDimensions.totalHeight}>
         <Layer>
           {/* Board background */}
           <Rect
             x={0}
             y={0}
-            width={boardWidth + 2}
-            height={boardHeight + 2}
+            width={boardDimensions.totalWidth}
+            height={boardDimensions.totalHeight}
             fill="#f8f9fa"
             stroke="#dee2e6"
-            strokeWidth={2}
+            strokeWidth={BOARD_CONFIG.BORDER_WIDTH}
           />
-          
+
           {/* Grid cells */}
           {renderCells()}
-          
+
           {/* Grid lines */}
           {renderGrid()}
-          
+
           {/* Note: Placed blocks are now rendered as HTML draggable overlays instead of Canvas */}
         </Layer>
       </Stage>
-      
+
       {/* Draggable overlays for placed blocks */}
       {renderDraggablePlacedBlocks()}
-      
+
       {/* Invisible overlay for drag-and-drop */}
       <div
         ref={setNodeRef}
         style={{
           position: 'absolute',
-          top: 2,
-          left: 2,
-          width: boardWidth - 2,
-          height: boardHeight - 2,
+          top: BOARD_CONFIG.BORDER_WIDTH,
+          left: BOARD_CONFIG.BORDER_WIDTH,
+          width: boardDimensions.width,
+          height: boardDimensions.height,
           backgroundColor: isOver ? 'rgba(79, 70, 229, 0.1)' : 'transparent',
           border: isOver ? '2px dashed #4f46e5' : 'none',
           pointerEvents: isOver ? 'auto' : 'none',

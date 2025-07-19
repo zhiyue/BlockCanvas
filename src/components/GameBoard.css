@@ -1,20 +1,34 @@
+:root {
+  --board-border-width: 2px;
+  --board-border-radius: 8px;
+  --container-border-radius: 12px;
+}
+
 .game-board-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: var(--container-border-radius);
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .game-board-container canvas {
-  border-radius: 8px;
+  border-radius: var(--board-border-radius);
   cursor: pointer;
+  display: block;
+}
+
+/* Ensure consistent positioning for all child elements */
+.game-board-container > * {
+  position: relative;
 }
 
 @media (max-width: 768px) {
   .game-board-container {
-    padding: 0.5rem;
+    /* Keep padding at 0 for consistent coordinate system */
+    padding: 0;
   }
 }

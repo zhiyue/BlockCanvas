@@ -5,7 +5,7 @@ const COLORS = {
   RED: '#dc2626',     // Mondrian red
   BLUE: '#2563eb',    // Mondrian blue
   YELLOW: '#facc15',  // Mondrian yellow
-  WHITE: '#f8fafc',   // Light gray-white
+  WHITE: '#8b5a3c',   // Warm brown
   BLACK: '#1f2937',   // Dark gray-black
   ORANGE: '#ea580c',  // Secondary color
   GREEN: '#16a34a',   // Secondary color

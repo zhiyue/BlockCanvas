@@ -99,10 +99,10 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
                 width: cellSize - 2,
                 height: cellSize - 2,
                 backgroundColor: block.color,
-                border: isSelected ? '4px solid #4f46e5' : '1px solid #000000',
+                border: isSelected ? '2px solid #4f46e5' : '1px solid #000000',
                 borderRadius: '2px',
                 boxShadow: isSelected 
-                  ? '3px 3px 8px rgba(79, 70, 229, 0.6)' 
+                  ? '0 0 8px rgba(79, 70, 229, 0.6)' 
                   : '1px 1px 3px rgba(0, 0, 0, 0.2)'
               }}
             />
@@ -131,12 +131,13 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
           position: 'absolute',
           left: x,
           top: y,
-          cursor: enableDrag ? 'grab' : 'pointer',
-          padding: '4px',
-          borderRadius: '6px',
-          backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.15)' : 'rgba(255, 255, 255, 0.05)',
-          border: isSelected ? '3px solid #4f46e5' : 'none',
-          boxShadow: isSelected ? '0 0 10px rgba(79, 70, 229, 0.4)' : 'none',
+          cursor: enableDrag ? (isDragging ? 'grabbing' : 'grab') : 'pointer',
+          padding: '0px',
+          borderRadius: '2px',
+          backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'transparent',
+          border: isSelected ? '2px solid #4f46e5' : 'none',
+          boxShadow: isSelected ? '0 0 8px rgba(79, 70, 229, 0.3)' : 'none',
+          zIndex: isDragging ? 1000 : (isSelected ? 50 : 10),
           ...dragStyle,
         }}
         onClick={onSelect}

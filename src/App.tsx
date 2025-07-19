@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { DndContext, DragOverlay, DragStartEvent, DragEndEvent, closestCenter } from '@dnd-kit/core'
+import { DndContext, DragOverlay, DragStartEvent, DragEndEvent, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import GameBoard from './components/GameBoard'
 import BlockInventory from './components/BlockInventory'
 import GameInstructions from './components/GameInstructions'
@@ -7,6 +7,9 @@ import DraggableBlock from './components/DraggableBlock'
 import { useGameStore } from './store/gameStore'
 import { SAMPLE_CHALLENGES } from './data/challenges'
 import { getBlockById } from './data/blocks'
+import { BOARD_SIZE, CELL_SIZE } from './types/game'
+import { StagewiseToolbar } from '@stagewise/toolbar-react'
+import ReactPlugin from '@stagewise-plugins/react'
 import './App.css'
 
 function App() {
@@ -48,6 +51,14 @@ function App() {
   const [showInstructions, setShowInstructions] = React.useState(false)
   const [draggedBlock, setDraggedBlock] = useState<string | null>(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
+  
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  )
 
   const handleCellClick = (x: number, y: number) => {
     if (selectedBlock) {
@@ -77,7 +88,7 @@ function App() {
   }
 
   const getPlacedBlocksForDisplay = () => {
-    const placedBlocksDisplay: { [key: string]: { position: { x: number; y: number }; color: string; pattern: boolean[][] } } = {}
+    const placedBlocksDisplay: { [key: string]: { position: { x: number; y: number }; color: string; pattern: boolean[][]; rotation: number } } = {}
     
     board.placedBlocks.forEach(placedBlock => {
       const block = getBlockById(placedBlock.blockId)
@@ -100,7 +111,8 @@ function App() {
         placedBlocksDisplay[placedBlock.blockId] = {
           position: placedBlock.position,
           color: block.color,
-          pattern: pattern
+          pattern: pattern,
+          rotation: placedBlock.rotation
         }
       }
     })
@@ -141,26 +153,44 @@ function App() {
   }
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event
+    const { active, over, activatorEvent } = event
     
     if (over && draggedBlock) {
       const blockId = active.id as string
       
       if (over.id === 'game-board') {
-        // Get drop position from board component
-        const dropData = over.data.current as { x: number; y: number } | undefined
-        if (dropData) {
-          const rotation = blockRotations[blockId] || 0
-          const success = placeBlock(blockId, dropData.x, dropData.y, rotation)
+        const rotation = blockRotations[blockId] || 0
+        
+        // Get the game board element to calculate relative coordinates
+        const gameBoardElement = document.querySelector('.game-board-container canvas')
+        if (gameBoardElement && activatorEvent && 'clientX' in activatorEvent && 'clientY' in activatorEvent) {
+          const rect = gameBoardElement.getBoundingClientRect()
+          const mouseEvent = activatorEvent as MouseEvent
+          const x = mouseEvent.clientX - rect.left - 2 // Subtract border offset (2px for Stage border)
+          const y = mouseEvent.clientY - rect.top - 2
           
-          if (success) {
-            // Reset rotation for this block after placing
-            setBlockRotations(prev => ({
-              ...prev,
-              [blockId]: 0
-            }))
+          const gridX = Math.floor(x / CELL_SIZE)
+          const gridY = Math.floor(y / CELL_SIZE)
+          
+          // Ensure coordinates are within bounds
+          if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
+            const success = placeBlock(blockId, gridX, gridY, rotation)
+            
+            if (success) {
+              // Reset rotation for this block after placing
+              setBlockRotations(prev => ({
+                ...prev,
+                [blockId]: 0
+              }))
+            } else if (draggedFromBoard) {
+              // If placement failed and was dragged from board, try to put it back
+              const originalPosition = board.placedBlocks.find(pb => pb.blockId === blockId)
+              if (originalPosition) {
+                placeBlock(blockId, originalPosition.position.x, originalPosition.position.y, originalPosition.rotation)
+              }
+            }
           } else if (draggedFromBoard) {
-            // If placement failed and was dragged from board, try to put it back
+            // If coordinates are out of bounds and was dragged from board, put it back
             const originalPosition = board.placedBlocks.find(pb => pb.blockId === blockId)
             if (originalPosition) {
               placeBlock(blockId, originalPosition.position.x, originalPosition.position.y, originalPosition.rotation)
@@ -189,6 +219,7 @@ function App() {
 
   return (
     <DndContext
+      sensors={sensors}
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
@@ -255,6 +286,8 @@ function App() {
               <GameBoard 
                 placedBlocks={getPlacedBlocksForDisplay()}
                 onCellClick={handleCellClick}
+                selectedBlock={selectedBlock}
+                onBlockSelect={selectBlock}
               />
               
               <BlockInventory
@@ -284,6 +317,12 @@ function App() {
           />
         ) : null}
       </DragOverlay>
+      
+      <StagewiseToolbar 
+        config={{
+          plugins: [ReactPlugin]
+        }}
+      />
     </DndContext>
   )
 }

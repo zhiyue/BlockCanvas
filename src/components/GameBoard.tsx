@@ -1,9 +1,10 @@
 import React from 'react';
-import { Stage, Layer, Rect, Group } from 'react-konva';
+import { Stage, Layer, Rect } from 'react-konva';
 import { useDroppable } from '@dnd-kit/core';
 import { BOARD_SIZE, CELL_SIZE, Position, CoordinateSystem, BOARD_CONFIG } from '../types/game';
 import DraggableBlock from './DraggableBlock';
 import { getBlockById } from '../data/blocks';
+import { useGameStore } from '../store/gameStore';
 import './GameBoard.css';
 
 interface GameBoardProps {
@@ -11,10 +12,20 @@ interface GameBoardProps {
   onCellClick?: (x: number, y: number) => void;
   selectedBlock?: string | null;
   onBlockSelect?: (blockId: string | null) => void;
+  draggedBlock?: string | null;
+  blockRotations?: {[key: string]: number};
 }
 
-const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, selectedBlock, onBlockSelect }) => {
+const GameBoard: React.FC<GameBoardProps> = ({
+  placedBlocks,
+  onCellClick,
+  selectedBlock,
+  onBlockSelect,
+  draggedBlock,
+  blockRotations = {}
+}) => {
   const boardDimensions = CoordinateSystem.getBoardDimensions();
+  const { isPositionValid } = useGameStore();
 
   const { isOver, setNodeRef } = useDroppable({
     id: 'game-board',
@@ -22,6 +33,29 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
       type: 'board'
     }
   });
+
+
+
+  // Get valid positions for the dragged block
+  const getValidPositions = (): Position[] => {
+    if (!draggedBlock) return [];
+
+    const block = getBlockById(draggedBlock);
+    if (!block) return [];
+
+    const rotation = blockRotations[draggedBlock] || 0;
+    const validPositions: Position[] = [];
+
+    for (let y = 0; y < BOARD_SIZE; y++) {
+      for (let x = 0; x < BOARD_SIZE; x++) {
+        if (isPositionValid(draggedBlock, x, y, rotation)) {
+          validPositions.push({ x, y });
+        }
+      }
+    }
+
+    return validPositions;
+  };
 
   const handleCellClick = (x: number, y: number) => {
     if (onCellClick) {
@@ -80,10 +114,14 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
 
   const renderCells = () => {
     const cells = [];
+    const validPositions = getValidPositions();
+    const validPositionSet = new Set(validPositions.map(pos => `${pos.x}-${pos.y}`));
 
     for (let row = 0; row < BOARD_SIZE; row++) {
       for (let col = 0; col < BOARD_SIZE; col++) {
         const cellBounds = CoordinateSystem.getCellBounds(col, row);
+        const isValidPosition = validPositionSet.has(`${col}-${row}`);
+
         cells.push(
           <Rect
             key={`cell-${row}-${col}`}
@@ -91,9 +129,9 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
             y={cellBounds.y}
             width={cellBounds.width}
             height={cellBounds.height}
-            fill="#ffffff"
-            stroke="#f0f0f0"
-            strokeWidth={1}
+            fill={isValidPosition ? "#e0f2fe" : "#ffffff"}
+            stroke={isValidPosition ? "#0284c7" : "#f0f0f0"}
+            strokeWidth={isValidPosition ? 2 : 1}
             onClick={() => handleCellClick(col, row)}
             onTap={() => handleCellClick(col, row)}
           />
@@ -104,43 +142,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
     return cells;
   };
 
-  const renderPlacedBlocks = (): React.ReactElement[] => {
-    const blocks: React.ReactElement[] = [];
 
-    Object.entries(placedBlocks).forEach(([blockId, blockData]) => {
-      const { position, color, pattern } = blockData;
-
-      pattern.forEach((row, rowIndex) => {
-        row.forEach((isOccupied, colIndex) => {
-          if (isOccupied) {
-            const cellBounds = CoordinateSystem.getCellBounds(
-              position.x + colIndex,
-              position.y + rowIndex
-            );
-
-            blocks.push(
-              <Rect
-                key={`block-${blockId}-${rowIndex}-${colIndex}`}
-                x={cellBounds.x}
-                y={cellBounds.y}
-                width={cellBounds.width}
-                height={cellBounds.height}
-                fill={color}
-                stroke="#ffffff"
-                strokeWidth={2}
-                shadowColor="#000000"
-                shadowBlur={5}
-                shadowOffset={{ x: 2, y: 2 }}
-                shadowOpacity={0.3}
-              />
-            );
-          }
-        });
-      });
-    });
-
-    return blocks;
-  };
 
   const renderDraggablePlacedBlocks = (): React.ReactElement[] => {
     const draggableBlocks: React.ReactElement[] = [];
@@ -208,11 +210,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ placedBlocks, onCellClick, select
           left: BOARD_CONFIG.BORDER_WIDTH,
           width: boardDimensions.width,
           height: boardDimensions.height,
-          backgroundColor: isOver ? 'rgba(79, 70, 229, 0.1)' : 'transparent',
-          border: isOver ? '2px dashed #4f46e5' : 'none',
-          pointerEvents: isOver ? 'auto' : 'none',
-          cursor: 'crosshair',
-          zIndex: 100
+          backgroundColor: isOver ? 'rgba(14, 165, 233, 0.1)' : 'transparent',
+          border: isOver ? '2px dashed #0ea5e9' : 'none',
+          pointerEvents: 'auto',
+          cursor: draggedBlock ? 'crosshair' : 'default',
+          zIndex: 100,
+          transition: 'all 0.2s ease',
+          borderRadius: '4px'
         }}
         onClick={handleOverlayClick}
       />

@@ -7,7 +7,7 @@ import DraggableBlock from './components/DraggableBlock'
 import { useGameStore } from './store/gameStore'
 import { SAMPLE_CHALLENGES } from './data/challenges'
 import { getBlockById } from './data/blocks'
-import { BOARD_SIZE, CELL_SIZE, CoordinateSystem } from './types/game'
+import { BOARD_SIZE, CoordinateSystem } from './types/game'
 import { StagewiseToolbar } from '@stagewise/toolbar-react'
 import ReactPlugin from '@stagewise-plugins/react'
 import './App.css'
@@ -51,6 +51,7 @@ function App() {
   const [showInstructions, setShowInstructions] = React.useState(false)
   const [draggedBlock, setDraggedBlock] = useState<string | null>(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
+  const [originalPosition, setOriginalPosition] = useState<{x: number, y: number, rotation: number} | null>(null)
   
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -139,16 +140,26 @@ function App() {
   const handleDragStart = (event: DragStartEvent) => {
     const blockId = event.active.id as string
     setDraggedBlock(blockId)
-    
+
     // Check if dragging from board (already placed block)
     const isOnBoard = board.placedBlocks.some(pb => pb.blockId === blockId)
     setDraggedFromBoard(isOnBoard)
-    
-    // If dragging from board, remove it temporarily
+
+    // If dragging from board, store original position and remove it temporarily
     if (isOnBoard) {
+      const placedBlock = board.placedBlocks.find(pb => pb.blockId === blockId)
+      if (placedBlock) {
+        setOriginalPosition({
+          x: placedBlock.position.x,
+          y: placedBlock.position.y,
+          rotation: placedBlock.rotation
+        })
+      }
       removeBlock(blockId)
+    } else {
+      setOriginalPosition(null)
     }
-    
+
     selectBlock(blockId)
   }
 
@@ -181,38 +192,28 @@ function App() {
                 ...prev,
                 [blockId]: 0
               }))
-            } else if (draggedFromBoard) {
-              // If placement failed and was dragged from board, try to put it back
-              const originalPosition = board.placedBlocks.find(pb => pb.blockId === blockId)
-              if (originalPosition) {
-                placeBlock(blockId, originalPosition.position.x, originalPosition.position.y, originalPosition.rotation)
-              }
+            } else if (draggedFromBoard && originalPosition) {
+              // If placement failed and was dragged from board, put it back to original position
+              placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
             }
-          } else if (draggedFromBoard) {
+          } else if (draggedFromBoard && originalPosition) {
             // If coordinates are out of bounds and was dragged from board, put it back
-            const originalPosition = board.placedBlocks.find(pb => pb.blockId === blockId)
-            if (originalPosition) {
-              placeBlock(blockId, originalPosition.position.x, originalPosition.position.y, originalPosition.rotation)
-            }
+            placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
           }
         }
-      } else if (draggedFromBoard) {
+      } else if (draggedFromBoard && originalPosition) {
         // If dropped outside valid area and was from board, put it back
-        const originalPosition = board.placedBlocks.find(pb => pb.blockId === blockId)
-        if (originalPosition) {
-          placeBlock(blockId, originalPosition.position.x, originalPosition.position.y, originalPosition.rotation)
-        }
+        placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
       }
-    } else if (draggedFromBoard && draggedBlock) {
-      // If dropped in invalid area and was from board, put it back
-      const originalPosition = board.placedBlocks.find(pb => pb.blockId === draggedBlock)
-      if (originalPosition) {
-        placeBlock(draggedBlock, originalPosition.position.x, originalPosition.position.y, originalPosition.rotation)
-      }
+    } else if (draggedFromBoard && draggedBlock && originalPosition) {
+      // If dropped in invalid area and was from board, put it back to original position
+      placeBlock(draggedBlock, originalPosition.x, originalPosition.y, originalPosition.rotation)
     }
-    
+
+    // Clean up drag state
     setDraggedBlock(null)
     setDraggedFromBoard(false)
+    setOriginalPosition(null)
     selectBlock(null)
   }
 
@@ -282,11 +283,13 @@ function App() {
             </div>
             
             <div className="game-area">
-              <GameBoard 
+              <GameBoard
                 placedBlocks={getPlacedBlocksForDisplay()}
                 onCellClick={handleCellClick}
                 selectedBlock={selectedBlock}
                 onBlockSelect={selectBlock}
+                draggedBlock={draggedBlock}
+                blockRotations={blockRotations}
               />
               
               <BlockInventory
@@ -307,13 +310,26 @@ function App() {
         />
       </div>
       
-      <DragOverlay>
+      <DragOverlay
+        style={{
+          zIndex: 9999,
+          pointerEvents: 'none'
+        }}
+        dropAnimation={null}
+      >
         {draggedBlock ? (
-          <DraggableBlock
-            block={getBlockById(draggedBlock)!}
-            rotation={blockRotations[draggedBlock] || 0}
-            scale={0.8}
-          />
+          <div style={{
+            transform: 'rotate(0deg)',
+            opacity: 0.9,
+            filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
+          }}>
+            <DraggableBlock
+              block={getBlockById(draggedBlock)!}
+              rotation={blockRotations[draggedBlock] || 0}
+              scale={0.8}
+              renderAsHTML={true}
+            />
+          </div>
         ) : null}
       </DragOverlay>
       

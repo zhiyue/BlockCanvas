@@ -121,7 +121,8 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
   if (renderAsHTML) {
     const dragStyle = transform ? {
       transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      opacity: isDragging ? 0.5 : 1,
+      opacity: isDragging ? 0.3 : 1,
+      transition: isDragging ? 'none' : 'all 0.2s ease',
     } : {};
 
     return (
@@ -138,6 +139,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
           border: isSelected ? '2px solid #4f46e5' : 'none',
           boxShadow: isSelected ? '0 0 8px rgba(79, 70, 229, 0.3)' : 'none',
           zIndex: isDragging ? 1000 : (isSelected ? 50 : 10),
+          willChange: 'transform',
           ...dragStyle,
         }}
         onClick={onSelect}

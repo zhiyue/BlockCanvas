@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { DndContext, DragOverlay, DragStartEvent, DragEndEvent, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { DndContext, DragOverlay, DragStartEvent, DragEndEvent, DragMoveEvent, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import GameBoard from './components/GameBoard'
 import BlockInventory from './components/BlockInventory'
 import GameInstructions from './components/GameInstructions'
@@ -55,44 +55,52 @@ function App() {
   const [originalPosition, setOriginalPosition] = useState<{x: number, y: number, rotation: number} | null>(null)
   const [lastMousePosition, setLastMousePosition] = useState<{x: number, y: number} | null>(null)
   const [previewPosition, setPreviewPosition] = useState<{x: number, y: number} | null>(null)
+  const [currentMousePosition, setCurrentMousePosition] = useState<{x: number, y: number} | null>(null)
+  const [dragStartOffset, setDragStartOffset] = useState<{x: number, y: number} | null>(null)
 
-  // Track mouse position during drag and calculate preview position
+  // Track mouse position globally during drag and calculate block's top-left position
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      if (draggedBlock) {
+      setCurrentMousePosition({ x: event.clientX, y: event.clientY })
+
+      if (draggedBlock && dragStartOffset) {
         setLastMousePosition({ x: event.clientX, y: event.clientY })
 
-        // Calculate preview position for snap effect
+        // Calculate preview position based on block's top-left corner
         const gameBoardOverlay = document.querySelector('.game-board-container [style*="position: absolute"]') as HTMLElement
         if (gameBoardOverlay) {
           const rect = gameBoardOverlay.getBoundingClientRect()
-          const canvasX = event.clientX - rect.left
-          const canvasY = event.clientY - rect.top
 
-          const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY)
+          // Calculate where the block's top-left corner would be
+          const blockTopLeftX = event.clientX - dragStartOffset.x - rect.left
+          const blockTopLeftY = event.clientY - dragStartOffset.y - rect.top
+
+          const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
 
           // Only set preview if within bounds and position is valid
           if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
             const rotation = blockRotations[draggedBlock] || 0
-            if (isPositionValid(draggedBlock, gridX, gridY, rotation)) {
+            const isValid = isPositionValid(draggedBlock, gridX, gridY, rotation)
+            if (isValid) {
               setPreviewPosition({ x: gridX, y: gridY })
-            } else {
-              setPreviewPosition(null)
+              return
             }
-          } else {
-            setPreviewPosition(null)
           }
         }
+
+        // Clear preview if not over valid area
+        setPreviewPosition(null)
       }
     }
 
-    if (draggedBlock) {
-      document.addEventListener('mousemove', handleMouseMove)
-      return () => document.removeEventListener('mousemove', handleMouseMove)
-    } else {
-      setPreviewPosition(null)
-    }
-  }, [draggedBlock, blockRotations, isPositionValid])
+    document.addEventListener('mousemove', handleMouseMove)
+    return () => document.removeEventListener('mousemove', handleMouseMove)
+  }, [draggedBlock, dragStartOffset, blockRotations, isPositionValid])
+
+  // Handle drag move (simplified)
+  const handleDragMove = (event: DragMoveEvent) => {
+    // This is mainly for compatibility, actual preview is handled by mouse move
+  }
   
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -180,8 +188,22 @@ function App() {
 
   const handleDragStart = (event: DragStartEvent) => {
     const blockId = event.active.id as string
-    console.log('Drag started for block:', blockId)
     setDraggedBlock(blockId)
+
+    // Calculate offset between mouse and block's top-left corner
+    const { activatorEvent } = event
+    if (activatorEvent && 'clientX' in activatorEvent && 'clientY' in activatorEvent) {
+      const mouseEvent = activatorEvent as MouseEvent
+
+      // Find the draggable element
+      const draggableElement = (mouseEvent.target as HTMLElement).closest('[data-dnd-kit-draggable]') as HTMLElement
+      if (draggableElement) {
+        const rect = draggableElement.getBoundingClientRect()
+        const offsetX = mouseEvent.clientX - rect.left
+        const offsetY = mouseEvent.clientY - rect.top
+        setDragStartOffset({ x: offsetX, y: offsetY })
+      }
+    }
 
     // Check if dragging from board (already placed block)
     const isOnBoard = board.placedBlocks.some(pb => pb.blockId === blockId)
@@ -207,43 +229,54 @@ function App() {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
-    console.log('Drag ended:', { activeId: active.id, overId: over?.id, lastMousePosition })
 
-    if (over && draggedBlock && lastMousePosition) {
+    if (over && draggedBlock) {
       const blockId = active.id as string
 
       if (over.id === 'game-board') {
         const rotation = blockRotations[blockId] || 0
 
-        // Get the game board overlay element to calculate relative coordinates
-        const gameBoardOverlay = document.querySelector('.game-board-container [style*="position: absolute"]') as HTMLElement
-        console.log('Found overlay:', !!gameBoardOverlay)
-        if (gameBoardOverlay) {
-          const rect = gameBoardOverlay.getBoundingClientRect()
-          const canvasX = lastMousePosition.x - rect.left
-          const canvasY = lastMousePosition.y - rect.top
-          console.log('Canvas coordinates:', { canvasX, canvasY })
+        // Use the same logic as preview: calculate based on block's top-left corner
+        if (lastMousePosition && dragStartOffset) {
+          const gameBoardOverlay = document.querySelector('.game-board-container [style*="position: absolute"]') as HTMLElement
+          if (gameBoardOverlay) {
+            const rect = gameBoardOverlay.getBoundingClientRect()
 
-          const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY)
-          console.log('Grid coordinates:', { gridX, gridY })
+            // Calculate where the block's top-left corner is (same as preview logic)
+            const blockTopLeftX = lastMousePosition.x - dragStartOffset.x - rect.left
+            const blockTopLeftY = lastMousePosition.y - dragStartOffset.y - rect.top
 
-          // Ensure coordinates are within bounds
-          if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
-            const success = placeBlock(blockId, gridX, gridY, rotation)
-            console.log('Place block result:', success)
+            const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
 
-            if (success) {
-              // Reset rotation for this block after placing
-              setBlockRotations(prev => ({
-                ...prev,
-                [blockId]: 0
-              }))
+            // Ensure coordinates are within bounds
+            if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
+              const success = placeBlock(blockId, gridX, gridY, rotation)
+
+              if (success) {
+                // Reset rotation for this block after placing
+                setBlockRotations(prev => ({
+                  ...prev,
+                  [blockId]: 0
+                }))
+              } else if (draggedFromBoard && originalPosition) {
+                // If placement failed and was dragged from board, put it back to original position
+                placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
+              }
             } else if (draggedFromBoard && originalPosition) {
-              // If placement failed and was dragged from board, put it back to original position
+              // If coordinates are out of bounds and was dragged from board, put it back
               placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
             }
+          }
+        } else if (previewPosition) {
+          // Fallback: use preview position if available
+          const success = placeBlock(blockId, previewPosition.x, previewPosition.y, rotation)
+
+          if (success) {
+            setBlockRotations(prev => ({
+              ...prev,
+              [blockId]: 0
+            }))
           } else if (draggedFromBoard && originalPosition) {
-            // If coordinates are out of bounds and was dragged from board, put it back
             placeBlock(blockId, originalPosition.x, originalPosition.y, originalPosition.rotation)
           }
         }
@@ -262,6 +295,7 @@ function App() {
     setOriginalPosition(null)
     setLastMousePosition(null)
     setPreviewPosition(null)
+    setDragStartOffset(null)
     selectBlock(null)
   }
 
@@ -270,6 +304,7 @@ function App() {
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
+      onDragMove={handleDragMove}
       onDragEnd={handleDragEnd}
     >
       <div className="app">

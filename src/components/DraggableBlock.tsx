@@ -128,6 +128,8 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
     return (
       <div
         ref={setNodeRef}
+        data-dnd-kit-draggable="true"
+        data-block-id={block.id}
         style={{
           position: 'absolute',
           left: x,

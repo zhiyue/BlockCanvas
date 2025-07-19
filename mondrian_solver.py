@@ -188,7 +188,7 @@ def solve_exact_cover(limit: int | None = None) -> Iterator[List[int]]:
 
     unavailable_cols = 0  # bitmask of already covered columns (75 bits)
     chosen_rows: List[int] = []
-    stack: List[Tuple[int, int]] = []  # (column, next row‑index in list)
+    stack: List[Tuple[int, int, int]] = []  # (column, row_idx, next_pos)
 
     # Pre‑computed: columns ordered by heuristic (#rows ascending)
     col_order = list(range(N_COLS))
@@ -201,33 +201,39 @@ def solve_exact_cover(limit: int | None = None) -> Iterator[List[int]]:
         for c in col_order:
             if mask >> c & 1:
                 continue  # already covered
-            cand_len = len(COL_TO_ROWS[c])
-            if cand_len == 0:
+            # Count available rows for this column
+            available_rows = sum(1 for ridx in COL_TO_ROWS[c]
+                               if ALL_ROWS[ridx].bitmask & mask == 0)
+            if available_rows == 0:
                 return c  # unavoidable dead end
-            if cand_len < best_len:
-                best_len = cand_len
+            if available_rows < best_len:
+                best_len = available_rows
                 best_col = c
             if best_len == 1:
                 break
         return best_col
 
+    solutions_found = 0
+
     while True:
         col = choose_next_col(unavailable_cols)
         if col is None:  # all columns covered – found a solution
             yield chosen_rows.copy()
-            if limit is not None and len(chosen_rows) >= limit:
+            solutions_found += 1
+            if limit is not None and solutions_found >= limit:
                 return
             # backtrack
             if not stack:
                 return
-            col, idx = stack.pop()
-            unavailable_cols ^= ALL_ROWS[idx].bitmask
+            col, ridx, next_pos = stack.pop()
+            unavailable_cols ^= ALL_ROWS[ridx].bitmask
             chosen_rows.pop()
-            next_idx_list = COL_TO_ROWS[col]
-            next_pos = next_idx_list.index(idx) + 1
         else:
-            next_idx_list = COL_TO_ROWS[col]
             next_pos = 0
+
+        # Find next valid row for current column
+        found_row = False
+        next_idx_list = COL_TO_ROWS[col]
 
         while next_pos < len(next_idx_list):
             ridx = next_idx_list[next_pos]
@@ -237,32 +243,32 @@ def solve_exact_cover(limit: int | None = None) -> Iterator[List[int]]:
                 # choose this row
                 unavailable_cols |= row_bits
                 chosen_rows.append(ridx)
-                stack.append((col, ridx))
+                stack.append((col, ridx, next_pos + 1))
+                found_row = True
                 break
             next_pos += 1
-        else:
+
+        if not found_row:
             # no row fits – backtrack
             if not stack:
                 return
-            col, idx = stack.pop()
-            unavailable_cols ^= ALL_ROWS[idx].bitmask
+            col, ridx, next_pos = stack.pop()
+            unavailable_cols ^= ALL_ROWS[ridx].bitmask
             chosen_rows.pop()
-            next_idx_list = COL_TO_ROWS[col]
-            next_pos = next_idx_list.index(idx) + 1
-            continue
 
 # ---------------------------------------------------------------------------
 # 5.  Build black‑layout → solution‑count index
 # ---------------------------------------------------------------------------
 
-def black_cells_from_solution(sol_rows: List[int]) -> Tuple[int, int, int]:
+def black_cells_from_solution(sol_rows: List[int]) -> Tuple[int, ...]:
+    """Extract black cell positions from a solution."""
     cells: List[int] = []
     for ridx in sol_rows:
         row = ALL_ROWS[ridx]
         if row.piece in BLACK_NAMES:
             cells.extend(row.cells)
     if len(cells) != 6:  # 3+2+1 cells
-        raise RuntimeError("invalid black count")
+        raise RuntimeError(f"invalid black count: expected 6, got {len(cells)}")
     return tuple(sorted(cells))  # canonical key (length 6)
 
 
@@ -272,13 +278,24 @@ def build_index(limit: int | None = None) -> Dict[Tuple[int, ...], int]:
     counter: Dict[Tuple[int, ...], int] = defaultdict(int)
     t0 = time.time()
     n = 0
-    for sol in solve_exact_cover(limit=limit):
-        n += 1
-        key = black_cells_from_solution(sol)
-        counter[key] += 1
-        if n % 100000 == 0:
-            dt = time.time() - t0
-            print(f"[build] {n/1e6:.2f}M sols, unique layouts {len(counter)} – {dt:.1f}s")
+
+    try:
+        for sol in solve_exact_cover(limit=limit):
+            n += 1
+            try:
+                key = black_cells_from_solution(sol)
+                counter[key] += 1
+            except RuntimeError as e:
+                print(f"[warning] skipping invalid solution {n}: {e}")
+                continue
+
+            if n % 100000 == 0:
+                dt = time.time() - t0
+                print(f"[build] {n/1e6:.2f}M sols, unique layouts {len(counter)} – {dt:.1f}s")
+
+    except KeyboardInterrupt:
+        print(f"\n[build] interrupted after {n} solutions")
+
     dt = time.time() - t0
     print(f"[build] finished {n} solutions in {dt:.1f}s, layouts = {len(counter)}")
     return counter
@@ -301,23 +318,95 @@ def load_index(path: Path) -> List[Tuple[int, ...]]:
 
 
 def print_board(black_cells: Sequence[int]) -> None:
+    """Print the board with black cells marked."""
+    if not black_cells:
+        print("Empty board")
+        return
+
     board = [["·" for _ in range(BOARD_W)] for _ in range(BOARD_H)]
     for c in black_cells:
-        x, y = divmod(c, BOARD_W)
-        board[y][x] = "#"
-    print("\n".join(" ".join(row) for row in board))
+        if not (0 <= c < N_CELLS):
+            raise ValueError(f"Invalid cell index: {c}")
+        y, x = divmod(c, BOARD_W)  # Fixed: y first, then x
+        board[y][x] = "■"
+
+    # Add column headers
+    print("   " + " ".join(f"{i}" for i in range(BOARD_W)))
+    for i, row in enumerate(board):
+        print(f"{i}  " + " ".join(row))
 
 # ---------------------------------------------------------------------------
 # 7.  CLI entry‑point
 # ---------------------------------------------------------------------------
 
+def validate_pieces() -> bool:
+    """Validate that piece definitions are correct."""
+    total_colored = sum(len(cells) for cells in RAW_PIECES.values() if not any(name in BLACK_NAMES for name in [k for k, v in RAW_PIECES.items() if v == cells]))
+    total_black = sum(len(cells) for name, cells in RAW_PIECES.items() if name in BLACK_NAMES)
+
+    print(f"[validate] Colored pieces total: {total_colored} cells")
+    print(f"[validate] Black pieces total: {total_black} cells")
+    print(f"[validate] Grand total: {total_colored + total_black} cells (should be 64)")
+
+    if total_colored + total_black != 64:
+        print(f"[error] Total cells {total_colored + total_black} != 64")
+        return False
+
+    return True
+
+
+def test_solver(limit: int = 100) -> bool:
+    """Test the solver with a small limit."""
+    print(f"[test] Testing solver with limit {limit}...")
+
+    try:
+        solutions = list(solve_exact_cover(limit=limit))
+        print(f"[test] Found {len(solutions)} solutions")
+
+        if solutions:
+            # Collect unique black layouts
+            unique_layouts = set()
+            for sol in solutions:
+                black_layout = black_cells_from_solution(sol)
+                unique_layouts.add(black_layout)
+
+            print(f"[test] Found {len(unique_layouts)} unique black layouts")
+
+            # Show first unique layout
+            if unique_layouts:
+                layout = next(iter(unique_layouts))
+                print(f"[test] Sample layout: {layout}")
+                print_board(layout)
+
+        return True
+    except Exception as e:
+        print(f"[test] Solver test failed: {e}")
+        return False
+
+
 def main(argv: List[str]) -> None:
-    if len(argv) < 2 or argv[1] not in {"build", "sample"}:
-        print("Usage:\n  build  <outfile>   – enumerate & save index" "\n  sample <index.bin> [N] – sample N puzzles")
+    # Validate pieces first
+    if not validate_pieces():
+        print("Piece validation failed!")
+        return
+
+    # Test solver
+    if not test_solver():
+        print("Solver test failed!")
+        return
+
+    if len(argv) < 2 or argv[1] not in {"build", "sample", "test"}:
+        print("Usage:")
+        print("  build  <outfile>   – enumerate & save index")
+        print("  sample <index.bin> [N] – sample N puzzles")
+        print("  test               – run validation tests")
         return
 
     cmd = argv[1]
-    if cmd == "build":
+    if cmd == "test":
+        print("All tests passed!")
+        return
+    elif cmd == "build":
         if len(argv) < 3:
             print("build: need output file path")
             return
@@ -332,7 +421,7 @@ def main(argv: List[str]) -> None:
         layouts = load_index(Path(argv[2]))
         for _ in range(n):
             layout = random.choice(layouts)
-            print("Black‑block layout (cell indices):", layout)
+            print("Black-block layout (cell indices):", layout)
             print_board(layout)
             print()
 

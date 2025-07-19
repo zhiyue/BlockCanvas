@@ -26,7 +26,8 @@ function App() {
     selectBlock,
     resetBoard,
     getAvailableBlocks,
-    incrementTime
+    incrementTime,
+    isPositionValid
   } = useGameStore()
 
   // Timer effect
@@ -53,20 +54,45 @@ function App() {
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
   const [originalPosition, setOriginalPosition] = useState<{x: number, y: number, rotation: number} | null>(null)
   const [lastMousePosition, setLastMousePosition] = useState<{x: number, y: number} | null>(null)
+  const [previewPosition, setPreviewPosition] = useState<{x: number, y: number} | null>(null)
 
-  // Track mouse position during drag
+  // Track mouse position during drag and calculate preview position
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       if (draggedBlock) {
         setLastMousePosition({ x: event.clientX, y: event.clientY })
+
+        // Calculate preview position for snap effect
+        const gameBoardOverlay = document.querySelector('.game-board-container [style*="position: absolute"]') as HTMLElement
+        if (gameBoardOverlay) {
+          const rect = gameBoardOverlay.getBoundingClientRect()
+          const canvasX = event.clientX - rect.left
+          const canvasY = event.clientY - rect.top
+
+          const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY)
+
+          // Only set preview if within bounds and position is valid
+          if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
+            const rotation = blockRotations[draggedBlock] || 0
+            if (isPositionValid(draggedBlock, gridX, gridY, rotation)) {
+              setPreviewPosition({ x: gridX, y: gridY })
+            } else {
+              setPreviewPosition(null)
+            }
+          } else {
+            setPreviewPosition(null)
+          }
+        }
       }
     }
 
     if (draggedBlock) {
       document.addEventListener('mousemove', handleMouseMove)
       return () => document.removeEventListener('mousemove', handleMouseMove)
+    } else {
+      setPreviewPosition(null)
     }
-  }, [draggedBlock])
+  }, [draggedBlock, blockRotations, isPositionValid])
   
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -181,6 +207,7 @@ function App() {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
+    console.log('Drag ended:', { activeId: active.id, overId: over?.id, lastMousePosition })
 
     if (over && draggedBlock && lastMousePosition) {
       const blockId = active.id as string
@@ -190,16 +217,20 @@ function App() {
 
         // Get the game board overlay element to calculate relative coordinates
         const gameBoardOverlay = document.querySelector('.game-board-container [style*="position: absolute"]') as HTMLElement
+        console.log('Found overlay:', !!gameBoardOverlay)
         if (gameBoardOverlay) {
           const rect = gameBoardOverlay.getBoundingClientRect()
           const canvasX = lastMousePosition.x - rect.left
           const canvasY = lastMousePosition.y - rect.top
+          console.log('Canvas coordinates:', { canvasX, canvasY })
 
           const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY)
+          console.log('Grid coordinates:', { gridX, gridY })
 
           // Ensure coordinates are within bounds
           if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
             const success = placeBlock(blockId, gridX, gridY, rotation)
+            console.log('Place block result:', success)
 
             if (success) {
               // Reset rotation for this block after placing
@@ -230,6 +261,7 @@ function App() {
     setDraggedFromBoard(false)
     setOriginalPosition(null)
     setLastMousePosition(null)
+    setPreviewPosition(null)
     selectBlock(null)
   }
 
@@ -306,6 +338,7 @@ function App() {
                 onBlockSelect={selectBlock}
                 draggedBlock={draggedBlock}
                 blockRotations={blockRotations}
+                previewPosition={previewPosition}
               />
               
               <BlockInventory
@@ -335,14 +368,14 @@ function App() {
       >
         {draggedBlock ? (
           <div style={{
-            transform: 'rotate(0deg)',
-            opacity: 0.9,
-            filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
+            opacity: previewPosition ? 0.3 : 0.9,
+            filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+            transition: 'opacity 0.1s ease-out'
           }}>
             <DraggableBlock
               block={getBlockById(draggedBlock)!}
               rotation={blockRotations[draggedBlock] || 0}
-              scale={0.8}
+              scale={1.0}
               renderAsHTML={true}
             />
           </div>

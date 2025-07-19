@@ -14,6 +14,7 @@ interface GameBoardProps {
   onBlockSelect?: (blockId: string | null) => void;
   draggedBlock?: string | null;
   blockRotations?: {[key: string]: number};
+  previewPosition?: {x: number, y: number} | null;
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({
@@ -22,7 +23,8 @@ const GameBoard: React.FC<GameBoardProps> = ({
   selectedBlock,
   onBlockSelect,
   draggedBlock,
-  blockRotations = {}
+  blockRotations = {},
+  previewPosition
 }) => {
   const boardDimensions = CoordinateSystem.getBoardDimensions();
   const { isPositionValid } = useGameStore();
@@ -55,6 +57,64 @@ const GameBoard: React.FC<GameBoardProps> = ({
     }
 
     return validPositions;
+  };
+
+  // Render preview block at the preview position
+  const renderPreviewBlock = (): React.ReactElement[] => {
+    if (!previewPosition || !draggedBlock) return [];
+
+    const block = getBlockById(draggedBlock);
+    if (!block) return [];
+
+    const rotation = blockRotations[draggedBlock] || 0;
+    const rotatedPattern = rotatePattern(block.pattern, rotation);
+    const previewCells: React.ReactElement[] = [];
+
+    rotatedPattern.forEach((row, rowIndex) => {
+      row.forEach((isOccupied, colIndex) => {
+        if (isOccupied) {
+          const cellBounds = CoordinateSystem.getCellBounds(
+            previewPosition.x + colIndex,
+            previewPosition.y + rowIndex
+          );
+
+          previewCells.push(
+            <Rect
+              key={`preview-${draggedBlock}-${rowIndex}-${colIndex}`}
+              x={cellBounds.x}
+              y={cellBounds.y}
+              width={cellBounds.width}
+              height={cellBounds.height}
+              fill={block.color}
+              opacity={0.5}
+              stroke="#4f46e5"
+              strokeWidth={2}
+              dash={[5, 5]}
+            />
+          );
+        }
+      });
+    });
+
+    return previewCells;
+  };
+
+  // Helper function to rotate pattern (same as in DraggableBlock)
+  const rotatePattern = (pattern: boolean[][], times: number): boolean[][] => {
+    let rotated = pattern;
+    for (let i = 0; i < times; i++) {
+      const rows = rotated.length;
+      const cols = rotated[0].length;
+      const newPattern: boolean[][] = Array(cols).fill(null).map(() => Array(rows).fill(false));
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          newPattern[c][rows - 1 - r] = rotated[r][c];
+        }
+      }
+      rotated = newPattern;
+    }
+    return rotated;
   };
 
   const handleCellClick = (x: number, y: number) => {
@@ -192,6 +252,9 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
           {/* Grid lines */}
           {renderGrid()}
+
+          {/* Preview block */}
+          {renderPreviewBlock()}
 
           {/* Note: Placed blocks are now rendered as HTML draggable overlays instead of Canvas */}
         </Layer>

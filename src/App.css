@@ -207,6 +207,28 @@
   background: #b45309;
 }
 
+/* Desktop-specific styles for proper block layout */
+@media (min-width: 1025px) {
+  .game-area {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3rem; /* Increased gap for better spacing */
+    flex-wrap: nowrap; /* Prevent wrapping on desktop */
+    min-height: 500px; /* Ensure minimum height for proper display */
+  }
+
+  .block-inventory {
+    flex-shrink: 0; /* Prevent inventory from shrinking */
+    min-width: 500px; /* Ensure minimum width */
+  }
+
+  .game-container {
+    max-width: 1600px; /* Increased max width for desktop */
+    padding: 2.5rem; /* Increased padding */
+  }
+}
+
 @media (max-width: 1024px) {
   .game-area {
     flex-direction: column;
@@ -268,7 +290,7 @@
 }
 
 /* Container queries for adaptive layouts */
-@container (max-width: 900px) {
+@container (max-width: 700px) {
   .game-area {
     flex-direction: column;
     align-items: center;

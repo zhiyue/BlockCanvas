@@ -3,23 +3,40 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Build outputs
 dist/
 build/
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+.nyc_output/
+*.lcov
 
 # Environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
+
+# Cloudflare Workers
+.wrangler/
+.dev.vars
+.deploy/
+wrangler.toml.backup
+
+# Cache directories
+.vite/
+.cache/
+.parcel-cache/
 
 # IDE/Editor files
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS generated files
 .DS_Store
@@ -32,7 +49,19 @@ Thumbs.db
 
 # Logs
 *.log
-__pycache__/mondrian_solver.cpython-313.pyc
+logs/
+
+# Python artifacts (from solver scripts)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 test_index.bin
 solution.txt
 black.txt
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/

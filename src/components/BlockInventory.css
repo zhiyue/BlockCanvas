@@ -24,6 +24,59 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  position: relative; /* Ensure proper positioning for absolute children */
+  overflow: visible; /* Ensure blocks are not clipped */
+}
+
+.inventory-wrapper {
+  /* Base styles for the scrollable wrapper */
+  position: relative;
+}
+
+/* Desktop specific styling */
+@media (min-width: 769px) {
+  .block-inventory {
+    min-width: 360px; /* Reduced width to fit content without horizontal scroll */
+    max-width: 360px; /* Fixed max width */
+    padding: 1.5rem; /* Increased padding for better spacing */
+  }
+
+  .inventory-wrapper {
+    /* Scrollable container for desktop */
+    overflow-x: hidden !important; /* No horizontal scroll */
+    overflow-y: auto !important; /* Only vertical scroll */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+
+  .inventory-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .inventory-wrapper::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+
+  .inventory-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  .inventory-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  .inventory-container {
+    overflow: visible; /* Allow proper block display within scrollable area */
+    margin: 0; /* Remove auto centering for scrollable content */
+  }
+
+  .inventory-title {
+    font-size: 1.3rem; /* Slightly larger title for desktop */
+    margin-bottom: 1.5rem; /* More spacing below title */
+  }
 }
 
 .inventory-container canvas {

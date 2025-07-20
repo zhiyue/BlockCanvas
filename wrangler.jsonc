@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers 配置文件
+  "name": "blockcanvas",
+  "compatibility_date": "2025-04-01",
+
+  // Worker 脚本入口（编译后的路径）
+  "main": "./dist/blockcanvas/worker.js",
+
+  // 静态资源配置
+  "assets": {
+    "directory": "./dist/client",
+    "not_found_handling": "single-page-application",
+    "binding": "ASSETS"
+  }
+}

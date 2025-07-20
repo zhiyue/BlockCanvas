@@ -124,11 +124,13 @@ export const BLOCK_SHAPES: BlockShape[] = [
   {
     id: 'black-1x3',
     name: '黑色 1×3长条 ★',
-    width: 3,
-    height: 1,
+    width: 1,
+    height: 3,
     color: COLORS.BLACK,
     pattern: [
-      [true, true, true]
+      [true],
+      [true],
+      [true]
     ]
   },
 
@@ -136,11 +138,12 @@ export const BLOCK_SHAPES: BlockShape[] = [
   {
     id: 'black-1x2',
     name: '黑色 1×2长条 ★',
-    width: 2,
-    height: 1,
+    width: 1,
+    height: 2,
     color: COLORS.BLACK,
     pattern: [
-      [true, true]
+      [true],
+      [true]
     ]
   },
 

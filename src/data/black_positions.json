@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "total_solutions": 3,
-    "unique_black_combinations": 3,
-    "start_time": "2025-07-20 20:08:16",
-    "end_time": "2025-07-20 20:08:16",
-    "elapsed_time_seconds": 0.002536773681640625,
+    "total_solutions": 100,
+    "unique_black_combinations": 70,
+    "start_time": "2025-07-20 20:28:12",
+    "end_time": "2025-07-20 20:28:12",
+    "elapsed_time_seconds": 0.03142356872558594,
     "board_size": 8
   },
   "piece_definitions": {
@@ -120,7 +120,7 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:08:16"
+      "timestamp": "2025-07-20 20:28:12"
     },
     {
       "combination_id": 2,
@@ -211,7 +211,7 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:08:16"
+      "timestamp": "2025-07-20 20:28:12"
     },
     {
       "combination_id": 3,
@@ -302,7 +302,6104 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:08:16"
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 4,
+      "solution_id": 4,
+      "black_pieces": {
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 5,
+      "solution_id": 5,
+      "black_pieces": {
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 6,
+      "solution_id": 6,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 3,
+              "col": 5
+            },
+            {
+              "row": 4,
+              "col": 5
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 6
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 7,
+      "solution_id": 7,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 3,
+              "col": 5
+            },
+            {
+              "row": 4,
+              "col": 5
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 6
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 8,
+      "solution_id": 8,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 5
+            },
+            {
+              "row": 4,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 5
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 6
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 9,
+      "solution_id": 9,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 1,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 10,
+      "solution_id": 10,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 11,
+      "solution_id": 11,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 1,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 12,
+      "solution_id": 12,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 1,
+              "col": 3
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 13,
+      "solution_id": 13,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 1,
+              "col": 3
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 14,
+      "solution_id": 14,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 1,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 15,
+      "solution_id": 17,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 16,
+      "solution_id": 18,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 17,
+      "solution_id": 19,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 0,
+              "col": 6
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 18,
+      "solution_id": 20,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 0,
+              "col": 6
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 19,
+      "solution_id": 21,
+      "black_pieces": {
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 20,
+      "solution_id": 22,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 2,
+              "col": 4
+            },
+            {
+              "row": 2,
+              "col": 5
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 6
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 21,
+      "solution_id": 23,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 2,
+              "col": 4
+            },
+            {
+              "row": 2,
+              "col": 5
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 6
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 22,
+      "solution_id": 24,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 2,
+              "col": 4
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 23,
+      "solution_id": 25,
+      "black_pieces": {
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 4
+            },
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 24,
+      "solution_id": 26,
+      "black_pieces": {
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 0,
+              "col": 4
+            },
+            {
+              "row": 0,
+              "col": 5
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 25,
+      "solution_id": 27,
+      "black_pieces": {
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 0,
+              "col": 4
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 26,
+      "solution_id": 35,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 3
+            },
+            {
+              "row": 5,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 27,
+      "solution_id": 36,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 3
+            },
+            {
+              "row": 5,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 3,
+              "col": 3
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 28,
+      "solution_id": 37,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 3
+            },
+            {
+              "row": 5,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 29,
+      "solution_id": 38,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 3
+            },
+            {
+              "row": 5,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 1,
+              "col": 3
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 30,
+      "solution_id": 39,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 3,
+              "col": 3
+            },
+            {
+              "row": 4,
+              "col": 3
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 31,
+      "solution_id": 40,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 3,
+              "col": 3
+            },
+            {
+              "row": 4,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 3
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 32,
+      "solution_id": 41,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 3
+            },
+            {
+              "row": 4,
+              "col": 3
+            },
+            {
+              "row": 5,
+              "col": 3
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 33,
+      "solution_id": 42,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 34,
+      "solution_id": 43,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 35,
+      "solution_id": 44,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 36,
+      "solution_id": 45,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 37,
+      "solution_id": 46,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 38,
+      "solution_id": 47,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 39,
+      "solution_id": 48,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 6
+            },
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 40,
+      "solution_id": 49,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 6
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 41,
+      "solution_id": 50,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 42,
+      "solution_id": 51,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 1,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 43,
+      "solution_id": 52,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 1,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 1,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 44,
+      "solution_id": 53,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 1,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 45,
+      "solution_id": 54,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 1,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 46,
+      "solution_id": 55,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 1,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 47,
+      "solution_id": 56,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            },
+            {
+              "row": 1,
+              "col": 3
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 48,
+      "solution_id": 59,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 49,
+      "solution_id": 60,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 5
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 50,
+      "solution_id": 61,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 1,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 1,
+              "col": 5
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 51,
+      "solution_id": 62,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 2,
+              "col": 4
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 52,
+      "solution_id": 63,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 5
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 53,
+      "solution_id": 64,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 0,
+              "col": 6
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 54,
+      "solution_id": 65,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            },
+            {
+              "row": 0,
+              "col": 6
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 55,
+      "solution_id": 66,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 5
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 6
+            },
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 56,
+      "solution_id": 67,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 7
+            },
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 57,
+      "solution_id": 68,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            },
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 58,
+      "solution_id": 69,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 59,
+      "solution_id": 71,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            },
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 60,
+      "solution_id": 72,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 61,
+      "solution_id": 73,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            },
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 62,
+      "solution_id": 75,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            },
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 63,
+      "solution_id": 76,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 3
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 64,
+      "solution_id": 88,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 65,
+      "solution_id": 89,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 7
+            },
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 3
+            },
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 66,
+      "solution_id": 95,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 4
+            },
+            {
+              "row": 5,
+              "col": 4
+            },
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 3
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 67,
+      "solution_id": 96,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 4
+            },
+            "bottom_right": {
+              "row": 6,
+              "col": 4
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 4
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 3
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 5
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 3
+            },
+            {
+              "row": 2,
+              "col": 4
+            },
+            {
+              "row": 2,
+              "col": 5
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 68,
+      "solution_id": 97,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 4,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 4,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 4,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            },
+            {
+              "row": 5,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 69,
+      "solution_id": 98,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 6
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
+    },
+    {
+      "combination_id": 70,
+      "solution_id": 99,
+      "black_pieces": {
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 6,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 7,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 2
+          },
+          "cells": [
+            {
+              "row": 6,
+              "col": 7
+            },
+            {
+              "row": 7,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 0,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            }
+          ]
+        },
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 3,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            },
+            {
+              "row": 5,
+              "col": 7
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-07-20 20:28:12"
     }
   ]
 }

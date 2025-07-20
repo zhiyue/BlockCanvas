@@ -70,11 +70,13 @@ function convertBlackPieceToPlacedBlock(color: string, piece: BlackPieceInfo): P
   // 根据积木的实际尺寸和期望尺寸来判断是否旋转
   const expectedSize = BLACK_POSITIONS_DATA.piece_definitions[color].size;
   const actualSize = piece.size;
-  
+
   let rotation = 0;
+  // 如果实际尺寸与期望尺寸不匹配，说明积木在求解器中被旋转了
+  // 我们需要计算需要多少次90度旋转来从期望形状变成实际形状
   if (expectedSize.width !== actualSize.width || expectedSize.height !== actualSize.height) {
-    // 如果尺寸不匹配，说明积木被旋转了
     if (expectedSize.width === actualSize.height && expectedSize.height === actualSize.width) {
+      // 尺寸正好相反，说明旋转了90度
       rotation = 1; // 90度旋转
     }
   }

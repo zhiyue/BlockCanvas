@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "total_solutions": 5,
+    "unique_black_combinations": 2,
+    "deduplication_method": "所有黑色积木被视为等效，只根据它们占用的格子位置进行去重",
+    "start_time": "2025-07-20 21:10:19",
+    "end_time": "2025-07-20 21:10:19",
+    "elapsed_time_seconds": 0.0038559436798095703,
+    "board_size": 8
+  },
+  "piece_definitions": {
+    "K": {
+      "name": "黑色1×3",
+      "size": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    "k": {
+      "name": "黑色1×2",
+      "size": {
+        "width": 1,
+        "height": 2
+      }
+    },
+    "x": {
+      "name": "黑色1×1",
+      "size": {
+        "width": 1,
+        "height": 1
+      }
+    }
+  },
+  "black_piece_combinations": [
+    {
+      "combination_id": 1,
+      "solution_id": 1,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 5,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 5,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 5,
+              "col": 5
+            },
+            {
+              "row": 5,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "difficulty_score": {
+        "total_score": 178.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:10:19"
+    },
+    {
+      "combination_id": 2,
+      "solution_id": 2,
+      "black_pieces": {
+        "K": {
+          "name": "黑色1×3",
+          "color": "K",
+          "position": {
+            "top_left": {
+              "row": 0,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 3
+          },
+          "cells": [
+            {
+              "row": 0,
+              "col": 7
+            },
+            {
+              "row": 1,
+              "col": 7
+            },
+            {
+              "row": 2,
+              "col": 7
+            }
+          ]
+        },
+        "x": {
+          "name": "黑色1×1",
+          "color": "x",
+          "position": {
+            "top_left": {
+              "row": 3,
+              "col": 7
+            },
+            "bottom_right": {
+              "row": 3,
+              "col": 7
+            }
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 3,
+              "col": 7
+            }
+          ]
+        },
+        "k": {
+          "name": "黑色1×2",
+          "color": "k",
+          "position": {
+            "top_left": {
+              "row": 2,
+              "col": 5
+            },
+            "bottom_right": {
+              "row": 2,
+              "col": 6
+            }
+          },
+          "size": {
+            "width": 2,
+            "height": 1
+          },
+          "cells": [
+            {
+              "row": 2,
+              "col": 5
+            },
+            {
+              "row": 2,
+              "col": 6
+            }
+          ]
+        }
+      },
+      "difficulty_score": {
+        "total_score": 121.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:10:19"
+    }
+  ]
+}

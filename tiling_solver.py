@@ -413,6 +413,131 @@ class TilingSolver:
 
         return black_pieces
 
+    def calculate_difficulty_score(self, black_pieces_info: Dict) -> Dict:
+        """计算黑色方块布局的难度评分"""
+        if not black_pieces_info:
+            return {"total_score": 0, "difficulty": "beginner", "factors": {}}
+
+        # 获取所有黑色方块占用的格子
+        all_cells = []
+        for piece_info in black_pieces_info.values():
+            all_cells.extend(piece_info['cells'])
+
+        if not all_cells:
+            return {"total_score": 0, "difficulty": "beginner", "factors": {}}
+
+        # 1. 分散程度评分
+        min_x = min(cell['col'] for cell in all_cells)
+        max_x = max(cell['col'] for cell in all_cells)
+        min_y = min(cell['row'] for cell in all_cells)
+        max_y = max(cell['row'] for cell in all_cells)
+
+        spread_x = max_x - min_x
+        spread_y = max_y - min_y
+        total_spread = spread_x + spread_y
+        spread_score = min(total_spread * 10, 100)
+
+        # 2. 碎片化程度评分
+        cell_set = set((cell['row'], cell['col']) for cell in all_cells)
+        visited = set()
+        regions = 0
+
+        def dfs(row, col):
+            if (row, col) in visited or (row, col) not in cell_set:
+                return
+            visited.add((row, col))
+            for dr, dc in [(0,1), (0,-1), (1,0), (-1,0)]:
+                dfs(row + dr, col + dc)
+
+        for cell in all_cells:
+            if (cell['row'], cell['col']) not in visited:
+                regions += 1
+                dfs(cell['row'], cell['col'])
+
+        fragmentation_score = (regions - 1) * 30
+
+        # 3. 边缘接近度评分
+        edge_distance = 0
+        for cell in all_cells:
+            dist_to_edge = min(cell['row'], cell['col'], 7 - cell['row'], 7 - cell['col'])
+            edge_distance += dist_to_edge
+
+        avg_edge_distance = edge_distance / len(all_cells)
+        edge_proximity_score = max(0, (3 - avg_edge_distance) * 20)
+
+        # 4. 连通性评分
+        adjacent_pairs = 0
+        cell_map = {(cell['row'], cell['col']): True for cell in all_cells}
+
+        for cell in all_cells:
+            for dr, dc in [(0,1), (0,-1), (1,0), (-1,0)]:
+                neighbor = (cell['row'] + dr, cell['col'] + dc)
+                if neighbor in cell_map:
+                    adjacent_pairs += 1
+
+        connectivity_ratio = adjacent_pairs / (len(all_cells) * 2) if all_cells else 0
+        connectivity_score = (1 - connectivity_ratio) * 40
+
+        # 5. 对称性评分
+        symmetry_score = 0
+
+        # 检查水平对称
+        horizontal_symmetric = True
+        for cell in all_cells:
+            mirror_col = 7 - cell['col']
+            if (cell['row'], mirror_col) not in cell_map:
+                horizontal_symmetric = False
+                break
+
+        # 检查垂直对称
+        vertical_symmetric = True
+        for cell in all_cells:
+            mirror_row = 7 - cell['row']
+            if (mirror_row, cell['col']) not in cell_map:
+                vertical_symmetric = False
+                break
+
+        if horizontal_symmetric or vertical_symmetric:
+            symmetry_score = -20
+
+        # 6. 角落占用评分
+        corners = [(0,0), (0,7), (7,0), (7,7)]
+        corner_occupied = sum(1 for corner in corners if corner in cell_map)
+        corner_occupation_score = corner_occupied * 15
+
+        # 计算总分
+        total_score = max(0,
+            spread_score +
+            fragmentation_score +
+            edge_proximity_score +
+            connectivity_score +
+            symmetry_score +
+            corner_occupation_score
+        )
+
+        # 确定难度等级
+        if total_score < 50:
+            difficulty = "beginner"
+        elif total_score < 100:
+            difficulty = "advanced"
+        elif total_score < 150:
+            difficulty = "master"
+        else:
+            difficulty = "grandmaster"
+
+        return {
+            "total_score": round(total_score, 2),
+            "difficulty": difficulty,
+            "factors": {
+                "spread": {"score": round(spread_score, 2), "value": total_spread},
+                "fragmentation": {"score": round(fragmentation_score, 2), "value": regions},
+                "edge_proximity": {"score": round(edge_proximity_score, 2), "value": round(avg_edge_distance, 2)},
+                "connectivity": {"score": round(connectivity_score, 2), "value": round(connectivity_ratio, 2)},
+                "symmetry": {"score": round(symmetry_score, 2), "value": 1 if (horizontal_symmetric or vertical_symmetric) else 0},
+                "corner_occupation": {"score": round(corner_occupation_score, 2), "value": corner_occupied}
+            }
+        }
+
     def print_solution_detailed(self, solution: List[int], index: int) -> None:
         """详细打印一个解"""
         print(f"\n{'='*50}")
@@ -574,11 +699,15 @@ class TilingSolver:
             if position_key not in black_positions_set:
                 black_positions_set.add(position_key)
 
+                # 计算难度评分
+                difficulty_score = self.calculate_difficulty_score(black_pieces_info)
+
                 # 添加到JSON数据中
                 combination_data = {
                     "combination_id": len(black_positions_set),
                     "solution_id": self.stats.solutions_found,
                     "black_pieces": black_pieces_info,
+                    "difficulty_score": difficulty_score,
                     "timestamp": time.strftime('%Y-%m-%d %H:%M:%S')
                 }
                 black_json_data.append(combination_data)
@@ -586,10 +715,26 @@ class TilingSolver:
                 # 写入文本格式的黑色积木位置组合
                 if black_file:
                     black_file.write(f"组合 #{len(black_positions_set)}\n")
+                    black_file.write(f"难度评分: {difficulty_score['total_score']} ({difficulty_score['difficulty']})\n")
                     for piece_color, info in sorted(black_pieces_info.items()):
                         piece_name = info['name']
                         pos = info['position']
                         black_file.write(f"  {piece_name} ({piece_color}): 左上角({pos['top_left']['row']},{pos['top_left']['col']}) 右下角({pos['bottom_right']['row']},{pos['bottom_right']['col']})\n")
+
+                    # 写入难度因子详情
+                    black_file.write("  难度因子:\n")
+                    factor_names = {
+                        "spread": "分散程度",
+                        "fragmentation": "碎片化",
+                        "edge_proximity": "边缘接近",
+                        "connectivity": "连通性",
+                        "symmetry": "对称性",
+                        "corner_occupation": "角落占用"
+                    }
+                    for factor_key, factor_data in difficulty_score['factors'].items():
+                        factor_name = factor_names.get(factor_key, factor_key)
+                        black_file.write(f"    {factor_name}: {factor_data['score']} (值: {factor_data['value']})\n")
+
                     black_file.write("\n")
                     black_file.flush()
             

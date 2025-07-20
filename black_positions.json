@@ -3,9 +3,9 @@
     "total_solutions": 1000,
     "unique_black_combinations": 206,
     "deduplication_method": "所有黑色积木被视为等效，只根据它们占用的格子位置进行去重",
-    "start_time": "2025-07-20 20:54:01",
-    "end_time": "2025-07-20 20:54:01",
-    "elapsed_time_seconds": 0.13596725463867188,
+    "start_time": "2025-07-20 21:14:24",
+    "end_time": "2025-07-20 21:14:24",
+    "elapsed_time_seconds": 0.14303851127624512,
     "board_size": 8
   },
   "piece_definitions": {
@@ -121,7 +121,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 178.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 2,
@@ -212,7 +242,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 121.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 3,
@@ -303,7 +363,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 66.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 40,
+            "value": 4
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 26.67,
+            "value": 1.67
+          },
+          "connectivity": {
+            "score": 0.0,
+            "value": 1.0
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 4,
@@ -394,7 +484,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 111.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 40,
+            "value": 4
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 0.0,
+            "value": 1.0
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 5,
@@ -485,7 +605,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 160.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 6,
@@ -576,7 +726,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 185.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 7,
@@ -667,7 +847,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 131.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 8,
@@ -758,7 +968,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 93.33,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 9,
@@ -849,7 +1089,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 188.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 10,
@@ -940,7 +1210,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 160.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 11,
@@ -1031,7 +1331,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 76.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 20.0,
+            "value": 2.0
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 12,
@@ -1122,7 +1452,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 195.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 10
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 13,
@@ -1213,7 +1573,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 146.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 14,
@@ -1304,7 +1694,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 166.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 15,
@@ -1395,7 +1815,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 121.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 16,
@@ -1486,7 +1936,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 178.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 17,
@@ -1577,7 +2057,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 210.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 18,
@@ -1668,7 +2178,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 213.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 19,
@@ -1759,7 +2299,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 20,
@@ -1850,7 +2420,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 108.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 40,
+            "value": 4
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 0.0,
+            "value": 1.0
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 21,
@@ -1941,7 +2541,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 210.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 22,
@@ -2032,7 +2662,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 195.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 23,
@@ -2123,7 +2783,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 210.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 24,
@@ -2214,7 +2904,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 211.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 25,
@@ -2305,7 +3025,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 215.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 26,
@@ -2396,7 +3146,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 266.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 27,
@@ -2487,7 +3267,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 198.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 28,
@@ -2578,7 +3388,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 115.0,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 29,
@@ -2669,7 +3509,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 201.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 30,
@@ -2760,7 +3630,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 191.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 31,
@@ -2851,7 +3751,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 32,
@@ -2942,7 +3872,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 223.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 33,
@@ -3033,7 +3993,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 131.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 34,
@@ -3124,7 +4114,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 178.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 35,
@@ -3215,7 +4235,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 201.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 36,
@@ -3306,7 +4356,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 191.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 37,
@@ -3397,7 +4477,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 203.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 38,
@@ -3488,7 +4598,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 218.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 39,
@@ -3579,7 +4719,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 40,
@@ -3670,7 +4840,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 181.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 41,
@@ -3761,7 +4961,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 168.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 42,
@@ -3852,7 +5082,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 218.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 43,
@@ -3943,7 +5203,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 221.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 44,
@@ -4034,7 +5324,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 210.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 45,
@@ -4125,7 +5445,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 223.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 46,
@@ -4216,7 +5566,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 235.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 47,
@@ -4307,7 +5687,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 253.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 48,
@@ -4398,7 +5808,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 220.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 49,
@@ -4489,7 +5929,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 240.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 50,
@@ -4580,7 +6050,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 205.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 51,
@@ -4671,7 +6171,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 178.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 52,
@@ -4762,7 +6292,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 185.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 53,
@@ -4853,7 +6413,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 218.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 54,
@@ -4944,7 +6534,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 228.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 55,
@@ -5035,7 +6655,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 56,
@@ -5126,7 +6776,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 245.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 57,
@@ -5217,7 +6897,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 165.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 58,
@@ -5308,7 +7018,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 165.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 59,
@@ -5399,7 +7139,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 60,
@@ -5490,7 +7260,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 213.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 61,
@@ -5581,7 +7381,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 203.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 62,
@@ -5672,7 +7502,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 241.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 63,
@@ -5763,7 +7623,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 266.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 64,
@@ -5854,7 +7744,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 223.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 65,
@@ -5945,7 +7865,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 185.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 66,
@@ -6036,7 +7986,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 233.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 67,
@@ -6127,7 +8107,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 228.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 68,
@@ -6218,7 +8228,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 121.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 69,
@@ -6309,7 +8349,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 63.33,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 30,
+            "value": 3
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": -6.67,
+            "value": 1.17
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 70,
@@ -6400,7 +8470,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 96.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 71,
@@ -6491,7 +8591,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 115.0,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 72,
@@ -6582,7 +8712,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 158.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 73,
@@ -6673,7 +8833,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 91.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 30,
+            "value": 3
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": -6.67,
+            "value": 1.17
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 74,
@@ -6764,7 +8954,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 128.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 75,
@@ -6855,7 +9075,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 143.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 76,
@@ -6946,7 +9196,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 191.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 77,
@@ -7037,7 +9317,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 253.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 78,
@@ -7128,7 +9438,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 171.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 79,
@@ -7219,7 +9559,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 253.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 80,
@@ -7310,7 +9680,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 213.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 81,
@@ -7401,7 +9801,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 100.0,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 82,
@@ -7492,7 +9922,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 181.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 83,
@@ -7583,7 +10043,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 218.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 84,
@@ -7674,7 +10164,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 156.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 85,
@@ -7765,7 +10285,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 115.0,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 86,
@@ -7856,7 +10406,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 153.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 87,
@@ -7947,7 +10527,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 10.0,
+        "difficulty": "beginner",
+        "factors": {
+          "spread": {
+            "score": 30,
+            "value": 3
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 6.67,
+            "value": 2.67
+          },
+          "connectivity": {
+            "score": -6.67,
+            "value": 1.17
+          },
+          "symmetry": {
+            "score": -20,
+            "value": 1
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 88,
@@ -8038,7 +10648,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 171.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 23.33,
+            "value": 1.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 89,
@@ -8129,7 +10769,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 123.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 20.0,
+            "value": 2.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 90,
@@ -8220,7 +10890,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 126.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 23.33,
+            "value": 1.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 91,
@@ -8311,7 +11011,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 76.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 20.0,
+            "value": 2.0
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 92,
@@ -8402,7 +11132,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 126.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 23.33,
+            "value": 1.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 93,
@@ -8493,7 +11253,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 126.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 23.33,
+            "value": 1.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 94,
@@ -8584,7 +11374,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 175.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 95,
@@ -8675,7 +11495,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 96,
@@ -8766,7 +11616,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 97,
@@ -8857,7 +11737,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 140.0,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 98,
@@ -8948,7 +11858,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 151.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 99,
@@ -9039,7 +11979,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 73.33,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 30,
+            "value": 3
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": -6.67,
+            "value": 1.17
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 100,
@@ -9130,7 +12100,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 153.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 101,
@@ -9221,7 +12221,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 176.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 102,
@@ -9312,7 +12342,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 153.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 103,
@@ -9403,7 +12463,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 86.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 104,
@@ -9494,7 +12584,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 86.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 105,
@@ -9585,7 +12705,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 181.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 106,
@@ -9676,7 +12826,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 238.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 107,
@@ -9767,7 +12947,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 248.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 108,
@@ -9858,7 +13068,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 136.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 109,
@@ -9949,7 +13189,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 143.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 110,
@@ -10040,7 +13310,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 210.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 111,
@@ -10131,7 +13431,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 220.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 112,
@@ -10222,7 +13552,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 161.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 113,
@@ -10313,7 +13673,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 114,
@@ -10404,7 +13794,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 96.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 115,
@@ -10495,7 +13915,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 86.67,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 116,
@@ -10586,7 +14036,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 205.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 117,
@@ -10677,7 +14157,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 205.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 118,
@@ -10768,7 +14278,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 161.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 119,
@@ -10859,7 +14399,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 190.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 120,
@@ -10950,7 +14520,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 200.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 121,
@@ -11041,7 +14641,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 133.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 122,
@@ -11132,7 +14762,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 146.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 123,
@@ -11223,7 +14883,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 170.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 124,
@@ -11314,7 +15004,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 168.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 125,
@@ -11405,7 +15125,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 36.67,
+        "difficulty": "beginner",
+        "factors": {
+          "spread": {
+            "score": 30,
+            "value": 3
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 13.33,
+            "value": 2.33
+          },
+          "connectivity": {
+            "score": -6.67,
+            "value": 1.17
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 126,
@@ -11496,7 +15246,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 93.33,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 40,
+            "value": 4
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 0.0,
+            "value": 1.0
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 127,
@@ -11587,7 +15367,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 150.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 128,
@@ -11678,7 +15488,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 168.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 129,
@@ -11769,7 +15609,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 198.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 130,
@@ -11860,7 +15730,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 175.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 131,
@@ -11951,7 +15851,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 23.33,
+        "difficulty": "beginner",
+        "factors": {
+          "spread": {
+            "score": 30,
+            "value": 3
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 20.0,
+            "value": 2.0
+          },
+          "connectivity": {
+            "score": -6.67,
+            "value": 1.17
+          },
+          "symmetry": {
+            "score": -20,
+            "value": 1
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 132,
@@ -12042,7 +15972,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 160.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 133,
@@ -12133,7 +16093,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 146.67,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 134,
@@ -12224,7 +16214,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 160.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 135,
@@ -12315,7 +16335,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 10
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 136,
@@ -12406,7 +16456,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 241.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 10
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 137,
@@ -12497,7 +16577,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 241.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 10
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 138,
@@ -12588,7 +16698,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 173.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 139,
@@ -12679,7 +16819,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 173.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 140,
@@ -12770,7 +16940,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 130.0,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 26.67,
+            "value": 1.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 141,
@@ -12861,7 +17061,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 188.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 142,
@@ -12952,7 +17182,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 178.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 143,
@@ -13043,7 +17303,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 175.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 144,
@@ -13134,7 +17424,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 211.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 10
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 145,
@@ -13225,7 +17545,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 103.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 146,
@@ -13316,7 +17666,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 160.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 147,
@@ -13407,7 +17787,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 170.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 148,
@@ -13498,7 +17908,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 163.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 149,
@@ -13589,7 +18029,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 163.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 150,
@@ -13680,7 +18150,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 133.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 151,
@@ -13771,7 +18271,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 190.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 152,
@@ -13862,7 +18392,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 215.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 153,
@@ -13953,7 +18513,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 150.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 154,
@@ -14044,7 +18634,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 211.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 155,
@@ -14135,7 +18755,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 158.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 156,
@@ -14226,7 +18876,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 205.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 157,
@@ -14317,7 +18997,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 150.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 158,
@@ -14408,7 +19118,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 215.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 159,
@@ -14499,7 +19239,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 163.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 160,
@@ -14590,7 +19360,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 223.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 10
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 161,
@@ -14681,7 +19481,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 248.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 10
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 162,
@@ -14772,7 +19602,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 270.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 163,
@@ -14863,7 +19723,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 164,
@@ -14954,7 +19844,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 256.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 165,
@@ -15045,7 +19965,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 263.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 166,
@@ -15136,7 +20086,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 218.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 167,
@@ -15227,7 +20207,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 168.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 168,
@@ -15318,7 +20328,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 195.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 169,
@@ -15409,7 +20449,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 195.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 170,
@@ -15500,7 +20570,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 241.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 171,
@@ -15591,7 +20691,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 251.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 172,
@@ -15682,7 +20812,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 173,
@@ -15773,7 +20933,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 270.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 174,
@@ -15864,7 +21054,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 245.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 175,
@@ -15955,7 +21175,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 176,
@@ -16046,7 +21296,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 215.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 177,
@@ -16137,7 +21417,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 225.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 178,
@@ -16228,7 +21538,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 179,
@@ -16319,7 +21659,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 195.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 180,
@@ -16410,7 +21780,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 256.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 181,
@@ -16501,7 +21901,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 256.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 182,
@@ -16592,7 +22022,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 195.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 183,
@@ -16683,7 +22143,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 213.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 184,
@@ -16774,7 +22264,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 185,
@@ -16865,7 +22385,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 195.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 36.67,
+            "value": 1.17
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 186,
@@ -16956,7 +22506,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 241.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 46.67,
+            "value": 0.67
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 187,
@@ -17047,7 +22627,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 260.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 188,
@@ -17138,7 +22748,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 208.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 189,
@@ -17229,7 +22869,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 251.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 190,
@@ -17320,7 +22990,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 263.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 191,
@@ -17411,7 +23111,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 238.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 43.33,
+            "value": 0.83
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 192,
@@ -17502,7 +23232,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 263.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 100,
+            "value": 11
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 53.33,
+            "value": 0.33
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 193,
@@ -17593,7 +23353,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 194,
@@ -17684,7 +23474,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 128.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 56.67,
+            "value": 0.17
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 195,
@@ -17775,7 +23595,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 213.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 80,
+            "value": 8
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 60.0,
+            "value": 0.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 196,
@@ -17866,7 +23716,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 168.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 197,
@@ -17957,7 +23837,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 171.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 23.33,
+            "value": 1.83
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 198,
@@ -18048,7 +23958,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 199,
@@ -18139,7 +24079,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 161.67,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 200,
@@ -18230,7 +24200,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 188.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 40.0,
+            "value": 1.0
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 201,
@@ -18321,7 +24321,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 250.0,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 90,
+            "value": 9
+          },
+          "fragmentation": {
+            "score": 60,
+            "value": 3
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 20.0,
+            "value": 0.5
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 30,
+            "value": 2
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 202,
@@ -18412,7 +24442,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 168.33,
+        "difficulty": "grandmaster",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 50.0,
+            "value": 0.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 15,
+            "value": 1
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 203,
@@ -18503,7 +24563,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 90.0,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 33.33,
+            "value": 1.33
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 204,
@@ -18594,7 +24684,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 140.0,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 70,
+            "value": 7
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 26.67,
+            "value": 1.67
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 205,
@@ -18685,7 +24805,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 133.33,
+        "difficulty": "master",
+        "factors": {
+          "spread": {
+            "score": 60,
+            "value": 6
+          },
+          "fragmentation": {
+            "score": 30,
+            "value": 2
+          },
+          "edge_proximity": {
+            "score": 30.0,
+            "value": 1.5
+          },
+          "connectivity": {
+            "score": 13.33,
+            "value": 0.67
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     },
     {
       "combination_id": 206,
@@ -18776,7 +24926,37 @@
           ]
         }
       },
-      "timestamp": "2025-07-20 20:54:01"
+      "difficulty_score": {
+        "total_score": 70.0,
+        "difficulty": "advanced",
+        "factors": {
+          "spread": {
+            "score": 50,
+            "value": 5
+          },
+          "fragmentation": {
+            "score": 0,
+            "value": 1
+          },
+          "edge_proximity": {
+            "score": 13.33,
+            "value": 2.33
+          },
+          "connectivity": {
+            "score": 6.67,
+            "value": 0.83
+          },
+          "symmetry": {
+            "score": 0,
+            "value": 0
+          },
+          "corner_occupation": {
+            "score": 0,
+            "value": 0
+          }
+        }
+      },
+      "timestamp": "2025-07-20 21:14:24"
     }
   ]
 }

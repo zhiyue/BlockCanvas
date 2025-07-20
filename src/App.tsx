@@ -4,6 +4,7 @@ import GameBoard from './components/GameBoard'
 import BlockInventory from './components/BlockInventory'
 import GameInstructions from './components/GameInstructions'
 import DraggableBlock from './components/DraggableBlock'
+import MobileGameControls from './components/MobileGameControls'
 import { useGameStore } from './store/gameStore'
 import { SAMPLE_CHALLENGES } from './data/challenges'
 import { getBlockById } from './data/blocks'
@@ -579,6 +580,14 @@ function App() {
         <GameInstructions
           isOpen={showInstructions}
           onClose={() => setShowInstructions(false)}
+        />
+
+        <MobileGameControls
+          onRotateBlock={() => {
+            if (selectedBlock) {
+              handleBlockRotate(selectedBlock);
+            }
+          }}
         />
       </div>
       

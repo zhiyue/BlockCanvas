@@ -34,7 +34,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
   tapModeState
 }) => {
   const boardDimensions = CoordinateSystem.getBoardDimensions();
-  const { isPositionValid, isStarterBlock } = useGameStore();
+  const { isPositionValid, isStarterBlock, rotateSelectedBlock } = useGameStore();
 
   const { isOver, setNodeRef } = useDroppable({
     id: 'game-board',
@@ -250,12 +250,20 @@ const GameBoard: React.FC<GameBoardProps> = ({
         const blockPosition = CoordinateSystem.gridToCanvas(position.x, position.y);
         const isStarter = isStarterBlock(blockId);
 
+        const handleDoubleClick = () => {
+          // Only rotate if this block is selected and not a starter block
+          if (selectedBlock === blockId && !isStarter) {
+            rotateSelectedBlock();
+          }
+        };
+
         draggableBlocks.push(
           <DraggableBlock
             key={`draggable-${blockId}`}
             block={block}
             isSelected={selectedBlock === blockId}
             onSelect={() => onBlockSelect && onBlockSelect(selectedBlock === blockId ? null : blockId)}
+            onDoubleClick={handleDoubleClick}
             rotation={rotation}
             scale={1}
             x={blockPosition.x}

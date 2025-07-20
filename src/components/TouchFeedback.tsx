@@ -84,6 +84,7 @@ export const TouchFeedback = forwardRef<HTMLElement, TouchFeedbackProps>(({
 
   return React.createElement(Component, {
     ...domProps,
+    disabled,
     ref: (el: HTMLElement) => {
       // Handle both callback and object refs
       if (typeof ref === 'function') {

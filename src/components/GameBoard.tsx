@@ -98,14 +98,15 @@ const GameBoard: React.FC<GameBoardProps> = ({
     let blockId: string | null = null;
     let rotation = 0;
 
-    if (interactionMode === 'tap' && tapModeState?.selectedBlockForPlacement) {
+    // 优先检查是否有正在拖拽的block（无论交互模式如何）
+    if (draggedBlock) {
+      // 有block正在被拖拽：显示拖拽block的有效位置
+      blockId = draggedBlock;
+      rotation = blockRotations[draggedBlock] || 0;
+    } else if (interactionMode === 'tap' && tapModeState?.selectedBlockForPlacement) {
       // Tap mode: show valid positions for selected block
       blockId = tapModeState.selectedBlockForPlacement;
       rotation = tapModeState.selectedBlockRotation;
-    } else if (interactionMode === 'drag' && draggedBlock) {
-      // Drag mode: show valid positions for dragged block
-      blockId = draggedBlock;
-      rotation = blockRotations[draggedBlock] || 0;
     }
 
     if (!blockId) return [];
@@ -250,10 +251,17 @@ const GameBoard: React.FC<GameBoardProps> = ({
     const validPositions = getValidPositions();
     const validPositionSet = new Set(validPositions.map(pos => `${pos.x}-${pos.y}`));
 
+    // 检查是否是移动端设备
+    const isMobile = window.innerWidth <= 768;
+    const isDragging = !!draggedBlock;
+
     for (let row = 0; row < BOARD_SIZE; row++) {
       for (let col = 0; col < BOARD_SIZE; col++) {
         const cellBounds = responsiveCoordinateSystem.getCellBounds(col, row);
         const isValidPosition = validPositionSet.has(`${col}-${row}`);
+
+        // 移动端拖拽时增强有效位置的视觉提示
+        const enhancedValidStyle = isMobile && isDragging && isValidPosition;
 
         cells.push(
           <Rect
@@ -262,18 +270,72 @@ const GameBoard: React.FC<GameBoardProps> = ({
             y={cellBounds.y}
             width={cellBounds.width}
             height={cellBounds.height}
-            fill={isValidPosition ? "rgba(79, 70, 229, 0.08)" : "rgba(248, 250, 252, 0.9)"}
-            stroke={isValidPosition ? "rgba(79, 70, 229, 0.3)" : "rgba(226, 232, 240, 0.5)"}
-            strokeWidth={isValidPosition ? 1.5 : 0.5}
+            fill={
+              enhancedValidStyle
+                ? "rgba(79, 70, 229, 0.15)" // 移动端拖拽时更明显的背景
+                : isValidPosition
+                  ? "rgba(79, 70, 229, 0.08)"
+                  : "rgba(248, 250, 252, 0.9)"
+            }
+            stroke={
+              enhancedValidStyle
+                ? "rgba(79, 70, 229, 0.6)" // 移动端拖拽时更明显的边框
+                : isValidPosition
+                  ? "rgba(79, 70, 229, 0.3)"
+                  : "rgba(226, 232, 240, 0.5)"
+            }
+            strokeWidth={
+              enhancedValidStyle
+                ? 2.5 // 移动端拖拽时更粗的边框
+                : isValidPosition
+                  ? 1.5
+                  : 0.5
+            }
             cornerRadius={2}
-            shadowColor={isValidPosition ? "rgba(79, 70, 229, 0.1)" : "transparent"}
-            shadowBlur={isValidPosition ? 4 : 0}
+            shadowColor={
+              enhancedValidStyle
+                ? "rgba(79, 70, 229, 0.2)" // 移动端拖拽时更明显的阴影
+                : isValidPosition
+                  ? "rgba(79, 70, 229, 0.1)"
+                  : "transparent"
+            }
+            shadowBlur={
+              enhancedValidStyle
+                ? 8 // 移动端拖拽时更大的阴影模糊
+                : isValidPosition
+                  ? 4
+                  : 0
+            }
             shadowOffset={{ x: 0, y: 1 }}
             shadowOpacity={0.3}
             onClick={() => handleCellClick(col, row)}
             onTap={() => handleCellClick(col, row)}
           />
         );
+
+        // 为移动端拖拽时的有效位置添加额外的视觉指示器
+        if (enhancedValidStyle) {
+          // 添加一个小的中心点指示器
+          const centerX = cellBounds.x + cellBounds.width / 2;
+          const centerY = cellBounds.y + cellBounds.height / 2;
+          const indicatorSize = Math.min(cellBounds.width, cellBounds.height) * 0.3;
+
+          cells.push(
+            <Rect
+              key={`indicator-${row}-${col}`}
+              x={centerX - indicatorSize / 2}
+              y={centerY - indicatorSize / 2}
+              width={indicatorSize}
+              height={indicatorSize}
+              fill="rgba(79, 70, 229, 0.8)"
+              cornerRadius={indicatorSize / 2}
+              shadowColor="rgba(79, 70, 229, 0.4)"
+              shadowBlur={4}
+              shadowOffset={{ x: 0, y: 1 }}
+              shadowOpacity={0.6}
+            />
+          );
+        }
       }
     }
 
@@ -328,6 +390,13 @@ const GameBoard: React.FC<GameBoardProps> = ({
     return draggableBlocks;
   };
 
+  // 检查是否是移动端设备
+  const isMobile = window.innerWidth <= 768;
+  const isDragging = !!draggedBlock;
+  const showMobileDragHint = isMobile && isDragging;
+  const validPositions = getValidPositions();
+  const validPositionCount = validPositions.length;
+
   return (
     <div className="game-board-container" style={{ position: 'relative' }}>
       <Stage width={boardDimensions.totalWidth} height={boardDimensions.totalHeight}>
@@ -363,6 +432,16 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
       {/* Draggable overlays for placed blocks */}
       {renderDraggablePlacedBlocks()}
+
+      {/* Mobile drag hint with position count */}
+      {showMobileDragHint && (
+        <div className="mobile-drag-hint">
+          {validPositionCount > 0
+            ? `拖拽到蓝色区域放置 (${validPositionCount}个可选位置)`
+            : '没有可用的放置位置'
+          }
+        </div>
+      )}
 
       {/* Invisible overlay for drag-and-drop */}
       <div

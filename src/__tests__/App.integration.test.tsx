@@ -554,7 +554,9 @@ describe('App Integration Tests', () => {
       render(<App />)
 
       expect(screen.getByText('🎉 Puzzle Completed!')).toBeInTheDocument()
-      expect(screen.getByText('Time: 02:00 | Moves: 25')).toBeInTheDocument()
+      // Check for the completion message specifically in the completion message area
+      const completionMessage = screen.getByText('🎉 Puzzle Completed!').closest('.completion-message')
+      expect(completionMessage).toContainHTML('Time: 02:00 | Moves: 25')
     })
 
     it('opens and closes game instructions', async () => {

@@ -150,3 +150,79 @@
     }
   }
 }
+
+/* 有效位置提示动画 */
+@keyframes validPositionPulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+@keyframes validPositionGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.3);
+  }
+}
+
+/* 移动端拖拽时的有效位置样式 */
+.mobile-valid-position {
+  animation: validPositionPulse 1.5s ease-in-out infinite;
+}
+
+.mobile-valid-position-glow {
+  animation: validPositionGlow 2s ease-in-out infinite;
+}
+
+/* 移动端拖拽提示 */
+.mobile-drag-hint {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(79, 70, 229, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 减少动画的用户偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-valid-position,
+  .mobile-valid-position-glow,
+  .mobile-drag-hint {
+    animation: none !important;
+  }
+}

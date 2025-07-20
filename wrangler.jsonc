@@ -15,9 +15,10 @@
 
   // 自定义域名路由（可选）
   "routes": [
-    {
-      "pattern": "blockcanvas.deploy.cv/*",
-      "zone_name": "deploy.cv"
-    }
-  ]
+  {
+    "pattern": "blockcanvas.deploy.cv",
+    "custom_domain": true
+  }
+]
+
 }

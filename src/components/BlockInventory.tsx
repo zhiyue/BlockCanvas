@@ -132,8 +132,8 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
                 onDoubleClick={handleDoubleClick}
                 rotation={currentRotation}
                 scale={blockScale}
-                x={0} // 相对于容器的位置
-                y={0} // 相对于容器的位置
+                x={centerOffsetX} // block 在容器内的偏移位置
+                y={centerOffsetY} // block 在容器内的偏移位置
                 enableDrag={interactionMode === 'drag'}
                 renderAsHTML={true}
                 cellSize={cellSize}
@@ -292,8 +292,8 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
               onDoubleClick={handleDoubleClick}
               rotation={currentRotation}
               scale={blockScale}
-              x={0} // 相对于容器的位置
-              y={0} // 相对于容器的位置
+              x={centerOffsetX} // 使用计算好的居中位置
+              y={centerOffsetY} // 使用计算好的居中位置
               enableDrag={interactionMode === 'drag'}
               renderAsHTML={true}
               cellSize={cellSize}

@@ -172,7 +172,9 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
 
     return (
       <div style={{
-        position: 'relative',
+        position: isInInventory ? 'absolute' : 'relative',
+        left: isInInventory ? x : 0,
+        top: isInInventory ? y : 0,
         width: blockWidth,
         height: blockHeight,
         borderRadius: 0, // Keep block containers square for consistent tetris-like appearance
@@ -186,7 +188,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
         WebkitUserSelect: 'none',
         WebkitTouchCallout: 'none',
         WebkitUserDrag: 'none',
-        pointerEvents: 'auto'
+        pointerEvents: isInInventory ? 'none' : 'auto' // 在 inventory 中时让容器处理事件
       }}>
         {cells}
       </div>
@@ -235,8 +237,8 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
         className={`game-element ${enableDrag ? 'draggable-element' : ''} ${hasTouch ? 'ios-drag-safe' : ''}`}
         style={{
           position: 'absolute',
-          left: x,
-          top: y,
+          left: isInInventory ? 0 : x, // 在 inventory 中时从容器左上角开始
+          top: isInInventory ? 0 : y,  // 在 inventory 中时从容器左上角开始
           // 只在 inventory 中时填充整个容器
           ...(isInInventory ? {
             width: '100%',

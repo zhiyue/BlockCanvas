@@ -9,6 +9,7 @@ from __future__ import annotations
 import time
 import logging
 import sys
+import json
 from typing import List, Tuple, Set, Dict, Optional, Iterator, Callable
 from collections import defaultdict
 from dataclasses import dataclass
@@ -42,6 +43,8 @@ class SolverConfig:
     progress_interval: int = 100  # 每找到多少个解显示一次进度
     output_format: OutputFormat = OutputFormat.TEXT
     show_first_n: int = 5  # 显示前n个解
+    save_black_json: bool = True  # 是否保存黑色积木位置为JSON格式
+    black_json_filename: str = "black_positions.json"  # JSON文件名
 
 
 @dataclass
@@ -376,15 +379,49 @@ class TilingSolver:
         print("  └" + "─┴" * (self.board_size - 1) + "─┘")
         print()
     
+    def extract_black_pieces_info(self, solution: List[int]) -> Dict:
+        """提取黑色积木的位置信息，返回JSON格式的数据"""
+        black_pieces = {}
+
+        for row_id in solution:
+            placement = self.placements[row_id]
+            piece_id = placement['piece_id']
+            color = placement['color']
+            name = placement['name']
+            cells = placement['cells']
+
+            # 只关注黑色积木 (K, k, x)
+            if color in ['K', 'k', 'x']:
+                # 计算积木的位置信息
+                min_row = min(c // self.board_size for c in cells)
+                min_col = min(c % self.board_size for c in cells)
+                max_row = max(c // self.board_size for c in cells)
+                max_col = max(c % self.board_size for c in cells)
+                width = max_col - min_col + 1
+                height = max_row - min_row + 1
+
+                black_pieces[color] = {
+                    "name": name,
+                    "color": color,
+                    "position": {
+                        "top_left": {"row": min_row, "col": min_col},
+                        "bottom_right": {"row": max_row, "col": max_col}
+                    },
+                    "size": {"width": width, "height": height},
+                    "cells": [{"row": c // self.board_size, "col": c % self.board_size} for c in cells]
+                }
+
+        return black_pieces
+
     def print_solution_detailed(self, solution: List[int], index: int) -> None:
         """详细打印一个解"""
         print(f"\n{'='*50}")
         print(f"解 #{index + 1}")
         print(f"{'='*50}")
-        
+
         board = self.solution_to_board(solution)
         self.print_board(board)
-        
+
         # 打印积木使用情况
         print("积木位置详情：")
         used_pieces = {}
@@ -394,14 +431,14 @@ class TilingSolver:
             name = placement['name']
             color = placement['color']
             cells = placement['cells']
-            
+
             min_row = min(c // 8 for c in cells)
             min_col = min(c % 8 for c in cells)
             max_row = max(c // 8 for c in cells)
             max_col = max(c % 8 for c in cells)
-            
+
             used_pieces[piece_id] = (name, color, (min_row, min_col), (max_row, max_col))
-        
+
         for piece_id in sorted(used_pieces.keys()):
             name, color, (min_r, min_c), (max_r, max_c) = used_pieces[piece_id]
             print(f"  {name} ({color}): 左上角({min_r},{min_c}) 右下角({max_r},{max_c})")
@@ -464,14 +501,15 @@ class TilingSolver:
         # 创建解文件和黑色积木位置文件
         solution_file = None
         black_file = None
+        black_json_data = []  # 存储所有黑色积木位置的JSON数据
         black_positions_set = set()  # 用于去重
-        
+
         if self.config.save_to_file:
             solution_file = open(self.config.filename, 'w', encoding='utf-8')
             solution_file.write(f"8×8棋盘积木铺砌问题解集\n")
             solution_file.write(f"开始时间：{time.strftime('%Y-%m-%d %H:%M:%S')}\n")
             solution_file.write("=" * 60 + "\n\n")
-            
+
             solution_file.write("积木说明：\n")
             solution_file.write("R: 红色3×4  B: 蓝色3×3  b: 蓝色2×2\n")
             solution_file.write("W: 白色1×5  w: 白色1×4\n")
@@ -479,8 +517,8 @@ class TilingSolver:
             solution_file.write("K: 黑色1×3  k: 黑色1×2  x: 黑色1×1\n")
             solution_file.write("=" * 60 + "\n\n")
             solution_file.flush()
-            
-            # 创建黑色积木位置文件
+
+            # 创建黑色积木位置文件（文本格式）
             black_file = open('black.txt', 'w', encoding='utf-8')
             black_file.write(f"黑色积木位置统计（去重）\n")
             black_file.write(f"开始时间：{time.strftime('%Y-%m-%d %H:%M:%S')}\n")
@@ -517,39 +555,35 @@ class TilingSolver:
                 solution_file.write("\n")
                 solution_file.flush()  # 立即刷新到磁盘
             
-            # 提取黑色积木位置并去重写入 black.txt
-            if black_file:
-                black_pieces = {}  # {piece_name: positions}
-                
-                for row_id in solution:
-                    placement = self.placements[row_id]
-                    piece_id = placement['piece_id']
-                    color = placement['color']
-                    name = placement['name']
-                    cells = placement['cells']
-                    
-                    # 只关注黑色积木 (K, k, x)
-                    if color in ['K', 'k', 'x']:
-                        # 计算积木的左上角和右下角位置
-                        min_row = min(c // self.board_size for c in cells)
-                        min_col = min(c % self.board_size for c in cells)
-                        max_row = max(c // self.board_size for c in cells)
-                        max_col = max(c % self.board_size for c in cells)
-                        
-                        black_pieces[color] = (min_row, min_col, max_row, max_col)
-                
-                # 创建用于去重的位置组合标识符
-                position_key = tuple(sorted(black_pieces.items()))
-                
-                # 检查是否已记录过这种位置组合
-                if position_key not in black_positions_set:
-                    black_positions_set.add(position_key)
-                    
-                    # 写入新的黑色积木位置组合
+            # 提取黑色积木位置信息
+            black_pieces_info = self.extract_black_pieces_info(solution)
+
+            # 创建用于去重的位置组合标识符
+            position_key = tuple(sorted(
+                (color, info['position']['top_left']['row'], info['position']['top_left']['col'])
+                for color, info in black_pieces_info.items()
+            ))
+
+            # 检查是否已记录过这种位置组合
+            if position_key not in black_positions_set:
+                black_positions_set.add(position_key)
+
+                # 添加到JSON数据中
+                combination_data = {
+                    "combination_id": len(black_positions_set),
+                    "solution_id": self.stats.solutions_found,
+                    "black_pieces": black_pieces_info,
+                    "timestamp": time.strftime('%Y-%m-%d %H:%M:%S')
+                }
+                black_json_data.append(combination_data)
+
+                # 写入文本格式的黑色积木位置组合
+                if black_file:
                     black_file.write(f"组合 #{len(black_positions_set)}\n")
-                    for piece_color, (min_r, min_c, max_r, max_c) in sorted(black_pieces.items()):
-                        piece_name = {'K': '黑色1×3', 'k': '黑色1×2', 'x': '黑色1×1'}[piece_color]
-                        black_file.write(f"  {piece_name} ({piece_color}): 左上角({min_r},{min_c}) 右下角({max_r},{max_c})\n")
+                    for piece_color, info in sorted(black_pieces_info.items()):
+                        piece_name = info['name']
+                        pos = info['position']
+                        black_file.write(f"  {piece_name} ({piece_color}): 左上角({pos['top_left']['row']},{pos['top_left']['col']}) 右下角({pos['bottom_right']['row']},{pos['bottom_right']['col']})\n")
                     black_file.write("\n")
                     black_file.flush()
             
@@ -617,11 +651,39 @@ class TilingSolver:
                 black_file.write(f"\n总共找到 {len(black_positions_set)} 种不同的黑色积木位置组合\n")
                 black_file.write(f"结束时间：{time.strftime('%Y-%m-%d %H:%M:%S')}\n")
                 black_file.flush()
-            
+
+            # 保存黑色积木位置为JSON格式
+            if self.config.save_black_json and black_json_data:
+                try:
+                    json_output = {
+                        "metadata": {
+                            "total_solutions": self.stats.solutions_found,
+                            "unique_black_combinations": len(black_positions_set),
+                            "start_time": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.stats.start_time)),
+                            "end_time": time.strftime('%Y-%m-%d %H:%M:%S'),
+                            "elapsed_time_seconds": self.stats.elapsed_time,
+                            "board_size": self.board_size
+                        },
+                        "piece_definitions": {
+                            "K": {"name": "黑色1×3", "size": {"width": 1, "height": 3}},
+                            "k": {"name": "黑色1×2", "size": {"width": 1, "height": 2}},
+                            "x": {"name": "黑色1×1", "size": {"width": 1, "height": 1}}
+                        },
+                        "black_piece_combinations": black_json_data
+                    }
+
+                    with open(self.config.black_json_filename, 'w', encoding='utf-8') as json_file:
+                        json.dump(json_output, json_file, ensure_ascii=False, indent=2)
+
+                    logger.info(f"黑色积木位置JSON数据已保存到 {self.config.black_json_filename}")
+
+                except Exception as e:
+                    logger.error(f"保存JSON文件失败: {e}")
+
             # 分析解
             if all_solutions:
                 self.analyze_solutions(all_solutions)
-            
+
             return all_solutions
         
         finally:
@@ -632,11 +694,11 @@ class TilingSolver:
                     logger.info(f"所有解已保存到 {self.config.filename}")
                 except Exception as e:
                     logger.error(f"关闭解文件失败: {e}")
-            
+
             if black_file:
                 try:
                     black_file.close()
-                    logger.info(f"黑色积木位置已保存到 black.txt")
+                    logger.info(f"黑色积木位置文本格式已保存到 black.txt")
                 except Exception as e:
                     logger.error(f"关闭黑色积木文件失败: {e}")
     
@@ -693,19 +755,23 @@ def main():
     parser.add_argument('--filename', default='solution.txt', help='保存解的文件名')
     parser.add_argument('--show-first', type=int, default=5, help='显示前n个解')
     parser.add_argument('--quiet', action='store_true', help='减少输出信息')
-    
+    parser.add_argument('--no-json', action='store_true', help='不保存黑色积木位置为JSON格式')
+    parser.add_argument('--json-filename', default='black_positions.json', help='JSON文件名')
+
     args = parser.parse_args()
-    
+
     # 配置日志级别
     if args.quiet:
         logger.setLevel(logging.WARNING)
-    
+
     # 创建配置
     config = SolverConfig(
         max_solutions=args.max_solutions,
         save_to_file=not args.no_save,
         filename=args.filename,
-        show_first_n=args.show_first
+        show_first_n=args.show_first,
+        save_black_json=not args.no_json,
+        black_json_filename=args.json_filename
     )
     
     print("=" * 60)

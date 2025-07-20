@@ -5,6 +5,7 @@ import BlockInventory from './components/BlockInventory'
 import GameInstructions from './components/GameInstructions'
 import DraggableBlock from './components/DraggableBlock'
 import MobileGameControls from './components/MobileGameControls'
+import SolverChallengeInfo from './components/SolverChallengeInfo'
 import { TouchButton } from './components/TouchFeedback'
 import { BlockRotationHint } from './components/SwipeIndicator'
 import { useGameStore } from './store/gameStore'
@@ -511,6 +512,11 @@ function App() {
                     Time: {formatTime(timeElapsed)} | Moves: {moves}
                   </span>
                 </div>
+
+                {/* 显示求解器挑战信息 */}
+                {currentChallenge && (
+                  <SolverChallengeInfo challengeId={currentChallenge.id} />
+                )}
               </div>
               
               <div className="game-controls">

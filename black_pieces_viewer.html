@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑色积木位置查看器</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .metadata {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .metadata h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+        }
+        
+        .combination {
+            border: 1px solid #ddd;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .combination-header {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .combination-content {
+            padding: 15px;
+        }
+        
+        .board {
+            display: grid;
+            grid-template-columns: repeat(8, 40px);
+            grid-template-rows: repeat(8, 40px);
+            gap: 1px;
+            margin: 15px 0;
+            border: 2px solid #333;
+            background: #333;
+            width: fit-content;
+        }
+        
+        .cell {
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .black-K { background: #2c3e50; color: white; }
+        .black-k { background: #34495e; color: white; }
+        .black-x { background: #1a1a1a; color: white; }
+        
+        .piece-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .piece-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            min-width: 200px;
+        }
+        
+        .piece-name {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        
+        .piece-details {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .file-input {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .file-input input[type="file"] {
+            margin: 10px 0;
+        }
+        
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>黑色积木位置查看器</h1>
+        
+        <div class="file-input">
+            <p>请选择黑色积木位置JSON文件：</p>
+            <input type="file" id="jsonFile" accept=".json" />
+            <p style="font-size: 12px; color: #666;">
+                支持的文件：black_positions.json
+            </p>
+        </div>
+        
+        <div id="content"></div>
+    </div>
+
+    <script>
+        document.getElementById('jsonFile').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    displayData(data);
+                } catch (error) {
+                    showError('JSON文件格式错误：' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        });
+        
+        function showError(message) {
+            document.getElementById('content').innerHTML = 
+                `<div class="error">${message}</div>`;
+        }
+        
+        function displayData(data) {
+            const content = document.getElementById('content');
+            
+            // 显示元数据
+            const metadataHtml = `
+                <div class="metadata">
+                    <h3>统计信息</h3>
+                    <p><strong>总解数：</strong>${data.metadata.total_solutions}</p>
+                    <p><strong>唯一黑色积木组合：</strong>${data.metadata.unique_black_combinations}</p>
+                    <p><strong>开始时间：</strong>${data.metadata.start_time}</p>
+                    <p><strong>结束时间：</strong>${data.metadata.end_time}</p>
+                    <p><strong>用时：</strong>${data.metadata.elapsed_time_seconds.toFixed(3)} 秒</p>
+                    <p><strong>棋盘大小：</strong>${data.metadata.board_size}×${data.metadata.board_size}</p>
+                </div>
+            `;
+            
+            // 显示每个组合
+            const combinationsHtml = data.black_piece_combinations.map(combination => {
+                const board = createBoard(combination.black_pieces);
+                const pieceInfo = createPieceInfo(combination.black_pieces);
+                
+                return `
+                    <div class="combination">
+                        <div class="combination-header">
+                            组合 #${combination.combination_id} (来自解 #${combination.solution_id})
+                            <span style="float: right; font-size: 12px;">${combination.timestamp}</span>
+                        </div>
+                        <div class="combination-content">
+                            ${board}
+                            <div class="piece-info">
+                                ${pieceInfo}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            content.innerHTML = metadataHtml + combinationsHtml;
+        }
+        
+        function createBoard(blackPieces) {
+            // 创建8x8的空棋盘
+            const board = Array(8).fill().map(() => Array(8).fill('.'));
+            
+            // 填入黑色积木
+            Object.entries(blackPieces).forEach(([color, piece]) => {
+                piece.cells.forEach(cell => {
+                    board[cell.row][cell.col] = color;
+                });
+            });
+            
+            // 生成HTML
+            let html = '<div class="board">';
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const cellValue = board[row][col];
+                    const className = cellValue === '.' ? 'cell' : `cell black-${cellValue}`;
+                    html += `<div class="${className}">${cellValue}</div>`;
+                }
+            }
+            html += '</div>';
+            
+            return html;
+        }
+        
+        function createPieceInfo(blackPieces) {
+            return Object.entries(blackPieces).map(([color, piece]) => {
+                const pos = piece.position;
+                return `
+                    <div class="piece-card">
+                        <div class="piece-name">${piece.name} (${color})</div>
+                        <div class="piece-details">
+                            <p>尺寸：${piece.size.width}×${piece.size.height}</p>
+                            <p>左上角：(${pos.top_left.row}, ${pos.top_left.col})</p>
+                            <p>右下角：(${pos.bottom_right.row}, ${pos.bottom_right.col})</p>
+                            <p>占用格子：${piece.cells.length}个</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 如果有默认的JSON文件，可以自动加载
+        // 这里可以添加自动加载逻辑
+    </script>
+</body>
+</html>

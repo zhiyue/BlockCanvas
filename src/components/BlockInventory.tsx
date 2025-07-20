@@ -146,27 +146,42 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
         );
       } else {
         // 渲染空白占位符
+        // 为占位符创建一个容器，显示整个网格位置
         return (
           <div
-            key={`placeholder-${block.id}`}
+            key={`placeholder-container-${block.id}`}
             style={{
               position: 'absolute',
               left: x,
               top: y,
               width: cellSize * maxBlockSize,
               height: cellSize * maxBlockSize,
-              border: '2px dashed #e2e8f0',
-              borderRadius: '6px',
-              backgroundColor: 'rgba(248, 250, 252, 0.5)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '12px',
-              color: '#94a3b8',
-              fontWeight: '500'
+              justifyContent: 'center'
             }}
           >
-            {block.name}
+            {/* 内部占位符，显示实际的 block 轮廓 */}
+            <div
+              style={{
+                width: block.width * cellSize * (isMobile ? 0.4 : 0.6),
+                height: block.height * cellSize * (isMobile ? 0.4 : 0.6),
+                border: '1.5px dashed #cbd5e1',
+                borderRadius: isMobile ? 0 : '3px',
+                backgroundColor: 'rgba(241, 245, 249, 0.4)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: isMobile ? '10px' : '11px',
+                color: '#94a3b8',
+                fontWeight: '500',
+                padding: '4px',
+                textAlign: 'center',
+                lineHeight: '1.2'
+              }}
+            >
+              {block.name.match(/\d+×\d+/)?.[0] || block.id}
+            </div>
           </div>
         );
       }

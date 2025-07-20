@@ -588,6 +588,13 @@ function App() {
               handleBlockRotate(selectedBlock);
             }
           }}
+          onClearSelection={() => {
+            if (gameInteractionMode === 'tap') {
+              selectBlockForTapPlacement(null);
+            } else {
+              selectBlock(null);
+            }
+          }}
         />
       </div>
       

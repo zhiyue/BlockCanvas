@@ -6,11 +6,13 @@ import './MobileGameControls.css';
 interface MobileGameControlsProps {
   onRotateBlock?: () => void;
   onSwitchMode?: () => void;
+  onClearSelection?: () => void;
 }
 
 const MobileGameControls: React.FC<MobileGameControlsProps> = ({
   onRotateBlock,
-  onSwitchMode
+  onSwitchMode,
+  onClearSelection
 }) => {
   const { 
     selectedBlock, 
@@ -91,11 +93,7 @@ const MobileGameControls: React.FC<MobileGameControlsProps> = ({
               {interactionMode === 'tap' && (
                 <button 
                   className="control-btn clear-btn"
-                  onClick={() => {
-                    // Clear tap mode selection
-                    const { selectBlockForTapPlacement } = useGameStore.getState();
-                    selectBlockForTapPlacement(null);
-                  }}
+                  onClick={onClearSelection}
                   aria-label="Clear selection"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

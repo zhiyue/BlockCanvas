@@ -648,6 +648,7 @@ describe('App Integration Tests', () => {
     })
 
     it('handles block placement failure in tap mode gracefully', () => {
+      const mockPlaceTapModeBlock = vi.fn(() => false) // Simulate failure
       vi.mocked(gameStoreModule.useGameStore).mockReturnValue({
         ...mockGameStore,
         interactionMode: 'tap',
@@ -655,7 +656,7 @@ describe('App Integration Tests', () => {
           selectedBlockForPlacement: 'block1',
           selectedBlockRotation: 0
         },
-        placeTapModeBlock: vi.fn(() => false) // Simulate failure
+        placeTapModeBlock: mockPlaceTapModeBlock
       })
 
       render(<App />)
@@ -664,7 +665,7 @@ describe('App Integration Tests', () => {
       fireEvent.click(gameBoard)
 
       // Should not throw error
-      expect(mockGameStore.placeTapModeBlock).toHaveBeenCalledWith(0, 0)
+      expect(mockPlaceTapModeBlock).toHaveBeenCalledWith(0, 0)
     })
   })
 

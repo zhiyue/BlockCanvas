@@ -72,8 +72,18 @@ export const TouchFeedback = forwardRef<HTMLElement, TouchFeedbackProps>(({
     ...style
   }
 
+  // Filter out TouchFeedback-specific props that shouldn't be passed to DOM
+  const {
+    enableRipple: _enableRipple,
+    enableHaptic: _enableHaptic,
+    rippleColor: _rippleColor,
+    rippleDuration: _rippleDuration,
+    variant: _variant,
+    ...domProps
+  } = props
+
   return React.createElement(Component, {
-    ...props,
+    ...domProps,
     ref: (el: HTMLElement) => {
       // Handle both callback and object refs
       if (typeof ref === 'function') {

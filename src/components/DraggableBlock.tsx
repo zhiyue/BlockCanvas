@@ -154,7 +154,13 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
                 height: effectiveCellSize - gap * 2,
                 backgroundColor: block.color,
                 borderRadius: 0, // Keep blocks square for consistent tetris-like appearance
-                background: `linear-gradient(135deg, ${block.color} 0%, ${block.color}e6 100%)`
+                background: `linear-gradient(135deg, ${block.color} 0%, ${block.color}e6 100%)`,
+                // 防止iOS文本选择和长按菜单
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
+                WebkitUserDrag: 'none',
+                pointerEvents: 'none' // cells不需要直接交互
               }}
             />
           );
@@ -172,7 +178,13 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
         backgroundColor: 'transparent',
         border: 'none',
         boxShadow: 'none',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        // 防止iOS文本选择和长按菜单
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitTouchCallout: 'none',
+        WebkitUserDrag: 'none',
+        pointerEvents: 'auto'
       }}>
         {cells}
       </div>

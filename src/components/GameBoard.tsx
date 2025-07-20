@@ -316,7 +316,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
             scale={1}
             x={blockPosition.x}
             y={blockPosition.y}
-            enableDrag={!isStarter && interactionMode === 'drag'} // starter blocks 不可拖拽，且只在drag模式下启用拖拽
+            enableDrag={!isStarter} // starter blocks 不可拖拽，已放置的 block 在所有模式下都支持拖拽
             renderAsHTML={true}
             isStarterBlock={isStarter} // 传递 starter block 标识
             cellSize={responsiveCellSize} // 传递 responsive cell size

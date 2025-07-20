@@ -4,6 +4,12 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; /* 防止iOS长按菜单 */
+  -webkit-user-drag: none; /* 防止拖拽图片/元素 */
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: manipulation; /* 防止双击缩放，允许拖拽 */
   transition: all 0.2s ease;
 }
 

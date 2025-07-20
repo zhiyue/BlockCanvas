@@ -21,6 +21,7 @@ interface DraggableBlockProps {
   renderAsHTML?: boolean;
   isStarterBlock?: boolean;
   cellSize?: number; // Add responsive cell size prop
+  isInInventory?: boolean; // 标识是否在 inventory 中
 }
 
 const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
@@ -35,7 +36,8 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
   enableDrag = false,
   renderAsHTML = false,
   isStarterBlock = false,
-  cellSize = CELL_SIZE // Use responsive cell size or fallback
+  cellSize = CELL_SIZE, // Use responsive cell size or fallback
+  isInInventory = false // 新增属性来标识是否在 inventory 中
 }) => {
   // Performance monitoring
   usePerformanceMonitor(`DraggableBlock-${block.id}`);
@@ -235,6 +237,14 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
           position: 'absolute',
           left: x,
           top: y,
+          // 只在 inventory 中时填充整个容器
+          ...(isInInventory ? {
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          } : {}),
           cursor: isStarterBlock ? 'not-allowed' : (enableDrag ? (isDragging ? 'grabbing' : 'grab') : 'pointer'),
           zIndex: isDragging ? 1000 : 10,
           willChange: 'transform',

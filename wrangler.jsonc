@@ -3,13 +3,21 @@
   "name": "blockcanvas",
   "compatibility_date": "2025-04-01",
 
-  // Worker 脚本入口（编译后的路径）
-  "main": "./dist/blockcanvas/worker.js",
+  // Worker 脚本入口（源文件路径）
+  "main": "./src/worker.ts",
 
-  // 静态资源配置
+  // 静态资源配置（Vite 插件会自动处理构建路径）
   "assets": {
     "directory": "./dist/client",
     "not_found_handling": "single-page-application",
     "binding": "ASSETS"
-  }
+  },
+
+  // 自定义域名路由（可选）
+  "routes": [
+    {
+      "pattern": "blockcanvas.deploy.cv/*",
+      "zone_name": "deploy.cv"
+    }
+  ]
 }

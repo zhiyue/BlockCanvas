@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDroppable } from '@dnd-kit/core';
+import { useDroppable, useDraggable } from '@dnd-kit/core';
 import DraggableBlock from './DraggableBlock';
 import { BlockShape, CELL_SIZE } from '../types/game';
 import { getBlockById } from '../data/blocks';
@@ -114,11 +114,15 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
               top: y,
               width: cellSize * maxBlockSize,
               height: cellSize * maxBlockSize,
-              border: '1px solid rgba(0,0,0,0.1)', // More visible border for debugging
+              border: isSelected ? '2px solid #4f46e5' : '2px solid rgba(34, 197, 94, 0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: 'rgba(255,255,255,0.5)' // Light background for visibility
+              backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+              borderRadius: '6px',
+              transition: 'all 0.2s ease',
+              boxShadow: isSelected ? '0 4px 12px rgba(79, 70, 229, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.05)',
+              cursor: interactionMode === 'drag' ? 'grab' : 'pointer'
             }}>
               <DraggableBlock
                 key={block.id}
@@ -128,11 +132,12 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
                 onDoubleClick={handleDoubleClick}
                 rotation={currentRotation}
                 scale={blockScale}
-                x={centerOffsetX}
-                y={centerOffsetY}
+                x={0} // 相对于容器的位置
+                y={0} // 相对于容器的位置
                 enableDrag={interactionMode === 'drag'}
                 renderAsHTML={true}
                 cellSize={cellSize}
+                isInInventory={true} // 标识这是在 inventory 中
               />
             </div>
           );
@@ -150,26 +155,29 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: '1px dashed rgba(200,200,200,0.5)',
-                backgroundColor: 'rgba(241, 245, 249, 0.2)'
+                border: '2px dashed rgba(156, 163, 175, 0.8)',
+                backgroundColor: 'rgba(249, 250, 251, 0.6)',
+                borderRadius: '6px',
+                transition: 'all 0.2s ease'
               }}
             >
               <div
                 style={{
                   width: block.width * cellSize * blockScale,
                   height: block.height * cellSize * blockScale,
-                  border: '1.5px dashed #cbd5e1',
-                  borderRadius: '3px',
-                  backgroundColor: 'rgba(241, 245, 249, 0.4)',
+                  border: '2px dashed rgba(107, 114, 128, 0.6)',
+                  borderRadius: '4px',
+                  backgroundColor: 'rgba(229, 231, 235, 0.5)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '11px',
-                  color: '#94a3b8',
-                  fontWeight: '500',
+                  color: '#6b7280',
+                  fontWeight: '600',
                   padding: '4px',
                   textAlign: 'center',
-                  lineHeight: '1.2'
+                  lineHeight: '1.2',
+                  opacity: '0.7'
                 }}
               >
                 {block.name.match(/\d+×\d+/)?.[0] || block.id}
@@ -266,10 +274,15 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
             top: y,
             width: cellSize * maxBlockSize,
             height: cellSize * maxBlockSize,
-            border: '1px dashed rgba(0,0,0,0.1)', // Debug border
+            border: isSelected ? '2px solid #4f46e5' : '2px solid rgba(34, 197, 94, 0.3)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+            borderRadius: '6px',
+            transition: 'all 0.2s ease',
+            boxShadow: isSelected ? '0 4px 12px rgba(79, 70, 229, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.05)',
+            cursor: interactionMode === 'drag' ? 'grab' : 'pointer'
           }}>
             <DraggableBlock
               key={block.id}
@@ -279,11 +292,12 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
               onDoubleClick={handleDoubleClick}
               rotation={currentRotation}
               scale={blockScale}
-              x={centerOffsetX}
-              y={centerOffsetY}
+              x={0} // 相对于容器的位置
+              y={0} // 相对于容器的位置
               enableDrag={interactionMode === 'drag'}
               renderAsHTML={true}
               cellSize={cellSize}
+              isInInventory={true} // 标识这是在 inventory 中
             />
           </div>
         );
@@ -301,7 +315,11 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
               height: cellSize * maxBlockSize,
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              border: '2px dashed rgba(156, 163, 175, 0.6)',
+              backgroundColor: 'rgba(249, 250, 251, 0.4)',
+              borderRadius: '6px',
+              transition: 'all 0.2s ease'
             }}
           >
             {/* 内部占位符，显示实际的 block 轮廓 */}
@@ -309,18 +327,19 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
               style={{
                 width: block.width * cellSize * (isMobile ? 0.4 : 0.8),
                 height: block.height * cellSize * (isMobile ? 0.4 : 0.8),
-                border: '1.5px dashed #cbd5e1',
-                borderRadius: isMobile ? 0 : '3px',
-                backgroundColor: 'rgba(241, 245, 249, 0.4)',
+                border: '2px dashed rgba(107, 114, 128, 0.8)',
+                borderRadius: isMobile ? '2px' : '4px',
+                backgroundColor: 'rgba(229, 231, 235, 0.6)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: isMobile ? '10px' : '11px',
-                color: '#94a3b8',
-                fontWeight: '500',
+                fontSize: isMobile ? '9px' : '10px',
+                color: '#6b7280',
+                fontWeight: '600',
                 padding: '4px',
                 textAlign: 'center',
-                lineHeight: '1.2'
+                lineHeight: '1.2',
+                opacity: '0.8'
               }}
             >
               {block.name.match(/\d+×\d+/)?.[0] || block.id}
@@ -387,13 +406,15 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
         style={{
           width: isMobile ? '100%' : '320px', // Reduced width to fit content
           height: isMobile ? 'auto' : '400px',
-          border: isOver ? '3px solid #10b981' : '2px solid #e5e7eb',
-          borderRadius: '8px',
-          backgroundColor: isOver ? '#ecfdf5' : '#f8fafc',
+          border: isOver ? '3px solid #10b981' : '2px solid #d1d5db',
+          borderRadius: '12px',
+          backgroundColor: isOver ? '#ecfdf5' : '#ffffff',
           transition: 'all 0.2s ease',
           overflowX: isMobile ? 'visible' : 'hidden', // No horizontal scroll
           overflowY: isMobile ? 'visible' : 'auto', // Only vertical scroll on desktop
-          position: 'relative'
+          position: 'relative',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+          padding: '12px'
         }}
       >
         <div

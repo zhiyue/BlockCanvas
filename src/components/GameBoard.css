@@ -30,9 +30,95 @@
   position: relative;
 }
 
+/* Touch-friendly interactions */
+@media (pointer: coarse) {
+  .game-board-container canvas {
+    /* Improve touch accuracy */
+    touch-action: manipulation;
+  }
+}
+
+/* Container queries for game board */
+@container (max-width: 500px) {
+  .game-board-container {
+    /* Scale down board for small containers */
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+}
+
+/* Mobile responsive design */
 @media (max-width: 768px) {
   .game-board-container {
     /* Keep padding at 0 for consistent coordinate system */
     padding: 0;
+    margin: 0 auto;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .game-board-container canvas {
+    max-width: 100%;
+    max-height: 50vh; /* Limit height on mobile */
+    width: auto;
+    height: auto;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .game-board-container {
+    /* Further optimize for small screens */
+    transform: scale(0.85);
+    transform-origin: center top;
+  }
+
+  .game-board-container canvas {
+    max-height: 45vh;
+  }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+  .game-board-container {
+    transform: scale(0.75);
+    transform-origin: center top;
+  }
+
+  .game-board-container canvas {
+    max-height: 60vh;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .game-board-container {
+    transform: scale(0.8);
+    transform-origin: center top;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .game-board-container {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .game-board-container {
+    border: 3px solid #000;
+  }
+}
+
+/* Ensure proper positioning on mobile */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .game-board-container {
+      margin-left: max(0, env(safe-area-inset-left));
+      margin-right: max(0, env(safe-area-inset-right));
+    }
   }
 }

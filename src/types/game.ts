@@ -38,6 +38,12 @@ export interface GameState {
   isCompleted: boolean;
   timeElapsed: number;
   moves: number;
+  // Multi-modal interaction state
+  interactionMode: 'drag' | 'tap';
+  tapModeState: {
+    selectedBlockForPlacement: string | null;
+    selectedBlockRotation: number;
+  };
 }
 
 export const BOARD_SIZE = 8;

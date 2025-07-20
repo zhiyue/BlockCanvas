@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { DndContext, DragOverlay, DragStartEvent, DragEndEvent, closestCenter, PointerSensor, useSensor, useSensors, useDndMonitor } from '@dnd-kit/core'
+import React, { useEffect, useState, useMemo } from 'react'
+import { DndContext, DragOverlay, DragStartEvent, DragEndEvent, closestCenter, PointerSensor, TouchSensor, useSensor, useSensors, useDndMonitor } from '@dnd-kit/core'
 import GameBoard from './components/GameBoard'
 import BlockInventory from './components/BlockInventory'
 import GameInstructions from './components/GameInstructions'
@@ -8,6 +8,7 @@ import { useGameStore } from './store/gameStore'
 import { SAMPLE_CHALLENGES } from './data/challenges'
 import { getBlockById } from './data/blocks'
 import { BOARD_SIZE, CoordinateSystem } from './types/game'
+import { useDeviceCapabilities } from './hooks/useDeviceCapabilities'
 import { StagewiseToolbar } from '@stagewise/toolbar-react'
 import ReactPlugin from '@stagewise-plugins/react'
 import './App.css'
@@ -20,6 +21,8 @@ function App() {
     isCompleted,
     timeElapsed,
     moves,
+    interactionMode: gameInteractionMode,
+    tapModeState,
     setCurrentChallenge,
     placeBlock,
     removeBlock,
@@ -30,8 +33,22 @@ function App() {
     incrementTime,
     isPositionValid,
     isStarterBlock,
-    rotateSelectedBlock
+    rotateSelectedBlock,
+    setInteractionMode,
+    selectBlockForTapPlacement,
+    rotateTapModeBlock,
+    placeTapModeBlock
   } = useGameStore()
+
+  const { isMobile, hasTouch, interactionMode } = useDeviceCapabilities()
+
+  // Auto-set interaction mode based on device capabilities
+  useEffect(() => {
+    const preferredMode = interactionMode.primary
+    if (gameInteractionMode !== preferredMode) {
+      setInteractionMode(preferredMode)
+    }
+  }, [interactionMode.primary, gameInteractionMode, setInteractionMode])
 
   // Timer effect
   useEffect(() => {
@@ -148,25 +165,62 @@ function App() {
     return null
   }
   
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
-    })
-  )
+  // Optimized sensor configuration based on device capabilities
+  const sensors = useMemo(() => {
+    if (isMobile || hasTouch) {
+      // Mobile/touch device configuration
+      return useSensors(
+        useSensor(PointerSensor, {
+          activationConstraint: {
+            // Reduce distance for better touch response
+            distance: 5,
+            // Add delay to distinguish from scrolling
+            delay: 150,
+            tolerance: 5,
+          },
+        }),
+        // Fallback TouchSensor for better touch support
+        useSensor(TouchSensor, {
+          activationConstraint: {
+            delay: 200,
+            tolerance: 8,
+          },
+        })
+      )
+    } else {
+      // Desktop configuration - optimized for mouse
+      return useSensors(
+        useSensor(PointerSensor, {
+          activationConstraint: {
+            distance: 8,
+          },
+        })
+      )
+    }
+  }, [isMobile, hasTouch])
 
   const handleCellClick = (x: number, y: number) => {
-    if (selectedBlock) {
-      const rotation = blockRotations[selectedBlock] || 0
-      const success = placeBlock(selectedBlock, x, y, rotation)
-      if (success) {
-        selectBlock(null)
-        // Reset rotation for this block after placing
-        setBlockRotations(prev => ({
-          ...prev,
-          [selectedBlock]: 0
-        }))
+    if (gameInteractionMode === 'tap') {
+      // Tap mode: use tap placement system
+      if (tapModeState.selectedBlockForPlacement) {
+        const success = placeTapModeBlock(x, y)
+        if (success) {
+          // Block is automatically cleared from tapModeState in the store
+        }
+      }
+    } else {
+      // Drag mode: use legacy system
+      if (selectedBlock) {
+        const rotation = blockRotations[selectedBlock] || 0
+        const success = placeBlock(selectedBlock, x, y, rotation)
+        if (success) {
+          selectBlock(null)
+          // Reset rotation for this block after placing
+          setBlockRotations(prev => ({
+            ...prev,
+            [selectedBlock]: 0
+          }))
+        }
       }
     }
   }
@@ -481,6 +535,8 @@ function App() {
                 draggedBlock={draggedBlock}
                 blockRotations={blockRotations}
                 previewPosition={previewPosition}
+                interactionMode={gameInteractionMode}
+                tapModeState={tapModeState}
               />
               
               <BlockInventory
@@ -491,6 +547,10 @@ function App() {
                 onBlockPlace={handleBlockPlace}
                 blockRotations={blockRotations}
                 onBlockRotate={handleBlockRotate}
+                interactionMode={gameInteractionMode}
+                tapModeState={tapModeState}
+                onTapModeSelect={selectBlockForTapPlacement}
+                onTapModeRotate={rotateTapModeBlock}
               />
             </div>
           </div>

@@ -15,6 +15,11 @@ interface GameBoardProps {
   draggedBlock?: string | null;
   blockRotations?: {[key: string]: number};
   previewPosition?: {x: number, y: number} | null;
+  interactionMode?: 'drag' | 'tap';
+  tapModeState?: {
+    selectedBlockForPlacement: string | null;
+    selectedBlockRotation: number;
+  };
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({
@@ -24,7 +29,9 @@ const GameBoard: React.FC<GameBoardProps> = ({
   onBlockSelect,
   draggedBlock,
   blockRotations = {},
-  previewPosition
+  previewPosition,
+  interactionMode = 'drag',
+  tapModeState
 }) => {
   const boardDimensions = CoordinateSystem.getBoardDimensions();
   const { isPositionValid, isStarterBlock } = useGameStore();
@@ -38,20 +45,32 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
 
 
-  // Get valid positions for the dragged block
+  // Get valid positions for the current interaction mode
   const getValidPositions = (): Position[] => {
-    if (!draggedBlock) return [];
+    let blockId: string | null = null;
+    let rotation = 0;
 
-    const block = getBlockById(draggedBlock);
+    if (interactionMode === 'tap' && tapModeState?.selectedBlockForPlacement) {
+      // Tap mode: show valid positions for selected block
+      blockId = tapModeState.selectedBlockForPlacement;
+      rotation = tapModeState.selectedBlockRotation;
+    } else if (interactionMode === 'drag' && draggedBlock) {
+      // Drag mode: show valid positions for dragged block
+      blockId = draggedBlock;
+      rotation = blockRotations[draggedBlock] || 0;
+    }
+
+    if (!blockId) return [];
+
+    const block = getBlockById(blockId);
     if (!block) return [];
 
-    const rotation = blockRotations[draggedBlock] || 0;
     const validPositions: Position[] = [];
 
     for (let y = 0; y < BOARD_SIZE; y++) {
       for (let x = 0; x < BOARD_SIZE; x++) {
-        // 在检查位置有效性时，忽略当前被拖拽的 block
-        if (isPositionValid(draggedBlock, x, y, rotation, draggedBlock)) {
+        // 在检查位置有效性时，忽略当前被拖拽或选中的 block
+        if (isPositionValid(blockId, x, y, rotation, blockId)) {
           validPositions.push({ x, y });
         }
       }

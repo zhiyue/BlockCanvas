@@ -13,6 +13,13 @@ interface BlockInventoryProps {
   onBlockPlace?: (blockId: string, x: number, y: number) => boolean;
   blockRotations?: {[key: string]: number};
   onBlockRotate?: (blockId: string) => void;
+  interactionMode?: 'drag' | 'tap';
+  tapModeState?: {
+    selectedBlockForPlacement: string | null;
+    selectedBlockRotation: number;
+  };
+  onTapModeSelect?: (blockId: string | null) => void;
+  onTapModeRotate?: () => void;
 }
 
 const BlockInventory: React.FC<BlockInventoryProps> = ({
@@ -21,7 +28,11 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
   selectedBlock,
   onBlockSelect,
   blockRotations = {},
-  onBlockRotate
+  onBlockRotate,
+  interactionMode = 'drag',
+  tapModeState,
+  onTapModeSelect,
+  onTapModeRotate
 }) => {
   const { isOver, setNodeRef } = useDroppable({
     id: 'block-inventory',
@@ -51,17 +62,48 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
 
       if (isAvailable) {
         // 渲染可用的 block
+        const isSelectedForDrag = selectedBlock === block.id;
+        const isSelectedForTap = tapModeState?.selectedBlockForPlacement === block.id;
+        const isSelected = interactionMode === 'tap' ? isSelectedForTap : isSelectedForDrag;
+        
+        const handleSelect = () => {
+          if (interactionMode === 'tap') {
+            // Tap mode: select for placement
+            if (onTapModeSelect) {
+              onTapModeSelect(isSelectedForTap ? null : block.id);
+            }
+          } else {
+            // Drag mode: use original selection
+            onBlockSelect(isSelectedForDrag ? null : block.id);
+          }
+        };
+
+        const currentRotation = interactionMode === 'tap' 
+          ? (isSelectedForTap ? tapModeState.selectedBlockRotation : 0)
+          : getBlockRotation(block.id);
+
+        const handleDoubleClick = () => {
+          if (interactionMode === 'tap' && isSelectedForTap) {
+            // In tap mode, double-click rotates the selected block
+            onTapModeRotate?.();
+          } else if (interactionMode === 'drag') {
+            // In drag mode, double-click can also rotate
+            onBlockRotate?.(block.id);
+          }
+        };
+
         return (
           <DraggableBlock
             key={block.id}
             block={block}
-            isSelected={selectedBlock === block.id}
-            onSelect={() => onBlockSelect(selectedBlock === block.id ? null : block.id)}
-            rotation={getBlockRotation(block.id)}
+            isSelected={isSelected}
+            onSelect={handleSelect}
+            onDoubleClick={handleDoubleClick}
+            rotation={currentRotation}
             scale={0.6}
             x={x}
             y={y}
-            enableDrag={true}
+            enableDrag={interactionMode === 'drag'}
             renderAsHTML={true}
           />
         );

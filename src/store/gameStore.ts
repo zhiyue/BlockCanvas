@@ -15,6 +15,12 @@ interface GameStore extends GameState {
   incrementTime: () => void;
   incrementMoves: () => void;
   
+  // Multi-modal interaction actions
+  setInteractionMode: (mode: 'drag' | 'tap') => void;
+  selectBlockForTapPlacement: (blockId: string | null) => void;
+  rotateTapModeBlock: () => void;
+  placeTapModeBlock: (x: number, y: number) => boolean;
+  
   // Helper functions
   isPositionValid: (blockId: string, x: number, y: number, rotation?: number, ignoreBlockId?: string) => boolean;
   getAvailableBlocks: () => string[];
@@ -54,6 +60,11 @@ export const useGameStore = create<GameStore>()(
       isCompleted: false,
       timeElapsed: 0,
       moves: 0,
+      interactionMode: 'drag',
+      tapModeState: {
+        selectedBlockForPlacement: null,
+        selectedBlockRotation: 0,
+      },
 
       // Actions
       setCurrentChallenge: (challenge) => {
@@ -197,8 +208,66 @@ export const useGameStore = create<GameStore>()(
           selectedBlock: null,
           isCompleted: false,
           timeElapsed: 0,
-          moves: 0
+          moves: 0,
+          tapModeState: {
+            selectedBlockForPlacement: null,
+            selectedBlockRotation: 0,
+          }
         });
+      },
+
+      // Multi-modal interaction methods
+      setInteractionMode: (mode) => {
+        set({ interactionMode: mode });
+        
+        // Clear tap mode state when switching away from tap mode
+        if (mode !== 'tap') {
+          set({
+            tapModeState: {
+              selectedBlockForPlacement: null,
+              selectedBlockRotation: 0,
+            }
+          });
+        }
+      },
+
+      selectBlockForTapPlacement: (blockId) => {
+        set((state) => ({
+          tapModeState: {
+            selectedBlockForPlacement: blockId,
+            selectedBlockRotation: blockId ? 0 : state.tapModeState.selectedBlockRotation,
+          }
+        }));
+      },
+
+      rotateTapModeBlock: () => {
+        set((state) => ({
+          tapModeState: {
+            ...state.tapModeState,
+            selectedBlockRotation: (state.tapModeState.selectedBlockRotation + 1) % 4,
+          }
+        }));
+      },
+
+      placeTapModeBlock: (x, y) => {
+        const state = get();
+        const { selectedBlockForPlacement, selectedBlockRotation } = state.tapModeState;
+        
+        if (!selectedBlockForPlacement) return false;
+        
+        const success = state.placeBlock(selectedBlockForPlacement, x, y, selectedBlockRotation);
+        
+        if (success) {
+          // Clear tap mode selection after successful placement
+          set({
+            tapModeState: {
+              selectedBlockForPlacement: null,
+              selectedBlockRotation: 0,
+            }
+          });
+        }
+        
+        return success;
       },
 
       isPositionValid: (blockId, x, y, rotation = 0, ignoreBlockId) => {

@@ -2,11 +2,14 @@ import React from 'react';
 import { Group, Rect } from 'react-konva';
 import { useDraggable } from '@dnd-kit/core';
 import { BlockShape, CELL_SIZE } from '../types/game';
+import { useMultiModalDoubleInteraction } from '../hooks/useDoubleClick';
+import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities';
 
 interface DraggableBlockProps {
   block: BlockShape;
   isSelected?: boolean;
   onSelect?: () => void;
+  onDoubleClick?: () => void;
   rotation?: number;
   scale?: number;
   x?: number;
@@ -20,6 +23,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
   block,
   isSelected = false,
   onSelect,
+  onDoubleClick,
   rotation = 0,
   scale = 0.8,
   x = 0,
@@ -31,6 +35,17 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: block.id,
     disabled: !enableDrag,
+  });
+
+  const { hasTouch, interactionMode } = useDeviceCapabilities();
+
+  // Double click/tap handling for rotation
+  const doubleInteraction = useMultiModalDoubleInteraction({
+    onSingleClick: onSelect,
+    onDoubleClick: onDoubleClick,
+    onSingleTap: onSelect,
+    onDoubleTap: onDoubleClick,
+    touchEnabled: hasTouch && interactionMode.primary === 'tap'
   });
 
   const rotatePattern = (pattern: boolean[][], times: number): boolean[][] => {
@@ -152,7 +167,8 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
           opacity: isStarterBlock ? 0.9 : 1,
           ...dragStyle,
         }}
-        onClick={onSelect}
+        onClick={doubleInteraction.onClick}
+        onTouchStart={doubleInteraction.onTouchStart}
         {...listeners}
         {...attributes}
       >

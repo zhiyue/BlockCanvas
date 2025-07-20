@@ -230,6 +230,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
         enableHaptic={!isStarterBlock}
         enableRipple={!isStarterBlock}
         disabled={isStarterBlock}
+        className={`game-element ${enableDrag ? 'draggable-element' : ''} ${hasTouch ? 'ios-drag-safe' : ''}`}
         style={{
           position: 'absolute',
           left: x,

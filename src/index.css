@@ -31,10 +31,22 @@ button {
   border: none;
   outline: none;
   font-family: inherit;
+  /* 允许按钮文本选择 */
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 input, select, textarea {
   font-family: inherit;
+  /* 允许输入框文本选择 */
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 .sr-only {
@@ -47,4 +59,41 @@ input, select, textarea {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* 专门针对iOS的拖拽优化 */
+.ios-drag-safe {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+  touch-action: manipulation !important;
+}
+
+/* 游戏区域专用的防选择样式 */
+.game-element {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* 防止iOS Safari的长按上下文菜单 */
+.no-context-menu {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* 专门针对拖拽元素的样式 */
+.draggable-element {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+  touch-action: none !important; /* 完全禁用默认触摸行为 */
 }

@@ -169,8 +169,7 @@ describe('App Integration Tests', () => {
     // Reset global DnD callbacks
     ;(global as any)._dndCallbacks = {}
     
-    // Mock timers
-    vi.useFakeTimers()
+    // Don't use fake timers globally to avoid userEvent timeout issues
   })
 
   afterEach(() => {
@@ -245,6 +244,7 @@ describe('App Integration Tests', () => {
 
   describe('Timer Management', () => {
     it('starts timer when challenge is active and not completed', async () => {
+      vi.useFakeTimers()
       vi.mocked(gameStoreModule.useGameStore).mockReturnValue({
         ...mockGameStore,
         currentChallenge: SAMPLE_CHALLENGES[0],
@@ -258,9 +258,11 @@ describe('App Integration Tests', () => {
       })
 
       expect(mockGameStore.incrementTime).toHaveBeenCalled()
+      vi.useRealTimers()
     })
 
     it('does not start timer when no challenge is set', () => {
+      vi.useFakeTimers()
       render(<App />)
 
       act(() => {
@@ -268,9 +270,11 @@ describe('App Integration Tests', () => {
       })
 
       expect(mockGameStore.incrementTime).not.toHaveBeenCalled()
+      vi.useRealTimers()
     })
 
     it('stops timer when puzzle is completed', () => {
+      vi.useFakeTimers()
       vi.mocked(gameStoreModule.useGameStore).mockReturnValue({
         ...mockGameStore,
         currentChallenge: SAMPLE_CHALLENGES[0],
@@ -284,6 +288,7 @@ describe('App Integration Tests', () => {
       })
 
       expect(mockGameStore.incrementTime).not.toHaveBeenCalled()
+      vi.useRealTimers()
     })
 
     it('displays formatted time correctly', () => {
@@ -301,7 +306,7 @@ describe('App Integration Tests', () => {
 
   describe('Keyboard Event Handling', () => {
     it('rotates selected block on spacebar press', async () => {
-      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      const user = userEvent.setup()
       
       vi.mocked(gameStoreModule.useGameStore).mockReturnValue({
         ...mockGameStore,
@@ -318,7 +323,7 @@ describe('App Integration Tests', () => {
     })
 
     it('prevents spacebar rotation for starter blocks', async () => {
-      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      const user = userEvent.setup()
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
       
       vi.mocked(gameStoreModule.useGameStore).mockReturnValue({
@@ -336,7 +341,7 @@ describe('App Integration Tests', () => {
     })
 
     it('uses gameStore rotation for blocks on board', async () => {
-      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      const user = userEvent.setup()
       
       vi.mocked(gameStoreModule.useGameStore).mockReturnValue({
         ...mockGameStore,
@@ -354,7 +359,7 @@ describe('App Integration Tests', () => {
     })
 
     it('does not rotate when no block is selected', async () => {
-      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      const user = userEvent.setup()
       
       render(<App />)
 

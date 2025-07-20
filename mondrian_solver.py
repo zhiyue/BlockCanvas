@@ -153,9 +153,16 @@ def placements_for_piece(name: str) -> List[Row]:
     for shape in ORIENTATIONS[name]:
         w = 1 + max(x for x, _ in shape)
         h = 1 + max(y for _, y in shape)
-        # Temporary: no symmetry breaking to find more layouts
-        x_range = range(0, BOARD_W - w + 1)
-        y_range = range(0, BOARD_H - h + 1)
+        # Symmetry‑breaking: keep RED piece in NW quadrant and upright (0° rot).
+        if name == RED_NAME:
+            if shape != normalise(RAW_PIECES[RED_NAME]):  # upright only
+                continue
+            # Only allow anchor (0,0) in upper‑left 4×4 corner (y < 4, x < 4)
+            x_range = range(0, BOARD_W // 2 - w + 1)
+            y_range = range(0, BOARD_H // 2 - h + 1)
+        else:
+            x_range = range(0, BOARD_W - w + 1)
+            y_range = range(0, BOARD_H - h + 1)
 
         for dx in x_range:
             for dy in y_range:
@@ -278,6 +285,161 @@ def solve_exact_cover(limit: int | None = None, layout_callback=None, randomize:
             chosen_rows.pop()
 
 # ---------------------------------------------------------------------------
+# 4.5.  Enhanced solver with multiple randomization strategies
+# ---------------------------------------------------------------------------
+
+def solve_exact_cover_enhanced(limit: int | None = None, randomize: bool = True, run_id: int = 0) -> Iterator[List[int]]:
+    """增强版exact cover，更强的随机化"""
+    if not randomize:
+        # 使用原来的函数
+        yield from solve_exact_cover(limit=limit, randomize=False)
+        return
+    
+    # 暂时只使用工作正常的策略
+    strategies = [
+        'random_row_selection', 
+        'random_row_selection',  # 重复使用确保所有运行都用这个策略
+        'random_row_selection',
+        'random_row_selection'
+    ]
+    strategy = strategies[run_id % len(strategies)]
+    
+    unavailable_cols = 0
+    chosen_rows: List[int] = []
+    stack: List[Tuple[int, int, int]] = []
+    
+    # 随机化列顺序
+    col_order = list(range(N_COLS))
+    random.shuffle(col_order)
+    
+    def choose_next_col_enhanced(mask: int) -> int | None:
+        """增强的列选择，增加随机性"""
+        candidates = []
+        for c in col_order:
+            if mask >> c & 1:
+                continue
+            available_rows = sum(1 for ridx in COL_TO_ROWS[c]
+                               if ALL_ROWS[ridx].bitmask & mask == 0)
+            if available_rows == 0:
+                return c
+            if available_rows <= 5:  # 候选列的标准放宽
+                candidates.append((c, available_rows))
+        
+        if not candidates:
+            return None
+        
+        # 根据策略选择
+        if strategy == 'random_column_order':
+            return candidates[0][0]  # 第一个候选
+        elif strategy == 'probabilistic_choice':
+            # 根据可用行数的倒数作为权重随机选择
+            weights = [1.0/count for _, count in candidates]
+            return random.choices([c for c, _ in candidates], weights=weights)[0]
+        else:
+            # 随机选择前几个候选
+            top_candidates = candidates[:min(3, len(candidates))]
+            return random.choice(top_candidates)[0]
+    
+    solutions_found = 0
+    
+    while True:
+        col = choose_next_col_enhanced(unavailable_cols)
+        if col is None:
+            # 找到解
+            yield chosen_rows.copy()
+            solutions_found += 1
+            if limit and solutions_found >= limit:
+                return
+            
+            # 回退
+            if not stack:
+                return
+            col, ridx, next_pos = stack.pop()
+            unavailable_cols ^= ALL_ROWS[ridx].bitmask
+            chosen_rows.pop()
+        else:
+            next_pos = 0
+        
+        # 修复后的行选择逻辑
+        found_row = False
+        next_idx_list = COL_TO_ROWS[col]
+        
+        # 对于某些策略，随机化行选择顺序
+        if strategy == 'random_row_selection':
+            available_indices = [i for i in range(next_pos, len(next_idx_list))
+                               if ALL_ROWS[next_idx_list[i]].bitmask & unavailable_cols == 0]
+            if available_indices:
+                random.shuffle(available_indices)
+                for i in available_indices:
+                    ridx = next_idx_list[i]
+                    row_bits = ALL_ROWS[ridx].bitmask
+                    unavailable_cols |= row_bits
+                    chosen_rows.append(ridx)
+                    stack.append((col, ridx, i + 1))
+                    found_row = True
+                    break
+        else:
+            # 使用原始的顺序搜索
+            while next_pos < len(next_idx_list):
+                ridx = next_idx_list[next_pos]
+                row_bits = ALL_ROWS[ridx].bitmask
+                if row_bits & unavailable_cols == 0:
+                    unavailable_cols |= row_bits
+                    chosen_rows.append(ridx)
+                    stack.append((col, ridx, next_pos + 1))
+                    found_row = True
+                    break
+                next_pos += 1
+        
+        if not found_row:
+            if not stack:
+                return
+            col, ridx, next_pos = stack.pop()
+            unavailable_cols ^= ALL_ROWS[ridx].bitmask
+            chosen_rows.pop()
+
+
+def collect_all_black_layouts(max_solutions: int = 1000000, num_runs: int = 20) -> List[Tuple[int, ...]]:
+    """收集所有不同的黑色积木布局"""
+    all_black_layouts = set()
+    
+    print(f"[collect] Starting {num_runs} independent searches...")
+    
+    for run in range(num_runs):
+        print(f"[collect] Run {run+1}/{num_runs}")
+        random.seed(run * 123)  # 每次不同的随机种子
+        
+        run_layouts = set()
+        solutions_found = 0
+        errors_found = 0
+        
+        # 每次运行找到一定数量的解（使用原始函数+不同随机种子）
+        for sol in solve_exact_cover(
+            limit=max_solutions//num_runs, 
+            randomize=True
+        ):
+            solutions_found += 1
+            try:
+                black_layout = black_cells_from_solution(sol)
+                run_layouts.add(black_layout)
+                all_black_layouts.add(black_layout)
+                
+                # 实时显示进度
+                if solutions_found % 5000 == 0:
+                    print(f"  Solutions: {solutions_found}, "
+                          f"Run layouts: {len(run_layouts)}, "
+                          f"Total unique: {len(all_black_layouts)}")
+                          
+            except RuntimeError:
+                errors_found += 1
+                continue
+        
+        print(f"  Run {run+1} finished: {solutions_found} solutions, "
+              f"{len(run_layouts)} layouts, {errors_found} errors, total unique: {len(all_black_layouts)}")
+    
+    return sorted(all_black_layouts)
+
+# ---------------------------------------------------------------------------
 # 5.  Build black‑layout → solution‑count index
 # ---------------------------------------------------------------------------
 
@@ -293,14 +455,14 @@ def black_cells_from_solution(sol_rows: List[int]) -> Tuple[int, ...]:
     return tuple(sorted(cells))  # canonical key (length 6)
 
 
-def analyze_layout_diversity(limit: int = 100000) -> None:
+def analyze_layout_diversity(limit: int = 100000, randomize: bool = True) -> None:
     """分析黑块布局的多样性"""
-    print(f"[analyze] Analyzing layout diversity with {limit} solutions...")
+    print(f"[analyze] Analyzing layout diversity with {limit} solutions (randomize={randomize})...")
 
     layouts_seen = {}
     solutions_processed = 0
 
-    for sol in solve_exact_cover(limit=limit):
+    for sol in solve_exact_cover(limit=limit, randomize=randomize):
         solutions_processed += 1
         try:
             key = black_cells_from_solution(sol)
@@ -315,7 +477,7 @@ def analyze_layout_diversity(limit: int = 100000) -> None:
                 print()
 
             # 定期报告进度
-            if solutions_processed % 10000 == 0:
+            if solutions_processed % 5000 == 0:
                 print(f"[analyze] Processed {solutions_processed} solutions, found {len(layouts_seen)} unique layouts")
 
         except RuntimeError as e:
@@ -471,15 +633,18 @@ def main(argv: List[str]) -> None:
         print("Solver test failed!")
         return
 
-    if len(argv) < 2 or argv[1] not in {"build", "sample", "test", "analyze"}:
+    if len(argv) < 2 or argv[1] not in {"build", "sample", "test", "analyze", "collect"}:
         print("Usage:")
         print("  build   <outfile> [max_per_layout] – enumerate & save index")
         print("  sample  <index.bin> [N] – sample N puzzles")
         print("  test                    – run validation tests")
         print("  analyze [limit]         – analyze layout diversity")
+        print("  collect [max_solutions] [num_runs] – collect all unique black layouts")
         print("")
         print("  max_per_layout: skip layouts with more than this many solutions (default: 100)")
         print("  limit: number of solutions to analyze (default: 100000)")
+        print("  max_solutions: total solutions to search across all runs (default: 1000000)")
+        print("  num_runs: number of independent search runs (default: 20)")
         return
 
     cmd = argv[1]
@@ -489,6 +654,23 @@ def main(argv: List[str]) -> None:
     elif cmd == "analyze":
         limit = int(argv[2]) if len(argv) >= 3 else 100000
         analyze_layout_diversity(limit)
+        return
+    elif cmd == "collect":
+        max_solutions = int(argv[2]) if len(argv) >= 3 else 1000000
+        num_runs = int(argv[3]) if len(argv) >= 4 else 20
+        
+        print(f"[collect] Collecting black layouts from {max_solutions} solutions across {num_runs} runs")
+        layouts = collect_all_black_layouts(max_solutions, num_runs)
+        
+        print(f"\n[result] Found {len(layouts)} unique black layouts!")
+        
+        # 显示前10个布局
+        for i, layout in enumerate(layouts[:10]):
+            print(f"\nLayout {i+1}: {layout}")
+            print_board(layout)
+        
+        if len(layouts) > 10:
+            print(f"\n... and {len(layouts)-10} more layouts")
         return
     elif cmd == "build":
         if len(argv) < 3:

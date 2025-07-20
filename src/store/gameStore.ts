@@ -19,6 +19,7 @@ interface GameStore extends GameState {
   isPositionValid: (blockId: string, x: number, y: number, rotation?: number, ignoreBlockId?: string) => boolean;
   getAvailableBlocks: () => string[];
   getAllBlocks: () => string[];
+  isStarterBlock: (blockId: string) => boolean;
 }
 
 const createEmptyBoard = (): GameBoard => ({
@@ -246,6 +247,13 @@ export const useGameStore = create<GameStore>()(
         if (!state.currentChallenge) return [];
 
         return state.currentChallenge.availableBlocks;
+      },
+
+      isStarterBlock: (blockId) => {
+        const state = get();
+        if (!state.currentChallenge) return false;
+
+        return state.currentChallenge.starterBlocks.some(sb => sb.blockId === blockId);
       },
 
       checkWinCondition: () => {

@@ -28,7 +28,9 @@ function App() {
     getAvailableBlocks,
     getAllBlocks,
     incrementTime,
-    isPositionValid
+    isPositionValid,
+    isStarterBlock,
+    rotateSelectedBlock
   } = useGameStore()
 
   // Timer effect
@@ -48,6 +50,27 @@ function App() {
       setCurrentChallenge(SAMPLE_CHALLENGES[0])
     }
   }, [currentChallenge, setCurrentChallenge])
+
+  // 键盘事件监听器
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // 空格键旋转选中的 block
+      if (event.code === 'Space' && selectedBlock) {
+        event.preventDefault() // 防止页面滚动
+
+        // 检查是否是 starter block
+        if (isStarterBlock(selectedBlock)) {
+          console.log('Cannot rotate starter block')
+          return
+        }
+
+        handleBlockRotate(selectedBlock)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
+  }, [selectedBlock, isStarterBlock])
 
   const [blockRotations, setBlockRotations] = React.useState<{[key: string]: number}>({})
   const [showInstructions, setShowInstructions] = React.useState(false)
@@ -154,10 +177,19 @@ function App() {
   }
 
   const handleBlockRotate = (blockId: string) => {
-    setBlockRotations(prev => ({
-      ...prev,
-      [blockId]: ((prev[blockId] || 0) + 1) % 4
-    }))
+    // 检查 block 是否在棋盘上
+    const isOnBoard = board.placedBlocks.some(pb => pb.blockId === blockId)
+
+    if (isOnBoard) {
+      // 如果在棋盘上，使用 gameStore 的旋转方法
+      rotateSelectedBlock()
+    } else {
+      // 如果在 inventory 中，更新本地旋转状态
+      setBlockRotations(prev => ({
+        ...prev,
+        [blockId]: ((prev[blockId] || 0) + 1) % 4
+      }))
+    }
   }
 
   const getPlacedBlocksForDisplay = () => {
@@ -211,6 +243,13 @@ function App() {
 
   const handleDragStart = (event: DragStartEvent) => {
     const blockId = event.active.id as string
+
+    // 检查是否是 starter block，如果是则阻止拖拽
+    if (isStarterBlock(blockId)) {
+      console.log(`Cannot drag starter block: ${blockId}`)
+      return
+    }
+
     setDraggedBlock(blockId)
 
     // Calculate offset between mouse and block's top-left corner
@@ -337,6 +376,7 @@ function App() {
           // Remove from board and return to inventory
           removeBlock(blockId)
           console.log(`Block ${blockId} automatically returned to inventory (dropped outside valid area)`)
+          showReturnMessage('Block returned to available blocks')
         }
         // Reset rotation when returning to inventory
         setBlockRotations(prev => ({
@@ -348,6 +388,7 @@ function App() {
       // If dropped in invalid area and was from board, return to inventory
       removeBlock(draggedBlock)
       console.log(`Block ${draggedBlock} automatically returned to inventory (no drop target)`)
+      showReturnMessage('Block returned to available blocks')
       // Reset rotation when returning to inventory
       setBlockRotations(prev => ({
         ...prev,
@@ -454,6 +495,26 @@ function App() {
             </div>
           </div>
         </main>
+
+        {/* 返回消息提示 */}
+        {returnMessage && (
+          <div style={{
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            backgroundColor: '#10b981',
+            color: 'white',
+            padding: '12px 20px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
+            zIndex: 10000,
+            fontSize: '14px',
+            fontWeight: '500',
+            animation: 'slideInRight 0.3s ease-out'
+          }}>
+            {returnMessage}
+          </div>
+        )}
 
         <GameInstructions
           isOpen={showInstructions}

@@ -148,27 +148,6 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
           </div>
         )}
       </div>
-      
-      {selectedBlock && (
-        <div className="selected-block-info">
-          <p>Selected: {getBlockById(selectedBlock)?.name}</p>
-          <p className="instruction">Click on the board to place the block</p>
-          <div className="block-controls">
-            <button 
-              onClick={() => onBlockRotate && onBlockRotate(selectedBlock)}
-              className="btn btn-primary"
-            >
-              Rotate (90°)
-            </button>
-            <button 
-              onClick={() => onBlockSelect(null)}
-              className="btn btn-secondary"
-            >
-              Deselect
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

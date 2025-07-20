@@ -13,18 +13,20 @@ interface DraggableBlockProps {
   y?: number;
   enableDrag?: boolean;
   renderAsHTML?: boolean;
+  isStarterBlock?: boolean;
 }
 
-const DraggableBlock: React.FC<DraggableBlockProps> = ({ 
-  block, 
-  isSelected = false, 
+const DraggableBlock: React.FC<DraggableBlockProps> = ({
+  block,
+  isSelected = false,
   onSelect,
   rotation = 0,
   scale = 0.8,
   x = 0,
   y = 0,
   enableDrag = false,
-  renderAsHTML = false
+  renderAsHTML = false,
+  isStarterBlock = false
 }) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: block.id,
@@ -117,13 +119,10 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
         width: blockWidth,
         height: blockHeight,
         borderRadius: `${Math.max(2, Math.round(scale * 3))}px`,
-        // Simple background for block separation when selected
-        backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'transparent',
-        border: isSelected ? `2px solid #4f46e5` : 'none',
-        // Shadow for depth when selected
-        boxShadow: isSelected
-          ? `0 0 ${Math.round(scale * 8)}px rgba(79, 70, 229, 0.6)`
-          : 'none',
+        // 移除选中状态的视觉效果
+        backgroundColor: 'transparent',
+        border: 'none',
+        boxShadow: 'none',
         boxSizing: 'border-box'
       }}>
         {cells}
@@ -147,9 +146,10 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
           position: 'absolute',
           left: x,
           top: y,
-          cursor: enableDrag ? (isDragging ? 'grabbing' : 'grab') : 'pointer',
-          zIndex: isDragging ? 1000 : (isSelected ? 50 : 10),
+          cursor: isStarterBlock ? 'not-allowed' : (enableDrag ? (isDragging ? 'grabbing' : 'grab') : 'pointer'),
+          zIndex: isDragging ? 1000 : 10,
           willChange: 'transform',
+          opacity: isStarterBlock ? 0.9 : 1,
           ...dragStyle,
         }}
         onClick={onSelect}

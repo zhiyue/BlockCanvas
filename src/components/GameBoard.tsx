@@ -27,7 +27,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
   previewPosition
 }) => {
   const boardDimensions = CoordinateSystem.getBoardDimensions();
-  const { isPositionValid } = useGameStore();
+  const { isPositionValid, isStarterBlock } = useGameStore();
 
   const { isOver, setNodeRef } = useDroppable({
     id: 'game-board',
@@ -229,6 +229,8 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
       if (block) {
         const blockPosition = CoordinateSystem.gridToCanvas(position.x, position.y);
+        const isStarter = isStarterBlock(blockId);
+
         draggableBlocks.push(
           <DraggableBlock
             key={`draggable-${blockId}`}
@@ -239,8 +241,9 @@ const GameBoard: React.FC<GameBoardProps> = ({
             scale={1}
             x={blockPosition.x}
             y={blockPosition.y}
-            enableDrag={true}
+            enableDrag={!isStarter} // starter blocks 不可拖拽
             renderAsHTML={true}
+            isStarterBlock={isStarter} // 传递 starter block 标识
           />
         );
       }

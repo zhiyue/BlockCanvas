@@ -37,14 +37,14 @@ const GameBoard: React.FC<GameBoardProps> = ({
   const responsiveCellSize = useMemo(() => {
     const isMobile = window.innerWidth <= 768;
     const isSmallMobile = window.innerWidth <= 480;
-    
+
     if (isSmallMobile) {
-      // Very small screens: fit in available width with margins
-      const maxBoardWidth = Math.min(window.innerWidth - 40, 280);
+      // Very small screens: use more available width for larger board
+      const maxBoardWidth = Math.min(window.innerWidth - 20, 320); // Reduced margins, increased max width
       return Math.floor(maxBoardWidth / BOARD_SIZE);
     } else if (isMobile) {
-      // Mobile screens: fit nicely with some margin
-      const maxBoardWidth = Math.min(window.innerWidth - 60, 350);
+      // Mobile screens: use more available width for larger board
+      const maxBoardWidth = Math.min(window.innerWidth - 30, 400); // Reduced margins, increased max width
       return Math.floor(maxBoardWidth / BOARD_SIZE);
     }
     return CELL_SIZE; // Desktop: use original size
@@ -316,7 +316,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
             scale={1}
             x={blockPosition.x}
             y={blockPosition.y}
-            enableDrag={!isStarter} // starter blocks 不可拖拽
+            enableDrag={!isStarter && interactionMode === 'drag'} // starter blocks 不可拖拽，且只在drag模式下启用拖拽
             renderAsHTML={true}
             isStarterBlock={isStarter} // 传递 starter block 标识
             cellSize={responsiveCellSize} // 传递 responsive cell size

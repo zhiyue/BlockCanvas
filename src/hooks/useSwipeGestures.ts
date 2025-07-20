@@ -67,13 +67,9 @@ export const useSwipeGestures = ({
       currentY: coords.y
     }
 
-    if (preventDefaultTouch && 'touches' in event) {
-      // Only prevent default for single touch to avoid interfering with pinch/zoom
-      if (event.touches.length === 1) {
-        event.preventDefault()
-      }
-    }
-  }, [enabled, preventDefaultTouch])
+    // Remove preventDefault from touch start to avoid passive event listener warning
+    // Modern browsers make touch events passive by default for better scrolling performance
+  }, [enabled])
 
   const handleMove = useCallback((event: TouchEvent | MouseEvent) => {
     if (!enabled || !swipeState.current.isSwiping) return
@@ -82,13 +78,8 @@ export const useSwipeGestures = ({
     swipeState.current.currentX = coords.x
     swipeState.current.currentY = coords.y
 
-    if (preventDefaultTouch && 'touches' in event) {
-      // Only prevent default for single touch
-      if (event.touches.length === 1) {
-        event.preventDefault()
-      }
-    }
-  }, [enabled, preventDefaultTouch])
+    // Remove preventDefault from touch move to avoid passive event listener warning
+  }, [enabled])
 
   const handleEnd = useCallback((event: TouchEvent | MouseEvent) => {
     if (!enabled || !swipeState.current.isSwiping) return

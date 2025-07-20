@@ -50,18 +50,19 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
     const gridCols = 3;
     const isMobile = window.innerWidth <= 768;
     const isSmallMobile = window.innerWidth <= 480;
+    const maxBlockSize = 5; // Maximum dimension any block can have when rotated
     
     // Mobile-optimized sizing to fit all blocks on screen
     let containerWidth, cellSize, padding;
     
     if (isSmallMobile) {
       containerWidth = window.innerWidth - 30; // Margins for small screens
-      cellSize = Math.max(6, (containerWidth / gridCols) / 7); // Very compact for small screens
-      padding = 6;
+      cellSize = Math.max(4, (containerWidth / gridCols) / 9); // Smaller blocks for small screens
+      padding = 4;
     } else if (isMobile) {
       containerWidth = Math.min(window.innerWidth - 40, 320);
-      cellSize = Math.max(8, (containerWidth / gridCols) / 6); // Compact but readable
-      padding = 8;
+      cellSize = Math.max(5, (containerWidth / gridCols) / 8); // Smaller blocks for better spacing
+      padding = 6;
     } else {
       // Desktop sizing
       containerWidth = Math.min(window.innerWidth - 40, 400);
@@ -77,8 +78,11 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
 
       const col = index % gridCols;
       const row = Math.floor(index / gridCols);
-      const x = col * (cellSize * 5 + padding) + padding;
-      const y = row * (cellSize * 4 + padding) + padding;
+      // Use 5x5 grid for each block slot to accommodate all rotations
+      const maxBlockSize = 5; // Maximum dimension any block can have when rotated
+      const blockSpacingMultiplier = isMobile ? maxBlockSize + 1 : maxBlockSize;
+      const x = col * (cellSize * blockSpacingMultiplier + padding) + padding;
+      const y = row * (cellSize * blockSpacingMultiplier + padding) + padding;
 
       const isAvailable = availableBlocks.includes(blockId);
 
@@ -114,6 +118,16 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
           }
         };
 
+        // Calculate the actual block dimensions after rotation
+        const rotatedDimensions = currentRotation % 2 === 1 
+          ? { width: block.height, height: block.width }
+          : { width: block.width, height: block.height };
+        
+        // Center the block within the 5x5 grid
+        const blockScale = isMobile ? 0.4 : 0.6;
+        const centerOffsetX = (cellSize * maxBlockSize - rotatedDimensions.width * cellSize * blockScale) / 2;
+        const centerOffsetY = (cellSize * maxBlockSize - rotatedDimensions.height * cellSize * blockScale) / 2;
+
         return (
           <DraggableBlock
             key={block.id}
@@ -122,9 +136,9 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
             onSelect={handleSelect}
             onDoubleClick={handleDoubleClick}
             rotation={currentRotation}
-            scale={0.6}
-            x={x}
-            y={y}
+            scale={blockScale}
+            x={x + centerOffsetX}
+            y={y + centerOffsetY}
             enableDrag={interactionMode === 'drag'}
             renderAsHTML={true}
             cellSize={responsiveCellSize}
@@ -139,8 +153,8 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
               position: 'absolute',
               left: x,
               top: y,
-              width: cellSize * 5,
-              height: cellSize * 4,
+              width: cellSize * maxBlockSize,
+              height: cellSize * maxBlockSize,
               border: '2px dashed #e2e8f0',
               borderRadius: '6px',
               backgroundColor: 'rgba(248, 250, 252, 0.5)',
@@ -171,12 +185,12 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
     
     if (isSmallMobile) {
       containerWidth = window.innerWidth - 30;
-      cellSize = Math.max(6, (containerWidth / gridCols) / 7);
-      padding = 6;
+      cellSize = Math.max(4, (containerWidth / gridCols) / 9);
+      padding = 4;
     } else if (isMobile) {
       containerWidth = Math.min(window.innerWidth - 40, 320);
-      cellSize = Math.max(8, (containerWidth / gridCols) / 6);
-      padding = 8;
+      cellSize = Math.max(5, (containerWidth / gridCols) / 8);
+      padding = 6;
     } else {
       containerWidth = Math.min(window.innerWidth - 40, 400);
       const availableWidth = containerWidth - 40;
@@ -185,9 +199,11 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
       padding = Math.max(10, Math.min(20, blockWidth * 0.1));
     }
 
+    const maxBlockSize = 5; // Maximum dimension any block can have when rotated
+    const blockSpacingMultiplier = isMobile ? maxBlockSize + 1 : maxBlockSize;
     return {
-      width: Math.max(containerWidth, gridCols * (cellSize * 5 + padding) + padding),
-      height: rows * (cellSize * 4 + padding) + padding
+      width: Math.max(containerWidth, gridCols * (cellSize * blockSpacingMultiplier + padding) + padding),
+      height: rows * (cellSize * blockSpacingMultiplier + padding) + padding
     };
   };
 

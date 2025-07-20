@@ -41,8 +41,8 @@
 /* Container queries for game board */
 @container (max-width: 500px) {
   .game-board-container {
-    /* Scale down board for small containers */
-    transform: scale(0.9);
+    /* Remove scaling to allow larger board on mobile */
+    transform: none;
     transform-origin: center;
   }
 }
@@ -66,8 +66,8 @@
   }
 
   .game-board-container canvas {
-    max-width: calc(100vw - 20px); /* Small margin from edges */
-    max-height: 55vh; /* Allow more height for board */
+    max-width: calc(100vw - 10px); /* Minimal margin from edges */
+    max-height: 60vh; /* Allow more height for board */
     width: auto;
     height: auto;
     display: block;
@@ -87,27 +87,27 @@
   }
 
   .game-board-container canvas {
-    max-width: calc(100vw - 30px);
-    max-height: 50vh;
+    max-width: calc(100vw - 15px); /* Reduced margin for larger board */
+    max-height: 55vh; /* Increased height for larger board */
   }
 }
 
 /* Landscape orientation */
 @media (orientation: landscape) and (max-height: 600px) {
   .game-board-container {
-    transform: scale(0.75);
+    transform: none; /* Remove scaling for larger board */
     transform-origin: center top;
   }
 
   .game-board-container canvas {
-    max-height: 60vh;
+    max-height: 65vh; /* Increased height for landscape */
   }
 }
 
 /* Very small screens */
 @media (max-width: 320px) {
   .game-board-container {
-    transform: scale(0.8);
+    transform: none; /* Remove scaling for larger board */
     transform-origin: center top;
   }
 }

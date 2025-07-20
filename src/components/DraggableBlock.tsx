@@ -136,6 +136,9 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
 
     // Scale the gap based on the scale factor
     const gap = Math.max(1, Math.round(scale * 2));
+    
+    // Check if mobile for borderRadius
+    const isMobile = window.innerWidth <= 768;
 
     currentPattern.forEach((row, rowIndex) => {
       row.forEach((isOccupied, colIndex) => {
@@ -150,7 +153,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
                 width: effectiveCellSize - gap * 2,
                 height: effectiveCellSize - gap * 2,
                 backgroundColor: block.color,
-                borderRadius: `${Math.max(1, Math.round(scale * 2))}px`,
+                borderRadius: 0, // Keep blocks square for consistent tetris-like appearance
                 background: `linear-gradient(135deg, ${block.color} 0%, ${block.color}e6 100%)`
               }}
             />
@@ -164,7 +167,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
         position: 'relative',
         width: blockWidth,
         height: blockHeight,
-        borderRadius: `${Math.max(2, Math.round(scale * 3))}px`,
+        borderRadius: 0, // Keep block containers square for consistent tetris-like appearance
         // 移除选中状态的视觉效果
         backgroundColor: 'transparent',
         border: 'none',
@@ -211,7 +214,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
         ref={setNodeRef}
         data-dnd-kit-draggable="true"
         data-block-id={block.id}
-        variant="prominent"
+        variant="subtle"
         enableHaptic={!isStarterBlock}
         enableRipple={!isStarterBlock}
         disabled={isStarterBlock}
@@ -223,6 +226,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
           zIndex: isDragging ? 1000 : 10,
           willChange: 'transform',
           opacity: isStarterBlock ? 0.9 : 1,
+          borderRadius: '0 !important', // Force square appearance for blocks
           ...dragStyle,
         }}
         onClick={doubleInteraction.onClick}

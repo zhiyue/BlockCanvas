@@ -113,7 +113,13 @@ const MobileGameControls: React.FC<MobileGameControlsProps> = ({
 
       {/* Interaction Mode Indicator */}
       <div className="mode-indicator">
-        <div className={`mode-badge mode-${interactionMode}`}>
+        <TouchButton
+          className={`mode-badge mode-${interactionMode}`}
+          onClick={onSwitchMode}
+          enableHaptic={true}
+          enableRipple={true}
+          aria-label="Switch interaction mode"
+        >
           {interactionMode === 'tap' ? (
             <>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -129,7 +135,7 @@ const MobileGameControls: React.FC<MobileGameControlsProps> = ({
               <span>Drag Mode</span>
             </>
           )}
-        </div>
+        </TouchButton>
         
         {/* Quick Instructions */}
         <div className="quick-instructions">

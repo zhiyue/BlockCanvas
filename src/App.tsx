@@ -49,14 +49,14 @@ function App() {
   const responsiveCellSize = useMemo(() => {
     const isSmallMobile = window.innerWidth <= 480;
     const isMobileSized = window.innerWidth <= 768;
-    
+
     if (isSmallMobile) {
-      // Very small screens: fit in available width with margins
-      const maxBoardWidth = Math.min(window.innerWidth - 40, 280);
+      // Very small screens: use more available width for larger board
+      const maxBoardWidth = Math.min(window.innerWidth - 20, 320); // Reduced margins, increased max width
       return Math.floor(maxBoardWidth / BOARD_SIZE);
     } else if (isMobileSized) {
-      // Mobile screens: fit nicely with some margin
-      const maxBoardWidth = Math.min(window.innerWidth - 60, 350);
+      // Mobile screens: use more available width for larger board
+      const maxBoardWidth = Math.min(window.innerWidth - 30, 400); // Reduced margins, increased max width
       return Math.floor(maxBoardWidth / BOARD_SIZE);
     }
     return CELL_SIZE; // Desktop: use original size
@@ -620,6 +620,10 @@ function App() {
               handleBlockRotate(selectedBlock);
             }
           }}
+          onSwitchMode={() => {
+            const newMode = gameInteractionMode === 'tap' ? 'drag' : 'tap';
+            setInteractionMode(newMode);
+          }}
           onClearSelection={() => {
             if (gameInteractionMode === 'tap') {
               selectBlockForTapPlacement(null);
@@ -664,11 +668,6 @@ function App() {
         />
       )}
       
-      <StagewiseToolbar 
-        config={{
-          plugins: [ReactPlugin]
-        }}
-      />
     </DndContext>
   )
 }

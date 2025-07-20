@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGameStore } from '../store/gameStore';
 import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities';
+import { TouchButton } from './TouchFeedback';
 import './MobileGameControls.css';
 
 interface MobileGameControlsProps {
@@ -80,26 +81,30 @@ const MobileGameControls: React.FC<MobileGameControlsProps> = ({
             </div>
             
             <div className="control-buttons">
-              <button 
+              <TouchButton 
                 className="control-btn rotate-btn"
                 onClick={handleRotate}
                 aria-label="Rotate block"
+                enableHaptic={true}
+                enableRipple={true}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/>
                 </svg>
-              </button>
+              </TouchButton>
               
               {interactionMode === 'tap' && (
-                <button 
+                <TouchButton 
                   className="control-btn clear-btn"
                   onClick={onClearSelection}
                   aria-label="Clear selection"
+                  enableHaptic={true}
+                  enableRipple={true}
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                   </svg>
-                </button>
+                </TouchButton>
               )}
             </div>
           </div>

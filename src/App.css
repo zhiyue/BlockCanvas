@@ -270,19 +270,44 @@
 /* Mobile-first responsive design */
 @media (max-width: 768px) {
   .app {
-    padding: 0.5rem;
+    padding: 0; /* Remove all padding for tight layout */
     /* Account for mobile controls */
-    padding-bottom: 140px;
+    padding-bottom: 120px; /* Reduced from 140px */
+  }
+  /* Hide header on mobile to save space and remove white space */
+  .app-header {
+    display: none;
+  }
+  
+  /* Remove top spacing from konva canvas */
+  .konvajs-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  canvas {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   .app-header h1 {
     font-size: 2rem;
   }
+  /* Ensure main area takes full height and starts from top */
+  .app-main {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
 
   .game-container {
-    padding: 1rem;
-    border-radius: 12px;
-    margin-bottom: 0;
+    padding: 0.5rem 0.5rem 0 0.5rem; /* No top padding for flush layout */
+    border-radius: 0; /* Remove border radius for full width */
+    margin: 0; /* Remove all margins */
+    width: 100vw;
+    max-width: 100vw;
+    box-shadow: none; /* Remove shadow for cleaner mobile look */
   }
 
   .game-info {
@@ -293,6 +318,15 @@
 
   .challenge-info h2 {
     font-size: 1.5rem;
+    margin-bottom: 0.25rem; /* Reduce margin */
+  }
+  
+  /* Make game-info more compact on mobile */
+  .game-info {
+    gap: 0.5rem !important; /* Tighter gap */
+    padding-bottom: 0.5rem !important; /* Reduce bottom padding */
+    margin-bottom: 0 !important; /* Remove bottom margin */
+    border-bottom: 1px solid #e5e7eb !important; /* Thinner border */
   }
 
   .game-controls {
@@ -310,12 +344,21 @@
     max-width: 140px;
   }
 
+  /* Hide title and description on mobile to save space */
+  .app-header {
+    display: none;
+  }
+
   /* Optimize game area for mobile */
   .game-area {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.5rem; /* Tighter gap */
     width: 100%;
+    height: calc(100vh - 140px); /* Reserve space for controls */
+    overflow: hidden;
+    padding: 0; /* Remove all padding */
+    margin: 0; /* Remove all margin */
   }
 
   /* Mobile-specific adjustments */
@@ -336,12 +379,13 @@
     padding-bottom: 120px;
   }
 
-  .app-header h1 {
-    font-size: 1.75rem;
+  /* Hide header on small mobile devices too */
+  .app-header {
+    display: none;
   }
 
-  .app-header p {
-    font-size: 1rem;
+  .game-area {
+    height: calc(100vh - 140px); /* Adjust for small mobile without header */
   }
 
   .game-container {

@@ -20,6 +20,7 @@ interface BlockInventoryProps {
   };
   onTapModeSelect?: (blockId: string | null) => void;
   onTapModeRotate?: () => void;
+  responsiveCellSize?: number; // Add responsive cell size prop
 }
 
 const BlockInventory: React.FC<BlockInventoryProps> = ({
@@ -32,7 +33,8 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
   interactionMode = 'drag',
   tapModeState,
   onTapModeSelect,
-  onTapModeRotate
+  onTapModeRotate,
+  responsiveCellSize = CELL_SIZE // Use responsive cell size or fallback
 }) => {
   const { isOver, setNodeRef } = useDroppable({
     id: 'block-inventory',
@@ -46,8 +48,28 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
 
   const renderBlockGrid = () => {
     const gridCols = 3;
-    const cellSize = CELL_SIZE * 0.6;
-    const padding = 20;
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+    
+    // Mobile-optimized sizing to fit all blocks on screen
+    let containerWidth, cellSize, padding;
+    
+    if (isSmallMobile) {
+      containerWidth = window.innerWidth - 30; // Margins for small screens
+      cellSize = Math.max(6, (containerWidth / gridCols) / 7); // Very compact for small screens
+      padding = 6;
+    } else if (isMobile) {
+      containerWidth = Math.min(window.innerWidth - 40, 320);
+      cellSize = Math.max(8, (containerWidth / gridCols) / 6); // Compact but readable
+      padding = 8;
+    } else {
+      // Desktop sizing
+      containerWidth = Math.min(window.innerWidth - 40, 400);
+      const availableWidth = containerWidth - 40;
+      const blockWidth = Math.floor(availableWidth / gridCols) - 20;
+      cellSize = Math.max(12, Math.min(CELL_SIZE * 0.6, blockWidth / 5));
+      padding = Math.max(10, Math.min(20, blockWidth * 0.1));
+    }
 
     return allBlocks.map((blockId, index) => {
       const block = getBlockById(blockId);
@@ -105,6 +127,7 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
             y={y}
             enableDrag={interactionMode === 'drag'}
             renderAsHTML={true}
+            cellSize={responsiveCellSize}
           />
         );
       } else {
@@ -140,11 +163,30 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
     const blocks = allBlocks.length; // 使用所有 blocks 的数量来计算大小
     const gridCols = 3;
     const rows = Math.ceil(blocks / gridCols);
-    const cellSize = CELL_SIZE * 0.6;
-    const padding = 20;
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+    
+    // Use same responsive sizing logic as renderBlockGrid
+    let containerWidth, cellSize, padding;
+    
+    if (isSmallMobile) {
+      containerWidth = window.innerWidth - 30;
+      cellSize = Math.max(6, (containerWidth / gridCols) / 7);
+      padding = 6;
+    } else if (isMobile) {
+      containerWidth = Math.min(window.innerWidth - 40, 320);
+      cellSize = Math.max(8, (containerWidth / gridCols) / 6);
+      padding = 8;
+    } else {
+      containerWidth = Math.min(window.innerWidth - 40, 400);
+      const availableWidth = containerWidth - 40;
+      const blockWidth = Math.floor(availableWidth / gridCols) - 20;
+      cellSize = Math.max(12, Math.min(CELL_SIZE * 0.6, blockWidth / 5));
+      padding = Math.max(10, Math.min(20, blockWidth * 0.1));
+    }
 
     return {
-      width: gridCols * (cellSize * 5 + padding) + padding,
+      width: Math.max(containerWidth, gridCols * (cellSize * 5 + padding) + padding),
       height: rows * (cellSize * 4 + padding) + padding
     };
   };

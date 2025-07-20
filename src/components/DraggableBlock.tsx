@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { Group, Rect } from 'react-konva';
 import { useDraggable } from '@dnd-kit/core';
 import { BlockShape, CELL_SIZE } from '../types/game';
 import { useMultiModalDoubleInteraction } from '../hooks/useDoubleClick';
 import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities';
+import { useBlockRotationGestures } from '../hooks/useSwipeGestures';
+import { useThrottledCallback, usePerformanceMonitor } from '../hooks/usePerformanceOptimization';
+import { TouchFeedback } from './TouchFeedback';
 
 interface DraggableBlockProps {
   block: BlockShape;
@@ -17,9 +20,10 @@ interface DraggableBlockProps {
   enableDrag?: boolean;
   renderAsHTML?: boolean;
   isStarterBlock?: boolean;
+  cellSize?: number; // Add responsive cell size prop
 }
 
-const DraggableBlock: React.FC<DraggableBlockProps> = ({
+const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
   block,
   isSelected = false,
   onSelect,
@@ -30,8 +34,11 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
   y = 0,
   enableDrag = false,
   renderAsHTML = false,
-  isStarterBlock = false
+  isStarterBlock = false,
+  cellSize = CELL_SIZE // Use responsive cell size or fallback
 }) => {
+  // Performance monitoring
+  usePerformanceMonitor(`DraggableBlock-${block.id}`);
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: block.id,
     disabled: !enableDrag,
@@ -39,34 +46,58 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
 
   const { hasTouch, interactionMode } = useDeviceCapabilities();
 
+  // Throttled callbacks for better performance
+  const throttledSelect = useThrottledCallback(() => {
+    if (onSelect) {
+      onSelect();
+    }
+  }, 150);
+
+  const throttledDoubleClick = useThrottledCallback(() => {
+    if (onDoubleClick) {
+      onDoubleClick();
+    }
+  }, 200);
+
   // Double click/tap handling for rotation
   const doubleInteraction = useMultiModalDoubleInteraction({
-    onSingleClick: onSelect,
-    onDoubleClick: onDoubleClick,
-    onSingleTap: onSelect,
-    onDoubleTap: onDoubleClick,
+    onSingleClick: throttledSelect,
+    onDoubleClick: throttledDoubleClick,
+    onSingleTap: throttledSelect,
+    onDoubleTap: throttledDoubleClick,
     touchEnabled: hasTouch && interactionMode.primary === 'tap'
   });
 
-  const rotatePattern = (pattern: boolean[][], times: number): boolean[][] => {
-    let rotated = pattern;
-    for (let i = 0; i < times; i++) {
-      const rows = rotated.length;
-      const cols = rotated[0].length;
-      const newPattern: boolean[][] = Array(cols).fill(null).map(() => Array(rows).fill(false));
-      
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          newPattern[c][rows - 1 - r] = rotated[r][c];
-        }
-      }
-      rotated = newPattern;
-    }
-    return rotated;
-  };
+  // Swipe gestures for rotation (only enabled when not starter block and not dragging)
+  const swipeGestures = useBlockRotationGestures({
+    onRotateClockwise: throttledDoubleClick,
+    onRotateCounterClockwise: throttledDoubleClick,
+    enabled: !isStarterBlock && !enableDrag && hasTouch
+  });
 
-  const currentPattern = rotatePattern(block.pattern, rotation);
-  const cellSize = CELL_SIZE * scale;
+  // Memoize expensive pattern rotation calculation
+  const currentPattern = useMemo(() => {
+    const rotatePattern = (pattern: boolean[][], times: number): boolean[][] => {
+      let rotated = pattern;
+      for (let i = 0; i < times; i++) {
+        const rows = rotated.length;
+        const cols = rotated[0].length;
+        const newPattern: boolean[][] = Array(cols).fill(null).map(() => Array(rows).fill(false));
+        
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            newPattern[c][rows - 1 - r] = rotated[r][c];
+          }
+        }
+        rotated = newPattern;
+      }
+      return rotated;
+    };
+    
+    return rotatePattern(block.pattern, rotation);
+  }, [block.pattern, rotation]);
+
+  const effectiveCellSize = useMemo(() => cellSize * scale, [cellSize, scale]);
 
   const renderBlock = (): React.ReactElement[] => {
     const cells: React.ReactElement[] = [];
@@ -77,10 +108,10 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
           cells.push(
             <Rect
               key={`${block.id}-${rowIndex}-${colIndex}`}
-              x={colIndex * cellSize}
-              y={rowIndex * cellSize}
-              width={cellSize - 2}
-              height={cellSize - 2}
+              x={colIndex * effectiveCellSize}
+              y={rowIndex * effectiveCellSize}
+              width={effectiveCellSize - 2}
+              height={effectiveCellSize - 2}
               fill={block.color}
               stroke={isSelected ? '#4f46e5' : '#000000'}
               strokeWidth={isSelected ? 4 : 1}
@@ -97,8 +128,8 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
     return cells;
   };
 
-  const blockWidth = currentPattern[0].length * cellSize;
-  const blockHeight = currentPattern.length * cellSize;
+  const blockWidth = currentPattern[0].length * effectiveCellSize;
+  const blockHeight = currentPattern.length * effectiveCellSize;
 
   const renderHTMLBlock = (): React.ReactElement => {
     const cells: React.ReactElement[] = [];
@@ -114,10 +145,10 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
               key={`${block.id}-${rowIndex}-${colIndex}`}
               style={{
                 position: 'absolute',
-                left: colIndex * cellSize + gap,
-                top: rowIndex * cellSize + gap,
-                width: cellSize - gap * 2,
-                height: cellSize - gap * 2,
+                left: colIndex * effectiveCellSize + gap,
+                top: rowIndex * effectiveCellSize + gap,
+                width: effectiveCellSize - gap * 2,
+                height: effectiveCellSize - gap * 2,
                 backgroundColor: block.color,
                 borderRadius: `${Math.max(1, Math.round(scale * 2))}px`,
                 background: `linear-gradient(135deg, ${block.color} 0%, ${block.color}e6 100%)`
@@ -152,11 +183,38 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
       transition: isDragging ? 'none' : 'all 0.2s ease',
     } : {};
 
+    // Optimized touch handlers with throttling for better performance
+    const combinedTouchStart = useThrottledCallback((event: React.TouchEvent) => {
+      // Call double interaction handler first
+      doubleInteraction.onTouchStart?.(event);
+      // Then call swipe gesture handler
+      if (!isStarterBlock && !enableDrag) {
+        swipeGestures.gestureHandlers.onTouchStart(event);
+      }
+    }, 50);
+
+    const combinedTouchMove = useThrottledCallback((event: React.TouchEvent) => {
+      if (!isStarterBlock && !enableDrag) {
+        swipeGestures.gestureHandlers.onTouchMove(event);
+      }
+    }, 16); // Limit to 60fps
+
+    const combinedTouchEnd = useThrottledCallback((event: React.TouchEvent) => {
+      if (!isStarterBlock && !enableDrag) {
+        swipeGestures.gestureHandlers.onTouchEnd(event);
+      }
+    }, 50);
+
     return (
-      <div
+      <TouchFeedback
+        as="div"
         ref={setNodeRef}
         data-dnd-kit-draggable="true"
         data-block-id={block.id}
+        variant="prominent"
+        enableHaptic={!isStarterBlock}
+        enableRipple={!isStarterBlock}
+        disabled={isStarterBlock}
         style={{
           position: 'absolute',
           left: x,
@@ -168,12 +226,14 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
           ...dragStyle,
         }}
         onClick={doubleInteraction.onClick}
-        onTouchStart={doubleInteraction.onTouchStart}
+        onTouchStart={combinedTouchStart}
+        onTouchMove={combinedTouchMove}
+        onTouchEnd={combinedTouchEnd}
         {...listeners}
         {...attributes}
       >
         {renderHTMLBlock()}
-      </div>
+      </TouchFeedback>
     );
   }
 
@@ -202,6 +262,9 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
       {renderBlock()}
     </Group>
   );
-};
+});
+
+// Display name for better debugging
+DraggableBlock.displayName = 'DraggableBlock';
 
 export default DraggableBlock;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Stage, Layer, Rect } from 'react-konva';
 import { useDroppable } from '@dnd-kit/core';
-import { BOARD_SIZE, Position, CoordinateSystem, BOARD_CONFIG } from '../types/game';
+import { BOARD_SIZE, Position, CoordinateSystem, BOARD_CONFIG, CELL_SIZE } from '../types/game';
 import DraggableBlock from './DraggableBlock';
 import { getBlockById } from '../data/blocks';
 import { useGameStore } from '../store/gameStore';
@@ -33,7 +33,55 @@ const GameBoard: React.FC<GameBoardProps> = ({
   interactionMode = 'drag',
   tapModeState
 }) => {
-  const boardDimensions = CoordinateSystem.getBoardDimensions();
+  // Calculate responsive cell size for mobile
+  const responsiveCellSize = useMemo(() => {
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+    
+    if (isSmallMobile) {
+      // Very small screens: fit in available width with margins
+      const maxBoardWidth = Math.min(window.innerWidth - 40, 280);
+      return Math.floor(maxBoardWidth / BOARD_SIZE);
+    } else if (isMobile) {
+      // Mobile screens: fit nicely with some margin
+      const maxBoardWidth = Math.min(window.innerWidth - 60, 350);
+      return Math.floor(maxBoardWidth / BOARD_SIZE);
+    }
+    return CELL_SIZE; // Desktop: use original size
+  }, []);
+
+  // Calculate responsive board dimensions
+  const boardDimensions = useMemo(() => ({
+    width: BOARD_SIZE * responsiveCellSize,
+    height: BOARD_SIZE * responsiveCellSize,
+    totalWidth: BOARD_SIZE * responsiveCellSize + 2 * BOARD_CONFIG.BORDER_WIDTH,
+    totalHeight: BOARD_SIZE * responsiveCellSize + 2 * BOARD_CONFIG.BORDER_WIDTH,
+  }), [responsiveCellSize]);
+
+  // Create responsive coordinate system
+  const responsiveCoordinateSystem = useMemo(() => ({
+    gridToCanvas: (gridX: number, gridY: number) => ({
+      x: gridX * responsiveCellSize + BOARD_CONFIG.BORDER_WIDTH,
+      y: gridY * responsiveCellSize + BOARD_CONFIG.BORDER_WIDTH,
+    }),
+    
+    canvasToGrid: (canvasX: number, canvasY: number) => ({
+      x: Math.floor((canvasX - BOARD_CONFIG.BORDER_WIDTH) / responsiveCellSize),
+      y: Math.floor((canvasY - BOARD_CONFIG.BORDER_WIDTH) / responsiveCellSize),
+    }),
+    
+    getCellBounds: (gridX: number, gridY: number) => {
+      const x = gridX * responsiveCellSize + BOARD_CONFIG.BORDER_WIDTH;
+      const y = gridY * responsiveCellSize + BOARD_CONFIG.BORDER_WIDTH;
+      return {
+        x: x + BOARD_CONFIG.CELL_PADDING,
+        y: y + BOARD_CONFIG.CELL_PADDING,
+        width: responsiveCellSize - 2 * BOARD_CONFIG.CELL_PADDING,
+        height: responsiveCellSize - 2 * BOARD_CONFIG.CELL_PADDING,
+      };
+    },
+  }), [responsiveCellSize]);
+
   const { isPositionValid, isStarterBlock, rotateSelectedBlock } = useGameStore();
 
   const { isOver, setNodeRef } = useDroppable({
@@ -93,7 +141,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
     rotatedPattern.forEach((row, rowIndex) => {
       row.forEach((isOccupied, colIndex) => {
         if (isOccupied) {
-          const cellBounds = CoordinateSystem.getCellBounds(
+          const cellBounds = responsiveCoordinateSystem.getCellBounds(
             previewPosition.x + colIndex,
             previewPosition.y + rowIndex
           );
@@ -152,7 +200,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
     const canvasX = event.clientX - rect.left;
     const canvasY = event.clientY - rect.top;
 
-    const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(canvasX, canvasY);
+    const { x: gridX, y: gridY } = responsiveCoordinateSystem.canvasToGrid(canvasX, canvasY);
 
     if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
       handleCellClick(gridX, gridY);
@@ -164,7 +212,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
     // Vertical lines with subtle gradient
     for (let i = 0; i <= BOARD_SIZE; i++) {
-      const { x } = CoordinateSystem.gridToCanvas(i, 0);
+      const { x } = responsiveCoordinateSystem.gridToCanvas(i, 0);
       gridLines.push(
         <Rect
           key={`v-line-${i}`}
@@ -180,7 +228,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
     // Horizontal lines with subtle gradient
     for (let i = 0; i <= BOARD_SIZE; i++) {
-      const { y } = CoordinateSystem.gridToCanvas(0, i);
+      const { y } = responsiveCoordinateSystem.gridToCanvas(0, i);
       gridLines.push(
         <Rect
           key={`h-line-${i}`}
@@ -204,7 +252,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
     for (let row = 0; row < BOARD_SIZE; row++) {
       for (let col = 0; col < BOARD_SIZE; col++) {
-        const cellBounds = CoordinateSystem.getCellBounds(col, row);
+        const cellBounds = responsiveCoordinateSystem.getCellBounds(col, row);
         const isValidPosition = validPositionSet.has(`${col}-${row}`);
 
         cells.push(
@@ -247,7 +295,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
       const block = getBlockById(blockId);
 
       if (block) {
-        const blockPosition = CoordinateSystem.gridToCanvas(position.x, position.y);
+        const blockPosition = responsiveCoordinateSystem.gridToCanvas(position.x, position.y);
         const isStarter = isStarterBlock(blockId);
 
         const handleDoubleClick = () => {
@@ -271,6 +319,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
             enableDrag={!isStarter} // starter blocks 不可拖拽
             renderAsHTML={true}
             isStarterBlock={isStarter} // 传递 starter block 标识
+            cellSize={responsiveCellSize} // 传递 responsive cell size
           />
         );
       }

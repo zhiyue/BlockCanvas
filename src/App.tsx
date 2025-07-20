@@ -5,10 +5,12 @@ import BlockInventory from './components/BlockInventory'
 import GameInstructions from './components/GameInstructions'
 import DraggableBlock from './components/DraggableBlock'
 import MobileGameControls from './components/MobileGameControls'
+import { TouchButton } from './components/TouchFeedback'
+import { BlockRotationHint } from './components/SwipeIndicator'
 import { useGameStore } from './store/gameStore'
 import { SAMPLE_CHALLENGES } from './data/challenges'
 import { getBlockById } from './data/blocks'
-import { BOARD_SIZE, CoordinateSystem } from './types/game'
+import { BOARD_SIZE, CoordinateSystem, CELL_SIZE } from './types/game'
 import { useDeviceCapabilities } from './hooks/useDeviceCapabilities'
 import { StagewiseToolbar } from '@stagewise/toolbar-react'
 import ReactPlugin from '@stagewise-plugins/react'
@@ -42,6 +44,36 @@ function App() {
   } = useGameStore()
 
   const { isMobile, hasTouch, interactionMode } = useDeviceCapabilities()
+
+  // Calculate responsive cell size for consistent sizing across components
+  const responsiveCellSize = useMemo(() => {
+    const isSmallMobile = window.innerWidth <= 480;
+    const isMobileSized = window.innerWidth <= 768;
+    
+    if (isSmallMobile) {
+      // Very small screens: fit in available width with margins
+      const maxBoardWidth = Math.min(window.innerWidth - 40, 280);
+      return Math.floor(maxBoardWidth / BOARD_SIZE);
+    } else if (isMobileSized) {
+      // Mobile screens: fit nicely with some margin
+      const maxBoardWidth = Math.min(window.innerWidth - 60, 350);
+      return Math.floor(maxBoardWidth / BOARD_SIZE);
+    }
+    return CELL_SIZE; // Desktop: use original size
+  }, []);
+
+  // Create responsive coordinate system
+  const responsiveCoordinateSystem = useMemo(() => ({
+    gridToCanvas: (gridX: number, gridY: number) => ({
+      x: gridX * responsiveCellSize + 2, // BOARD_CONFIG.BORDER_WIDTH
+      y: gridY * responsiveCellSize + 2,
+    }),
+    
+    canvasToGrid: (canvasX: number, canvasY: number) => ({
+      x: Math.floor((canvasX - 2) / responsiveCellSize),
+      y: Math.floor((canvasY - 2) / responsiveCellSize),
+    }),
+  }), [responsiveCellSize]);
 
   // Auto-set interaction mode based on device capabilities
   useEffect(() => {
@@ -92,6 +124,7 @@ function App() {
 
   const [blockRotations, setBlockRotations] = React.useState<{[key: string]: number}>({})
   const [showInstructions, setShowInstructions] = React.useState(false)
+  const [showSwipeHint, setShowSwipeHint] = React.useState(true)
   const [draggedBlock, setDraggedBlock] = useState<string | null>(null)
   const [draggedFromBoard, setDraggedFromBoard] = useState(false)
   const [originalPosition, setOriginalPosition] = useState<{x: number, y: number, rotation: number} | null>(null)
@@ -141,7 +174,7 @@ function App() {
             const blockTopLeftX = currentMouseX - dragStartOffset.x - rect.left
             const blockTopLeftY = currentMouseY - dragStartOffset.y - rect.top
 
-            const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
+            const { x: gridX, y: gridY } = responsiveCoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
 
             // Only set preview if within bounds and position is valid
             if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
@@ -167,38 +200,28 @@ function App() {
   }
   
   // Optimized sensor configuration based on device capabilities
-  const sensors = useMemo(() => {
-    if (isMobile || hasTouch) {
-      // Mobile/touch device configuration
-      return useSensors(
-        useSensor(PointerSensor, {
-          activationConstraint: {
-            // Reduce distance for better touch response
-            distance: 5,
-            // Add delay to distinguish from scrolling
-            delay: 150,
-            tolerance: 5,
-          },
-        }),
-        // Fallback TouchSensor for better touch support
-        useSensor(TouchSensor, {
-          activationConstraint: {
-            delay: 200,
-            tolerance: 8,
-          },
-        })
-      )
-    } else {
-      // Desktop configuration - optimized for mouse
-      return useSensors(
-        useSensor(PointerSensor, {
-          activationConstraint: {
-            distance: 8,
-          },
-        })
-      )
-    }
-  }, [isMobile, hasTouch])
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: isMobile || hasTouch ? {
+        // Mobile/touch device configuration
+        distance: 5,
+        delay: 150,
+        tolerance: 5,
+      } : {
+        // Desktop configuration - optimized for mouse
+        distance: 8,
+      },
+    }),
+    // TouchSensor for better touch support on mobile
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 200,
+        tolerance: 8,
+      },
+      // Only enable TouchSensor on touch devices
+      disabled: !hasTouch
+    })
+  )
 
   const handleCellClick = (x: number, y: number) => {
     if (gameInteractionMode === 'tap') {
@@ -388,7 +411,7 @@ function App() {
             const blockTopLeftX = lastMousePosition.x - dragStartOffset.x - rect.left
             const blockTopLeftY = lastMousePosition.y - dragStartOffset.y - rect.top
 
-            const { x: gridX, y: gridY } = CoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
+            const { x: gridX, y: gridY } = responsiveCoordinateSystem.canvasToGrid(blockTopLeftX, blockTopLeftY)
 
             if (gridX >= 0 && gridX < BOARD_SIZE && gridY >= 0 && gridY < BOARD_SIZE) {
               // If dragging from board, remove the original block first
@@ -491,32 +514,40 @@ function App() {
               </div>
               
               <div className="game-controls">
-                <button 
+                <TouchButton 
                   onClick={() => setShowInstructions(true)}
                   className="btn btn-primary"
+                  enableHaptic={true}
+                  enableRipple={true}
                 >
                   How to Play
-                </button>
-                <button 
+                </TouchButton>
+                <TouchButton 
                   onClick={() => loadChallenge(getCurrentChallengeIndex() - 1)}
                   disabled={getCurrentChallengeIndex() <= 0}
                   className="btn btn-secondary"
+                  enableHaptic={true}
+                  enableRipple={true}
                 >
                   Previous
-                </button>
-                <button 
+                </TouchButton>
+                <TouchButton 
                   onClick={resetBoard}
                   className="btn btn-warning"
+                  enableHaptic={true}
+                  enableRipple={true}
                 >
                   Reset
-                </button>
-                <button 
+                </TouchButton>
+                <TouchButton 
                   onClick={() => loadChallenge(getCurrentChallengeIndex() + 1)}
                   disabled={getCurrentChallengeIndex() >= SAMPLE_CHALLENGES.length - 1}
                   className="btn btn-secondary"
+                  enableHaptic={true}
+                  enableRipple={true}
                 >
                   Next
-                </button>
+                </TouchButton>
               </div>
               
               {isCompleted && (
@@ -552,6 +583,7 @@ function App() {
                 tapModeState={tapModeState}
                 onTapModeSelect={selectBlockForTapPlacement}
                 onTapModeRotate={rotateTapModeBlock}
+                responsiveCellSize={responsiveCellSize}
               />
             </div>
           </div>
@@ -616,10 +648,21 @@ function App() {
               rotation={blockRotations[draggedBlock] || 0}
               scale={1.0}
               renderAsHTML={true}
+              cellSize={responsiveCellSize}
             />
           </div>
         ) : null}
       </DragOverlay>
+      
+      {/* Swipe rotation hint for mobile users */}
+      {hasTouch && gameInteractionMode === 'tap' && (
+        <BlockRotationHint 
+          visible={showSwipeHint && 
+            tapModeState.selectedBlockForPlacement !== null && 
+            !isStarterBlock(tapModeState.selectedBlockForPlacement || '')}
+          onDismiss={() => setShowSwipeHint(false)}
+        />
+      )}
       
       <StagewiseToolbar 
         config={{

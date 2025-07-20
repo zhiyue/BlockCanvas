@@ -52,17 +52,49 @@ const { useGameStore } = await import('../gameStore')
 
 // Helper function to get fresh store state for each test
 const createTestStore = () => {
-  // Reset the store to initial state
+  // Get the store instance
   const store = useGameStore.getState()
-  store.resetBoard()
+  
+  // Manually reset to a clean initial state without depending on resetBoard
+  useGameStore.setState({
+    currentChallenge: null,
+    board: {
+      grid: Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null)),
+      placedBlocks: []
+    },
+    selectedBlock: null,
+    isCompleted: false,
+    timeElapsed: 0,
+    moves: 0,
+    interactionMode: 'drag',
+    tapModeState: {
+      selectedBlockForPlacement: null,
+      selectedBlockRotation: 0,
+    }
+  })
+  
   return store
 }
 
 describe('Game Store', () => {
   beforeEach(() => {
-    // Reset store before each test
-    const store = useGameStore.getState()
-    store.resetBoard()
+    // Manually reset to a clean initial state without depending on resetBoard
+    useGameStore.setState({
+      currentChallenge: null,
+      board: {
+        grid: Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null)),
+        placedBlocks: []
+      },
+      selectedBlock: null,
+      isCompleted: false,
+      timeElapsed: 0,
+      moves: 0,
+      interactionMode: 'drag',
+      tapModeState: {
+        selectedBlockForPlacement: null,
+        selectedBlockRotation: 0,
+      }
+    })
   })
 
   describe('Initial State', () => {
@@ -416,15 +448,64 @@ describe('Game Store', () => {
   })
 
   describe('resetBoard', () => {
-    it('should reset board to initial state', () => {
+    it('should reset board to initial challenge state with starter blocks', () => {
       const store = createTestStore()
       
-      // Modify state
-      store.placeBlock('test-1x1', 0, 0)
-      store.selectBlock('test-1x1')
+      // Create a test challenge
+      const starterBlocks: PlacedBlock[] = [
+        { blockId: 'test-1x1', position: { x: 0, y: 0 }, rotation: 0 },
+        { blockId: 'test-2x1', position: { x: 2, y: 2 }, rotation: 0 }
+      ]
+      
+      const challenge: Challenge = {
+        id: 'test-challenge',
+        name: 'Test Challenge',
+        difficulty: 'beginner',
+        starterBlocks,
+        availableBlocks: ['test-1x1', 'test-2x1', 'test-2x2']
+      }
+      
+      // Set the challenge first
+      store.setCurrentChallenge(challenge)
+      const initialGrid = store.board.grid.map(row => [...row])
+      const initialPlacedBlocks = [...store.board.placedBlocks]
+      
+      // Modify state - place an additional block
+      store.placeBlock('test-2x2', 5, 5)
+      store.selectBlock('test-2x2')
       store.incrementTime()
       store.incrementMoves()
       
+      // Verify state was modified
+      expect(store.board.placedBlocks).toHaveLength(3)
+      expect(store.timeElapsed).toBeGreaterThan(0)
+      expect(store.moves).toBeGreaterThan(0)
+      
+      // Reset the board
+      store.resetBoard()
+      
+      // Should reset to initial challenge state
+      expect(store.selectedBlock).toBeNull()
+      expect(store.isCompleted).toBe(false)
+      expect(store.timeElapsed).toBe(0)
+      expect(store.moves).toBe(0)
+      
+      // Should have starter blocks only
+      expect(store.board.placedBlocks).toHaveLength(starterBlocks.length)
+      expect(store.board.placedBlocks).toEqual(starterBlocks)
+      
+      // Grid should match initial state
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        for (let col = 0; col < BOARD_SIZE; col++) {
+          expect(store.board.grid[row][col]).toBe(initialGrid[row][col])
+        }
+      }
+    })
+
+    it('should reset to empty board if no challenge is set', () => {
+      const store = createTestStore()
+      
+      // Don't set a challenge
       store.resetBoard()
       
       expect(store.selectedBlock).toBeNull()

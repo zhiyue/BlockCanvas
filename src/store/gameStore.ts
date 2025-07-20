@@ -203,8 +203,51 @@ export const useGameStore = create<GameStore>()(
       },
 
       resetBoard: () => {
+        const state = get();
+        if (!state.currentChallenge) {
+          // If no challenge is set, reset to empty board
+          set({
+            board: createEmptyBoard(),
+            selectedBlock: null,
+            isCompleted: false,
+            timeElapsed: 0,
+            moves: 0,
+            tapModeState: {
+              selectedBlockForPlacement: null,
+              selectedBlockRotation: 0,
+            }
+          });
+          return;
+        }
+
+        // Create initial grid with starter blocks
+        const newGrid = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
+        
+        // Place starter blocks on the grid
+        state.currentChallenge.starterBlocks.forEach(placedBlock => {
+          const block = getBlockById(placedBlock.blockId);
+          if (block) {
+            const rotatedPattern = rotatePattern(block.pattern, placedBlock.rotation);
+            
+            rotatedPattern.forEach((row, rowIndex) => {
+              row.forEach((isOccupied, colIndex) => {
+                if (isOccupied) {
+                  const gridX = placedBlock.position.x + colIndex;
+                  const gridY = placedBlock.position.y + rowIndex;
+                  if (gridY >= 0 && gridY < BOARD_SIZE && gridX >= 0 && gridX < BOARD_SIZE) {
+                    newGrid[gridY][gridX] = placedBlock.blockId;
+                  }
+                }
+              });
+            });
+          }
+        });
+
         set({
-          board: createEmptyBoard(),
+          board: {
+            grid: newGrid,
+            placedBlocks: [...state.currentChallenge.starterBlocks]
+          },
           selectedBlock: null,
           isCompleted: false,
           timeElapsed: 0,
@@ -357,7 +400,12 @@ export const useGameStore = create<GameStore>()(
         isCompleted: state.isCompleted,
         timeElapsed: state.timeElapsed,
         moves: state.moves
-      })
+      }),
+      // Add onRehydrateStorage to handle initial load
+      onRehydrateStorage: () => (state) => {
+        // If no challenge is set after rehydration, this will be handled by App.tsx
+        // This ensures the store is properly initialized
+      }
     }
   )
 );

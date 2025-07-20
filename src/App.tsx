@@ -95,9 +95,11 @@ function App() {
     }
   }, [currentChallenge, isCompleted, incrementTime])
 
-  // Initialize with first challenge
+  // Initialize with first challenge on mount
   useEffect(() => {
-    if (!currentChallenge) {
+    // Always load the first challenge if no challenge is currently set
+    // This ensures that when the app first loads, it shows a challenge
+    if (!currentChallenge && SAMPLE_CHALLENGES.length > 0) {
       setCurrentChallenge(SAMPLE_CHALLENGES[0])
     }
   }, [currentChallenge, setCurrentChallenge])
@@ -512,15 +514,10 @@ function App() {
                     Time: {formatTime(timeElapsed)} | Moves: {moves}
                   </span>
                 </div>
-
-                {/* 显示求解器挑战信息 */}
-                {currentChallenge && (
-                  <SolverChallengeInfo challengeId={currentChallenge.id} />
-                )}
               </div>
-              
+
               <div className="game-controls">
-                <TouchButton 
+                <TouchButton
                   onClick={() => setShowInstructions(true)}
                   className="btn btn-primary"
                   enableHaptic={true}
@@ -528,7 +525,7 @@ function App() {
                 >
                   How to Play
                 </TouchButton>
-                <TouchButton 
+                <TouchButton
                   onClick={() => loadChallenge(getCurrentChallengeIndex() - 1)}
                   disabled={getCurrentChallengeIndex() <= 0}
                   className="btn btn-secondary"
@@ -537,7 +534,7 @@ function App() {
                 >
                   Previous
                 </TouchButton>
-                <TouchButton 
+                <TouchButton
                   onClick={resetBoard}
                   className="btn btn-warning"
                   enableHaptic={true}
@@ -545,7 +542,7 @@ function App() {
                 >
                   Reset
                 </TouchButton>
-                <TouchButton 
+                <TouchButton
                   onClick={() => loadChallenge(getCurrentChallengeIndex() + 1)}
                   disabled={getCurrentChallengeIndex() >= SAMPLE_CHALLENGES.length - 1}
                   className="btn btn-secondary"
@@ -555,11 +552,18 @@ function App() {
                   Next
                 </TouchButton>
               </div>
-              
+
               {isCompleted && (
                 <div className="completion-message">
                   <h3>🎉 Puzzle Completed!</h3>
                   <p>Time: {formatTime(timeElapsed)} | Moves: {moves}</p>
+                </div>
+              )}
+
+              {/* 桌面端显示求解器挑战信息 */}
+              {currentChallenge && (
+                <div className="solver-info-desktop">
+                  <SolverChallengeInfo challengeId={currentChallenge.id} />
                 </div>
               )}
             </div>
@@ -591,6 +595,13 @@ function App() {
                 onTapModeRotate={rotateTapModeBlock}
                 responsiveCellSize={responsiveCellSize}
               />
+
+              {/* 移动端显示求解器挑战信息 - 在积木选择区域下面 */}
+              {currentChallenge && (
+                <div className="solver-info-mobile">
+                  <SolverChallengeInfo challengeId={currentChallenge.id} />
+                </div>
+              )}
             </div>
           </div>
         </main>

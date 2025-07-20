@@ -624,3 +624,24 @@
     opacity: 1;
   }
 }
+
+/* SolverChallengeInfo 响应式显示控制 */
+.solver-info-desktop {
+  display: block;
+}
+
+.solver-info-mobile {
+  display: none;
+}
+
+/* 移动端：隐藏桌面版本，显示移动版本 */
+@media (max-width: 768px) {
+  .solver-info-desktop {
+    display: none;
+  }
+
+  .solver-info-mobile {
+    display: block;
+    margin-top: 1rem;
+  }
+}

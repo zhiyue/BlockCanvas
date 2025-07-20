@@ -523,6 +523,8 @@ class TilingSolver:
             black_file.write(f"黑色积木位置统计（去重）\n")
             black_file.write(f"开始时间：{time.strftime('%Y-%m-%d %H:%M:%S')}\n")
             black_file.write("=" * 50 + "\n\n")
+            black_file.write("去重说明：\n")
+            black_file.write("所有黑色积木被视为等效，只根据它们占用的格子位置进行去重\n")
             black_file.write("黑色积木说明：\n")
             black_file.write("K: 黑色1×3  k: 黑色1×2  x: 黑色1×1\n")
             black_file.write("=" * 50 + "\n\n")
@@ -559,10 +561,14 @@ class TilingSolver:
             black_pieces_info = self.extract_black_pieces_info(solution)
 
             # 创建用于去重的位置组合标识符
-            position_key = tuple(sorted(
-                (color, info['position']['top_left']['row'], info['position']['top_left']['col'])
-                for color, info in black_pieces_info.items()
-            ))
+            # 由于所有黑色方块都是等效的，只考虑它们占用的所有格子位置
+            all_black_cells = set()
+            for color, info in black_pieces_info.items():
+                for cell in info['cells']:
+                    all_black_cells.add((cell['row'], cell['col']))
+
+            # 将所有黑色方块占用的格子位置排序作为去重标识符
+            position_key = tuple(sorted(all_black_cells))
 
             # 检查是否已记录过这种位置组合
             if position_key not in black_positions_set:
@@ -659,6 +665,7 @@ class TilingSolver:
                         "metadata": {
                             "total_solutions": self.stats.solutions_found,
                             "unique_black_combinations": len(black_positions_set),
+                            "deduplication_method": "所有黑色积木被视为等效，只根据它们占用的格子位置进行去重",
                             "start_time": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.stats.start_time)),
                             "end_time": time.strftime('%Y-%m-%d %H:%M:%S'),
                             "elapsed_time_seconds": self.stats.elapsed_time,

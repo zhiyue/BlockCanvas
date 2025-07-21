@@ -38,10 +38,11 @@ interface LayoutConfig {
 // 桌面端布局配置
 const getDesktopLayoutConfig = (): LayoutConfig => ({
   gridCols: 3,
-  cellSize: 14,
-  padding: 8,
+  cellSize: 18, // 增加cellSize以更好地填充320px容器
+  padding: 12,  // 增加padding
   maxBlockSize: 5,
-  blockScale: 0.8
+  blockScale: 0.9, // 增加缩放比例
+  containerWidth: 320 // 添加容器宽度
 });
 
 // 移动端布局配置
@@ -277,8 +278,12 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
     // 计算网格的总宽度
     const gridWidth = gridCols * (cellSize * blockSpacingMultiplier + padding) + padding;
 
-    // 计算居中偏移量
-    const centerOffset = isMobile && containerWidth ? (containerWidth - gridWidth) / 2 : 0;
+    // 计算居中偏移量 - 在所有设备上都启用居中
+    const actualContainerWidth = isMobile ? (containerWidth || viewport.width - 50) : calculateInventorySize().width;
+    const centerOffset = Math.max(0, (actualContainerWidth - gridWidth) / 2);
+
+
+
 
     const x = col * (cellSize * blockSpacingMultiplier + padding) + padding + centerOffset;
     const y = row * (cellSize * blockSpacingMultiplier + padding) + padding;
@@ -333,11 +338,7 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
             width: isMobile ? '100%' : inventorySize.width,
             height: inventorySize.height,
             minWidth: isMobile ? '100%' : inventorySize.width,
-            minHeight: inventorySize.height,
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'flex-start'
+            minHeight: inventorySize.height
           }}
         >
           {renderBlockGrid()}

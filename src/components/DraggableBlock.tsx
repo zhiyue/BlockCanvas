@@ -142,6 +142,17 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
     // Check if mobile for borderRadius
     const isMobile = window.innerWidth <= 768;
 
+    // 在inventory模式下计算居中偏移
+    let centerOffsetX = 0;
+    let centerOffsetY = 0;
+
+    if (isInInventory) {
+      const patternWidth = currentPattern[0].length * effectiveCellSize;
+      const patternHeight = currentPattern.length * effectiveCellSize;
+      centerOffsetX = (blockWidth - patternWidth) / 2;
+      centerOffsetY = (blockHeight - patternHeight) / 2;
+    }
+
     currentPattern.forEach((row, rowIndex) => {
       row.forEach((isOccupied, colIndex) => {
         if (isOccupied) {
@@ -150,8 +161,8 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
               key={`${block.id}-${rowIndex}-${colIndex}`}
               style={{
                 position: 'absolute',
-                left: colIndex * effectiveCellSize + gap,
-                top: rowIndex * effectiveCellSize + gap,
+                left: colIndex * effectiveCellSize + gap + centerOffsetX,
+                top: rowIndex * effectiveCellSize + gap + centerOffsetY,
                 width: effectiveCellSize - gap * 2,
                 height: effectiveCellSize - gap * 2,
                 backgroundColor: block.color,
@@ -172,9 +183,9 @@ const DraggableBlock: React.FC<DraggableBlockProps> = memo(({
 
     return (
       <div style={{
-        position: isInInventory ? 'absolute' : 'relative',
-        left: isInInventory ? x : 0,
-        top: isInInventory ? y : 0,
+        position: 'relative', // 在inventory中也使用relative定位
+        left: 0, // 在inventory中不使用x偏移
+        top: 0,  // 在inventory中不使用y偏移
         width: blockWidth,
         height: blockHeight,
         borderRadius: 0, // Keep block containers square for consistent tetris-like appearance

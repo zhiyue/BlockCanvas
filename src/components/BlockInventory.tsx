@@ -1,14 +1,15 @@
 import React from 'react';
-import { useDroppable, useDraggable } from '@dnd-kit/core';
+import { useDroppable } from '@dnd-kit/core';
 import DraggableBlock from './DraggableBlock';
-import { BlockShape, CELL_SIZE } from '../types/game';
+import { BlockShape } from '../types/game';
 import { getBlockById } from '../data/blocks';
 import { useCoordinateSystemDeviceCapabilities } from '../contexts/CoordinateSystemContext';
+import { useDeviceCapabilities } from '../hooks/useDeviceCapabilities';
 import './BlockInventory.css';
 
 interface BlockInventoryProps {
   availableBlocks: string[];
-  allBlocks: string[]; // 所有 blocks 的列表，用于固定布局
+  allBlocks: string[];
   selectedBlock: string | null;
   onBlockSelect: (blockId: string | null) => void;
   onBlockPlace?: (blockId: string, x: number, y: number) => boolean;
@@ -21,8 +22,65 @@ interface BlockInventoryProps {
   };
   onTapModeSelect?: (blockId: string | null) => void;
   onTapModeRotate?: () => void;
-  responsiveCellSize?: number; // Add responsive cell size prop
+  responsiveCellSize?: number;
 }
+
+// 布局配置接口
+interface LayoutConfig {
+  gridCols: number;
+  cellSize: number;
+  padding: number;
+  maxBlockSize: number;
+  blockScale: number;
+  containerWidth?: number;
+}
+
+// 桌面端布局配置
+const getDesktopLayoutConfig = (): LayoutConfig => ({
+  gridCols: 3,
+  cellSize: 14,
+  padding: 8,
+  maxBlockSize: 5,
+  blockScale: 0.8
+});
+
+// 移动端布局配置
+const getMobileLayoutConfig = (viewport: { width: number }, isSmallMobile: boolean): LayoutConfig => {
+  const maxBlockSize = 3; // 进一步减少最大方块尺寸以防止越界
+  const gridCols = 3;
+
+  if (isSmallMobile) {
+    const containerWidth = viewport.width - 40; // 增加边距以防止越界
+    const cellSize = Math.max(8, Math.floor(containerWidth / (gridCols * (maxBlockSize + 0.5)))); // 更保守的计算
+    return {
+      gridCols,
+      cellSize,
+      padding: 2,
+      maxBlockSize,
+      blockScale: 0.7, // 进一步减少缩放比例
+      containerWidth
+    };
+  } else {
+    const containerWidth = Math.min(viewport.width - 40, 380); // 减少容器宽度
+    const cellSize = Math.max(10, Math.floor(containerWidth / (gridCols * (maxBlockSize + 0.5)))); // 更保守的计算
+    return {
+      gridCols,
+      cellSize,
+      padding: 2,
+      maxBlockSize,
+      blockScale: 0.75, // 减少缩放比例
+      containerWidth
+    };
+  }
+};
+
+// 计算旋转后的尺寸
+const getRotatedDimensions = (block: BlockShape, rotation: number) => {
+  if (rotation % 2 === 1) {
+    return { width: block.height, height: block.width };
+  }
+  return { width: block.width, height: block.height };
+};
 
 const BlockInventory: React.FC<BlockInventoryProps> = ({
   availableBlocks,
@@ -35,390 +93,238 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
   tapModeState,
   onTapModeSelect,
   onTapModeRotate,
-  responsiveCellSize // Use responsive cell size from context if not provided
+  responsiveCellSize // 保留以备将来使用
 }) => {
-  // Use coordinate system context if responsiveCellSize not provided
+  // 设备能力检测
+  const { isMobile, screenSize, viewport } = useDeviceCapabilities();
+  const isSmallMobile = screenSize === 'small' && viewport.width <= 480;
+
+  // 坐标系上下文（保留以备将来使用）
   const { responsiveCellSize: contextCellSize } = useCoordinateSystemDeviceCapabilities();
-  const cellSize = responsiveCellSize || contextCellSize;
+
+  // 避免未使用变量警告
+  void responsiveCellSize;
+  void contextCellSize;
+  
+  // 拖拽区域设置
   const { isOver, setNodeRef } = useDroppable({
     id: 'block-inventory',
-    data: {
-      type: 'inventory'
-    }
+    data: { type: 'inventory' }
   });
+  
+  // 获取 block 旋转角度
   const getBlockRotation = (blockId: string): number => {
     return blockRotations[blockId] || 0;
   };
 
-  const renderBlockGrid = () => {
-    const isMobile = window.innerWidth <= 768;
-    const isSmallMobile = window.innerWidth <= 480;
+  // 获取当前布局配置
+  const layoutConfig = isMobile 
+    ? getMobileLayoutConfig(viewport, isSmallMobile) 
+    : getDesktopLayoutConfig();
 
-    // Desktop: Use a flexible grid layout that shows all blocks
-    if (!isMobile) {
-      const gridCols = 3; // 3 columns to fit in container width
-      const cellSize = 14; // Even smaller cell size to ensure fit
-      const padding = 8;
-      const maxBlockSize = 5;
-      const blockSpacing = cellSize * (maxBlockSize + 1) + padding;
+  // 计算容器尺寸
+  const calculateInventorySize = () => {
+    const { gridCols, cellSize, padding, maxBlockSize } = layoutConfig;
+    const rows = Math.ceil(allBlocks.length / gridCols);
+    const blockSpacingMultiplier = isMobile ? maxBlockSize + 0.1 : maxBlockSize + 1; // 移动端进一步减少间距
 
-      console.log(`Desktop: Rendering ${allBlocks.length} blocks in ${gridCols} columns`);
-      console.log(`Desktop: cellSize=${cellSize}, padding=${padding}, blockSpacing=${blockSpacing}`);
-      console.log(`Desktop: Total width needed = ${gridCols * blockSpacing + padding}px`);
+    const width = gridCols * (cellSize * blockSpacingMultiplier + padding) + padding;
+    const height = rows * (cellSize * blockSpacingMultiplier + padding) + padding;
 
-      return allBlocks.map((blockId, index) => {
-        const block = getBlockById(blockId);
-        if (!block) {
-          console.warn(`Block not found: ${blockId}`);
-          return null;
-        }
+    // 移动端增加更多的高度边距以确保完整显示，特别是第4行和避免按钮遮挡
+    const extraHeight = isMobile ? 80 : 0; // 增加到80px以确保第4行完整显示且避免按钮遮挡
 
-        const col = index % gridCols;
-        const row = Math.floor(index / gridCols);
-        const x = col * blockSpacing + padding;
-        const y = row * blockSpacing + padding;
+    console.log('BlockInventory size calculation:', {
+      allBlocksLength: allBlocks.length,
+      gridCols,
+      rows,
+      cellSize,
+      maxBlockSize,
+      blockSpacingMultiplier,
+      baseHeight: height,
+      extraHeight,
+      finalHeight: height + extraHeight,
+      isMobile
+    });
 
-        console.log(`Block ${blockId}: position (${col}, ${row}) -> (${x}, ${y})`);
+    return {
+      width,
+      height: height + extraHeight
+    };
+  };
 
-        const isAvailable = availableBlocks.includes(blockId);
-        const currentRotation = getBlockRotation(blockId);
-        const isSelected = interactionMode === 'drag'
-          ? selectedBlock === blockId
-          : tapModeState?.selectedBlockForPlacement === blockId;
+  // 渲染可用的 block
+  const renderAvailableBlock = (
+    block: BlockShape, 
+    x: number, 
+    y: number, 
+    isSelected: boolean
+  ) => {
+    const { cellSize, maxBlockSize, blockScale } = layoutConfig;
+    const currentRotation = getBlockRotation(block.id);
+    const rotatedDimensions = getRotatedDimensions(block, currentRotation);
 
-        const handleSelect = () => {
-          if (interactionMode === 'tap') {
-            onTapModeSelect?.(isSelected ? null : blockId);
-          } else {
-            onBlockSelect(isSelected ? null : blockId);
-          }
-        };
-
-        const handleDoubleClick = () => {
-          if (onBlockRotate && isAvailable) {
-            onBlockRotate(blockId);
-          }
-        };
-
-        // Calculate rotated dimensions for centering
-        let rotatedDimensions = { width: block.width, height: block.height };
-        if (currentRotation % 2 === 1) {
-          rotatedDimensions = { width: block.height, height: block.width };
-        }
-
-        const blockScale = 0.8; // Slightly larger scale to compensate for smaller cell size
-        const centerOffsetX = (cellSize * maxBlockSize - rotatedDimensions.width * cellSize * blockScale) / 2;
-        const centerOffsetY = (cellSize * maxBlockSize - rotatedDimensions.height * cellSize * blockScale) / 2;
-
-        if (isAvailable) {
-          return (
-            <div key={`container-${block.id}`} style={{
-              position: 'absolute',
-              left: x,
-              top: y,
-              width: cellSize * maxBlockSize,
-              height: cellSize * maxBlockSize,
-              border: isSelected ? '2px solid #4f46e5' : '2px solid rgba(34, 197, 94, 0.3)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'rgba(255, 255, 255, 0.8)',
-              borderRadius: '6px',
-              transition: 'all 0.2s ease',
-              boxShadow: isSelected ? '0 4px 12px rgba(79, 70, 229, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.05)',
-              cursor: interactionMode === 'drag' ? 'grab' : 'pointer'
-            }}>
-              <DraggableBlock
-                key={block.id}
-                block={block}
-                isSelected={isSelected}
-                onSelect={handleSelect}
-                onDoubleClick={handleDoubleClick}
-                rotation={currentRotation}
-                scale={blockScale}
-                x={centerOffsetX} // block 在容器内的偏移位置
-                y={centerOffsetY} // block 在容器内的偏移位置
-                enableDrag={interactionMode === 'drag'}
-                renderAsHTML={true}
-                cellSize={cellSize}
-                isInInventory={true} // 标识这是在 inventory 中
-              />
-            </div>
-          );
-        } else {
-          // Show placeholder for unavailable blocks
-          return (
-            <div
-              key={`placeholder-${block.id}`}
-              style={{
-                position: 'absolute',
-                left: x,
-                top: y,
-                width: cellSize * maxBlockSize,
-                height: cellSize * maxBlockSize,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '2px dashed rgba(156, 163, 175, 0.8)',
-                backgroundColor: 'rgba(249, 250, 251, 0.6)',
-                borderRadius: '6px',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              <div
-                style={{
-                  width: block.width * cellSize * blockScale,
-                  height: block.height * cellSize * blockScale,
-                  border: '2px dashed rgba(107, 114, 128, 0.6)',
-                  borderRadius: '4px',
-                  backgroundColor: 'rgba(229, 231, 235, 0.5)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '11px',
-                  color: '#6b7280',
-                  fontWeight: '600',
-                  padding: '4px',
-                  textAlign: 'center',
-                  lineHeight: '1.2',
-                  opacity: '0.7'
-                }}
-              >
-                {block.name.match(/\d+×\d+/)?.[0] || block.id}
-              </div>
-            </div>
-          );
-        }
-      });
-    }
-
-    // Mobile layout (existing logic)
-    const gridCols = 3;
-    const maxBlockSize = 5;
-    let containerWidth, cellSize, padding;
-
-    if (isSmallMobile) {
-      containerWidth = window.innerWidth - 30;
-      cellSize = Math.max(4, cellSize * 0.3);
-      padding = 4;
-    } else {
-      containerWidth = Math.min(window.innerWidth - 40, 320);
-      cellSize = Math.max(5, cellSize * 0.4);
-      padding = 6;
-    }
-
-    return allBlocks.map((blockId, index) => {
-      const block = getBlockById(blockId);
-      if (!block) {
-        console.warn(`Block not found: ${blockId}`);
-        return null;
+    const handleSelect = () => {
+      if (interactionMode === 'tap') {
+        onTapModeSelect?.(isSelected ? null : block.id);
+      } else {
+        onBlockSelect(isSelected ? null : block.id);
       }
+    };
 
-      const col = index % gridCols;
-      const row = Math.floor(index / gridCols);
-      // Use 5x5 grid for each block slot to accommodate all rotations
-      const maxBlockSize = 5; // Maximum dimension any block can have when rotated
-      const blockSpacingMultiplier = isMobile ? maxBlockSize + 1 : maxBlockSize + 1.5; // Optimized spacing for desktop
-      const x = col * (cellSize * blockSpacingMultiplier + padding) + padding;
-      const y = row * (cellSize * blockSpacingMultiplier + padding) + padding;
-      
-      // Debug positioning for desktop
-      if (!isMobile && process.env.NODE_ENV === 'development') {
-        console.log(`Block ${blockId}: col=${col}, row=${row}, x=${x}, y=${y}, cellSize=${cellSize}, padding=${padding}, multiplier=${blockSpacingMultiplier}`);
+    const handleDoubleClick = () => {
+      if (interactionMode === 'tap') {
+        onTapModeRotate?.();
+      } else {
+        onBlockRotate?.(block.id);
       }
+    };
 
-      const isAvailable = availableBlocks.includes(blockId);
+    const centerOffsetX = (cellSize * maxBlockSize - rotatedDimensions.width * cellSize * blockScale) / 2;
+    const centerOffsetY = (cellSize * maxBlockSize - rotatedDimensions.height * cellSize * blockScale) / 2;
 
-      if (isAvailable) {
-        // 渲染可用的 block
-        const isSelectedForDrag = selectedBlock === block.id;
-        const isSelectedForTap = tapModeState?.selectedBlockForPlacement === block.id;
-        const isSelected = interactionMode === 'tap' ? isSelectedForTap : isSelectedForDrag;
-        
-        const handleSelect = () => {
-          if (interactionMode === 'tap') {
-            // Tap mode: select for placement
-            if (onTapModeSelect) {
-              onTapModeSelect(isSelectedForTap ? null : block.id);
-            }
-          } else {
-            // Drag mode: use original selection
-            onBlockSelect(isSelectedForDrag ? null : block.id);
-          }
-        };
+    return (
+      <div key={`container-${block.id}`} style={{
+        position: 'absolute',
+        left: x,
+        top: y,
+        width: cellSize * maxBlockSize,
+        height: cellSize * maxBlockSize,
+        border: isSelected ? '2px solid #4f46e5' : '2px solid rgba(34, 197, 94, 0.3)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+        borderRadius: '6px',
+        transition: 'all 0.2s ease',
+        boxShadow: isSelected ? '0 4px 12px rgba(79, 70, 229, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.05)',
+        cursor: interactionMode === 'drag' ? 'grab' : 'pointer'
+      }}>
+        <DraggableBlock
+          key={block.id}
+          block={block}
+          isSelected={isSelected}
+          onSelect={handleSelect}
+          onDoubleClick={handleDoubleClick}
+          rotation={currentRotation}
+          scale={blockScale}
+          x={centerOffsetX}
+          y={centerOffsetY}
+          enableDrag={interactionMode === 'drag'}
+          renderAsHTML={true}
+          cellSize={cellSize}
+          isInInventory={true}
+        />
+      </div>
+    );
+  };
 
-        const currentRotation = interactionMode === 'tap' 
-          ? (isSelectedForTap ? tapModeState.selectedBlockRotation : 0)
-          : getBlockRotation(block.id);
-
-        const handleDoubleClick = () => {
-          if (interactionMode === 'tap' && isSelectedForTap) {
-            // In tap mode, double-click rotates the selected block
-            onTapModeRotate?.();
-          } else if (interactionMode === 'drag') {
-            // In drag mode, double-click can also rotate
-            onBlockRotate?.(block.id);
-          }
-        };
-
-        // Calculate the actual block dimensions after rotation
-        const rotatedDimensions = currentRotation % 2 === 1 
-          ? { width: block.height, height: block.width }
-          : { width: block.width, height: block.height };
-        
-        // Center the block within the 5x5 grid - improved scaling for desktop
-        const blockScale = isMobile ? 0.4 : 0.8; // Further increased scale for desktop
-        const centerOffsetX = (cellSize * maxBlockSize - rotatedDimensions.width * cellSize * blockScale) / 2;
-        const centerOffsetY = (cellSize * maxBlockSize - rotatedDimensions.height * cellSize * blockScale) / 2;
-
-        return (
-          <div key={`container-${block.id}`} style={{
-            position: 'absolute',
-            left: x,
-            top: y,
-            width: cellSize * maxBlockSize,
-            height: cellSize * maxBlockSize,
-            border: isSelected ? '2px solid #4f46e5' : '2px solid rgba(34, 197, 94, 0.3)',
+  // 渲染占位符 block
+  const renderPlaceholderBlock = (
+    block: BlockShape, 
+    x: number, 
+    y: number
+  ) => {
+    const { cellSize, maxBlockSize, blockScale } = layoutConfig;
+    
+    return (
+      <div
+        key={`placeholder-${block.id}`}
+        style={{
+          position: 'absolute',
+          left: x,
+          top: y,
+          width: cellSize * maxBlockSize,
+          height: cellSize * maxBlockSize,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: '2px dashed rgba(156, 163, 175, 0.6)',
+          backgroundColor: 'rgba(249, 250, 251, 0.4)',
+          borderRadius: '6px',
+          transition: 'all 0.2s ease'
+        }}
+      >
+        <div
+          style={{
+            width: block.width * cellSize * blockScale,
+            height: block.height * cellSize * blockScale,
+            border: '2px dashed rgba(107, 114, 128, 0.8)',
+            borderRadius: isMobile ? '2px' : '4px',
+            backgroundColor: 'rgba(229, 231, 235, 0.6)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: isSelected ? 'rgba(79, 70, 229, 0.1)' : 'rgba(255, 255, 255, 0.8)',
-            borderRadius: '6px',
-            transition: 'all 0.2s ease',
-            boxShadow: isSelected ? '0 4px 12px rgba(79, 70, 229, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.05)',
-            cursor: interactionMode === 'drag' ? 'grab' : 'pointer'
-          }}>
-            <DraggableBlock
-              key={block.id}
-              block={block}
-              isSelected={isSelected}
-              onSelect={handleSelect}
-              onDoubleClick={handleDoubleClick}
-              rotation={currentRotation}
-              scale={blockScale}
-              x={centerOffsetX} // 使用计算好的居中位置
-              y={centerOffsetY} // 使用计算好的居中位置
-              enableDrag={interactionMode === 'drag'}
-              renderAsHTML={true}
-              cellSize={cellSize}
-              isInInventory={true} // 标识这是在 inventory 中
-            />
-          </div>
-        );
-      } else {
-        // 渲染空白占位符
-        // 为占位符创建一个容器，显示整个网格位置
-        return (
-          <div
-            key={`placeholder-container-${block.id}`}
-            style={{
-              position: 'absolute',
-              left: x,
-              top: y,
-              width: cellSize * maxBlockSize,
-              height: cellSize * maxBlockSize,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '2px dashed rgba(156, 163, 175, 0.6)',
-              backgroundColor: 'rgba(249, 250, 251, 0.4)',
-              borderRadius: '6px',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            {/* 内部占位符，显示实际的 block 轮廓 */}
-            <div
-              style={{
-                width: block.width * cellSize * (isMobile ? 0.4 : 0.8),
-                height: block.height * cellSize * (isMobile ? 0.4 : 0.8),
-                border: '2px dashed rgba(107, 114, 128, 0.8)',
-                borderRadius: isMobile ? '2px' : '4px',
-                backgroundColor: 'rgba(229, 231, 235, 0.6)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: isMobile ? '9px' : '10px',
-                color: '#6b7280',
-                fontWeight: '600',
-                padding: '4px',
-                textAlign: 'center',
-                lineHeight: '1.2',
-                opacity: '0.8'
-              }}
-            >
-              {block.name.match(/\d+×\d+/)?.[0] || block.id}
-            </div>
-          </div>
-        );
-      }
-    });
+            fontSize: isMobile ? '9px' : '10px',
+            color: '#6b7280',
+            fontWeight: '600',
+            padding: '4px',
+            textAlign: 'center',
+            lineHeight: '1.2',
+            opacity: '0.8'
+          }}
+        >
+          {block.name.match(/\d+×\d+/)?.[0] || block.id}
+        </div>
+      </div>
+    );
   };
 
-  const calculateInventorySize = () => {
-    const isMobile = window.innerWidth <= 768;
-    const isSmallMobile = window.innerWidth <= 480;
-
-    if (!isMobile) {
-      // Desktop: Calculate size for scrollable container
-      const gridCols = 3;
-      const cellSize = 14;
-      const padding = 8;
-      const maxBlockSize = 5;
-      const blockSpacing = cellSize * (maxBlockSize + 1) + padding;
-      const rows = Math.ceil(allBlocks.length / gridCols);
-
-      return {
-        width: gridCols * blockSpacing + padding,
-        height: rows * blockSpacing + padding
-      };
+  // 渲染单个 block
+  const renderBlock = (blockId: string, index: number) => {
+    const block = getBlockById(blockId);
+    if (!block) {
+      console.warn(`Block not found: ${blockId}`);
+      return null;
     }
 
-    // Mobile: Use existing logic
-    const blocks = allBlocks.length;
-    const gridCols = 3;
-    const rows = Math.ceil(blocks / gridCols);
-    let containerWidth, cellSize, padding;
+    const { gridCols, cellSize, padding, maxBlockSize } = layoutConfig;
+    const col = index % gridCols;
+    const row = Math.floor(index / gridCols);
+    const blockSpacingMultiplier = isMobile ? maxBlockSize + 0.2 : maxBlockSize + 1; // 移动端进一步减少间距
+    const x = col * (cellSize * blockSpacingMultiplier + padding) + padding;
+    const y = row * (cellSize * blockSpacingMultiplier + padding) + padding;
 
-    if (isSmallMobile) {
-      containerWidth = window.innerWidth - 30;
-      cellSize = Math.max(4, cellSize * 0.3);
-      padding = 4;
+    const isAvailable = availableBlocks.includes(blockId);
+    const isSelected = interactionMode === 'drag'
+      ? selectedBlock === blockId
+      : tapModeState?.selectedBlockForPlacement === blockId;
+
+    if (isAvailable) {
+      return renderAvailableBlock(block, x, y, isSelected);
     } else {
-      containerWidth = Math.min(window.innerWidth - 40, 320);
-      cellSize = Math.max(5, cellSize * 0.4);
-      padding = 6;
+      return renderPlaceholderBlock(block, x, y);
     }
+  };
 
-    const maxBlockSize = 5;
-    const blockSpacingMultiplier = maxBlockSize + 1;
-    return {
-      width: Math.max(containerWidth, gridCols * (cellSize * blockSpacingMultiplier + padding) + padding),
-      height: rows * (cellSize * blockSpacingMultiplier + padding) + padding
-    };
+  // 渲染 block 网格
+  const renderBlockGrid = () => {
+    return allBlocks.map((blockId, index) => renderBlock(blockId, index));
   };
 
   const inventorySize = calculateInventorySize();
 
-  const isMobile = window.innerWidth <= 768;
-
   return (
     <div className="block-inventory">
-      <h3 className="inventory-title">Available Blocks ({availableBlocks.length}/{allBlocks.length})</h3>
+      <h3 className="inventory-title">
+        Available Blocks ({availableBlocks.length}/{allBlocks.length})
+      </h3>
 
       <div
         className="inventory-wrapper"
         style={{
-          width: isMobile ? '100%' : '320px', // Reduced width to fit content
-          height: isMobile ? 'auto' : '400px',
+          width: isMobile ? '100%' : '320px',
+          height: isMobile ? `${inventorySize.height + 80}px` : '400px', // 移动端使用计算的高度加上更多padding
+          minHeight: isMobile ? `${inventorySize.height + 80}px` : '400px',
           border: isOver ? '3px solid #10b981' : '2px solid #d1d5db',
-          borderRadius: '12px',
+          borderRadius: isMobile ? '8px' : '12px',
           backgroundColor: isOver ? '#ecfdf5' : '#ffffff',
           transition: 'all 0.2s ease',
-          overflowX: isMobile ? 'visible' : 'hidden', // No horizontal scroll
-          overflowY: isMobile ? 'visible' : 'auto', // Only vertical scroll on desktop
+          overflowX: 'visible',
+          overflowY: 'visible',
           position: 'relative',
           boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-          padding: '12px'
+          padding: isMobile ? '8px' : '12px'
         }}
       >
         <div
@@ -426,33 +332,17 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
           className="inventory-container"
           style={{
             position: 'relative',
-            width: inventorySize.width,
+            width: isMobile ? '100%' : inventorySize.width,
             height: inventorySize.height,
-            minWidth: isMobile ? 'auto' : inventorySize.width,
-            minHeight: isMobile ? 'auto' : inventorySize.height
+            minWidth: isMobile ? '100%' : inventorySize.width,
+            minHeight: inventorySize.height,
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'flex-start'
           }}
         >
           {renderBlockGrid()}
-          {isOver && (
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: 'rgba(16, 185, 129, 0.1)',
-              borderRadius: '6px',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              color: '#059669',
-              pointerEvents: 'none'
-            }}>
-              Drop here to return block
-            </div>
-          )}
         </div>
       </div>
     </div>

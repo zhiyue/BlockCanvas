@@ -80,12 +80,14 @@
   }
 
   .game-board-container canvas {
-    max-width: calc(100vw - 10px); /* Minimal margin from edges */
-    max-height: 60vh; /* Allow more height for board */
+    max-width: calc(100vw - 30px); /* 进一步增加边距以确保完整显示 */
+    max-height: 45vh; /* 进一步减少游戏板高度，为方块库存留出更多空间 */
     width: auto;
     height: auto;
     display: block;
     margin: 0 auto;
+    border-radius: 8px; /* 添加圆角 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 添加阴影 */
   }
 }
 
@@ -101,8 +103,8 @@
   }
 
   .game-board-container canvas {
-    max-width: calc(100vw - 15px); /* Reduced margin for larger board */
-    max-height: 55vh; /* Increased height for larger board */
+    max-width: calc(100vw - 35px); /* 进一步增加边距以确保完整显示 */
+    max-height: 40vh; /* 进一步减少小屏幕游戏板高度，为方块库存留出更多空间 */
   }
 }
 
@@ -114,7 +116,7 @@
   }
 
   .game-board-container canvas {
-    max-height: 65vh; /* Increased height for landscape */
+    max-height: 70vh; /* 进一步增加横屏模式下的游戏板高度 */
   }
 }
 

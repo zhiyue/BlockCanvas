@@ -312,7 +312,8 @@
   .app {
     padding: 0; /* Remove all padding for tight layout */
     /* Account for mobile controls */
-    padding-bottom: 120px; /* Reduced from 140px */
+    padding-bottom: 90px; /* 增加底部内边距，为移动端控件留出空间 */
+    min-height: 100vh; /* 确保应用占满整个视口高度 */
   }
   /* Hide header on mobile to save space and remove white space */
   .app-header {
@@ -342,14 +343,14 @@
   }
 
   .game-container {
-    padding: 0.25rem 0.5rem 0 0.5rem; /* Reduced top padding further */
+    padding: 0.125rem 0.25rem 0 0.25rem; /* 进一步减少内边距 */
     border-radius: 0; /* Remove border radius for full width */
     margin: 0; /* Remove all margins */
     width: 100vw;
     max-width: 100vw;
     box-shadow: none; /* Remove shadow for cleaner mobile look */
     background: transparent; /* Remove background for cleaner look */
-    gap: 0.25rem; /* Minimal gap between game-info and game-area */
+    gap: 0.125rem; /* 进一步减少间距 */
   }
 
   .game-info {
@@ -359,22 +360,24 @@
   }
 
   .challenge-info h2 {
-    font-size: 1.25rem; /* Smaller title */
-    margin-bottom: 0.125rem; /* Minimal title spacing */
-    line-height: 1.2; /* Tighter line height */
+    font-size: 1.1rem; /* 进一步减小标题字体 */
+    margin: 0; /* 移除所有边距 */
+    line-height: 1.1; /* 更紧凑的行高 */
   }
 
   /* Make game-info more compact on mobile */
   .game-info {
-    gap: 0.25rem !important; /* Tighter gap */
-    padding-bottom: 0.125rem !important; /* Minimal bottom padding */
-    margin-bottom: 0 !important; /* Remove bottom margin */
+    gap: 0.125rem !important; /* 进一步减少间距 */
+    padding: 0 !important; /* 移除所有内边距 */
+    margin: 0 !important; /* 移除所有外边距 */
     border-bottom: none !important; /* Remove border for cleaner look */
+    min-height: auto !important; /* 确保高度最小化 */
   }
 
   .challenge-meta {
-    gap: 0.5rem; /* Reduced gap */
-    margin-bottom: 0.25rem; /* Add small bottom margin */
+    gap: 0.25rem; /* 进一步减少间距 */
+    margin: 0; /* 移除所有边距 */
+    font-size: 0.8rem; /* 减小字体大小 */
   }
 
   .game-controls {
@@ -382,17 +385,18 @@
     gap: 0.125rem; /* Even tighter button spacing */
     justify-content: center;
     width: 100%;
-    margin-bottom: 0.25rem; /* Minimal bottom margin */
+    margin: 0; /* 移除所有边距 */
+    padding: 0; /* 移除内边距 */
   }
 
   .btn {
-    padding: 0.25rem 0.4rem; /* Much smaller buttons */
-    font-size: 0.65rem; /* Even smaller text */
-    min-height: 30px; /* Much smaller minimum height */
+    padding: 0.2rem 0.35rem; /* 进一步减小按钮内边距 */
+    font-size: 0.6rem; /* 进一步减小文字 */
+    min-height: 26px; /* 进一步减少最小高度 */
     flex: 0 0 auto; /* Don't grow, use natural width */
-    max-width: 70px; /* Much smaller max width */
+    max-width: 65px; /* 进一步减小最大宽度 */
     white-space: nowrap; /* Prevent text wrapping */
-    line-height: 1.2; /* Tighter line height */
+    line-height: 1.1; /* 更紧凑的行高 */
   }
 
   /* Use shorter text on mobile for better fit */
@@ -410,27 +414,35 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Start from top instead of center */
-    gap: 0.375rem; /* Minimal gap */
+    gap: 0.75rem; /* 进一步增加间距以确保组件之间有足够空间 */
     width: 100%;
     min-height: auto; /* Remove fixed height */
     overflow: visible; /* Allow natural content flow */
-    padding: 0; /* Remove all padding */
+    padding: 0.5rem 0.25rem; /* 增加垂直和水平padding */
     margin: 0; /* Remove all margin */
+    height: auto; /* 确保高度自适应 */
+    max-height: none; /* 移除最大高度限制，让内容自然流动 */
   }
 
   /* Mobile-specific adjustments */
   .completion-message {
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem; /* 进一步减少内边距 */
+    font-size: 0.8rem; /* 减小字体 */
+    margin: 0.25rem 0; /* 减少边距 */
+  }
+
+  .completion-message h3 {
+    font-size: 1.1rem; /* 减小标题字体 */
+    margin: 0 0 0.25rem 0; /* 减少边距 */
   }
 
   .stats {
-    font-size: 0.75rem; /* Smaller stats text */
+    font-size: 0.7rem; /* 进一步减小统计文字 */
   }
 
   .difficulty {
-    font-size: 0.7rem; /* Smaller difficulty badge */
-    padding: 0.2rem 0.6rem;
+    font-size: 0.65rem; /* 进一步减小难度标签字体 */
+    padding: 0.15rem 0.5rem; /* 减少内边距 */
   }
 }
 
@@ -438,7 +450,7 @@
 @media (max-width: 480px) {
   .app {
     padding: 0; /* Remove padding for maximum space */
-    padding-bottom: 100px; /* Reduced bottom padding */
+    padding-bottom: 70px; /* 进一步减少小屏幕底部内边距 */
   }
 
   /* Hide header on small mobile devices too */
@@ -449,10 +461,12 @@
   .game-area {
     min-height: auto; /* Remove fixed height */
     justify-content: flex-start; /* Start from top */
+    gap: 0.4rem; /* 小屏幕稍微减少间距 */
+    max-height: none; /* 移除最大高度限制 */
   }
 
   .game-container {
-    padding: 0.25rem; /* Minimal padding */
+    padding: 0.125rem; /* 进一步减少内边距 */
     border-radius: 0; /* Remove border radius for full width */
     background: transparent; /* Remove background */
   }
@@ -466,22 +480,22 @@
   }
 
   .btn {
-    padding: 0.2rem 0.35rem; /* Ultra compact buttons for small screens */
-    font-size: 0.6rem; /* Very small text */
-    min-height: 28px; /* Very compact height */
+    padding: 0.15rem 0.3rem; /* 小屏幕超紧凑按钮 */
+    font-size: 0.55rem; /* 更小的文字 */
+    min-height: 24px; /* 更小的最小高度 */
     flex: 0 0 auto; /* Don't grow, use natural width */
-    max-width: 65px; /* Very small max width */
+    max-width: 60px; /* 更小的最大宽度 */
     white-space: nowrap; /* Prevent text wrapping */
-    line-height: 1.1; /* Very tight line height */
+    line-height: 1; /* 最紧凑的行高 */
   }
 
   .difficulty {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
+    font-size: 0.6rem; /* 小屏幕进一步减小难度标签 */
+    padding: 0.1rem 0.4rem; /* 进一步减少内边距 */
   }
 
   .stats {
-    font-size: 0.75rem;
+    font-size: 0.65rem; /* 小屏幕进一步减小统计文字 */
   }
 }
 
@@ -489,7 +503,7 @@
 @media (orientation: landscape) and (max-height: 600px) {
   .app {
     padding: 0.25rem;
-    padding-bottom: 100px;
+    padding-bottom: 70px; /* 横屏模式也减少底部内边距 */
   }
 
   .app-header {
@@ -602,13 +616,13 @@
 
   @media (max-width: 768px) {
     .app {
-      padding-bottom: max(120px, calc(120px + env(safe-area-inset-bottom)));
+      padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom))); /* 更新安全区域内边距 */
     }
   }
 
   @media (max-width: 480px) {
     .app {
-      padding-bottom: max(100px, calc(100px + env(safe-area-inset-bottom)));
+      padding-bottom: max(70px, calc(70px + env(safe-area-inset-bottom))); /* 更新小屏幕安全区域内边距 */
     }
   }
 }

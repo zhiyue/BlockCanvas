@@ -99,26 +99,26 @@
 /* Mode Indicator */
 .mode-indicator {
   position: absolute;
-  bottom: 20px;
+  bottom: 120px; /* 增加底部距离以避免遮挡方块库存 */
   left: 20px;
   right: 20px;
   pointer-events: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px; /* 减少间距 */
 }
 
 .mode-badge {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(226, 232, 240, 0.8);
-  border-radius: 24px;
-  padding: 8px 16px;
+  border-radius: 20px; /* 稍微减小圆角 */
+  padding: 6px 12px; /* 减少内边距 */
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  gap: 6px; /* 减少间距 */
+  font-size: 12px; /* 减小字体 */
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: slideInUp 0.3s ease-out;
@@ -148,11 +148,11 @@
 .quick-instructions {
   background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 8px 12px;
-  border-radius: 16px;
-  font-size: 12px;
+  padding: 6px 10px; /* 减少内边距 */
+  border-radius: 12px; /* 减小圆角 */
+  font-size: 11px; /* 减小字体 */
   text-align: center;
-  max-width: 200px;
+  max-width: 180px; /* 减小最大宽度 */
   animation: slideInUp 0.3s ease-out 0.1s both;
 }
 
@@ -187,14 +187,14 @@
   }
 
   .mode-indicator {
-    bottom: 16px;
+    bottom: 100px; /* 小屏幕也要避免遮挡方块库存 */
     left: 16px;
     right: 16px;
   }
 
   .quick-instructions {
-    font-size: 11px;
-    padding: 6px 10px;
+    font-size: 10px; /* 进一步减小字体 */
+    padding: 4px 8px; /* 进一步减少内边距 */
   }
 }
 
@@ -206,7 +206,7 @@
   }
 
   .mode-indicator {
-    bottom: 12px;
+    bottom: 6px; /* 横屏模式进一步减少底部距离 */
     left: 12px;
     right: 12px;
   }

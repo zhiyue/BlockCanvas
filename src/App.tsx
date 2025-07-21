@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DndContext, DragOverlay, DragStartEvent, DragEndEvent, closestCenter, PointerSensor, TouchSensor, useSensor, useSensors, useDndMonitor } from '@dnd-kit/core'
 import GameBoard from './components/GameBoard'
 import BlockInventory from './components/BlockInventory'
@@ -8,16 +8,18 @@ import MobileGameControls from './components/MobileGameControls'
 import SolverChallengeInfo from './components/SolverChallengeInfo'
 import { TouchButton } from './components/TouchFeedback'
 import { BlockRotationHint } from './components/SwipeIndicator'
+import { CoordinateSystemProvider, useCoordinateSystemDeviceCapabilities, useOptimizedCoordinateConverter } from './contexts/CoordinateSystemContext'
 import { useGameStore } from './store/gameStore'
 import { SAMPLE_CHALLENGES } from './data/challenges'
 import { getBlockById } from './data/blocks'
-import { BOARD_SIZE, CoordinateSystem, CELL_SIZE } from './types/game'
+import { BOARD_SIZE, CELL_SIZE } from './types/game'
 import { useDeviceCapabilities } from './hooks/useDeviceCapabilities'
 import { StagewiseToolbar } from '@stagewise/toolbar-react'
 import ReactPlugin from '@stagewise-plugins/react'
 import './App.css'
 
-function App() {
+// Internal component that uses coordinate system context
+function GameApp() {
   const {
     currentChallenge,
     board,
@@ -46,35 +48,11 @@ function App() {
 
   const { isMobile, hasTouch, interactionMode } = useDeviceCapabilities()
 
-  // Calculate responsive cell size for consistent sizing across components
-  const responsiveCellSize = useMemo(() => {
-    const isSmallMobile = window.innerWidth <= 480;
-    const isMobileSized = window.innerWidth <= 768;
+  // Use coordinate system context
+  const { responsiveCellSize, coordinateSystem: responsiveCoordinateSystem } = useCoordinateSystemDeviceCapabilities()
+  const { canvasToGrid } = useOptimizedCoordinateConverter()
 
-    if (isSmallMobile) {
-      // Very small screens: use more available width for larger board
-      const maxBoardWidth = Math.min(window.innerWidth - 20, 320); // Reduced margins, increased max width
-      return Math.floor(maxBoardWidth / BOARD_SIZE);
-    } else if (isMobileSized) {
-      // Mobile screens: use more available width for larger board
-      const maxBoardWidth = Math.min(window.innerWidth - 30, 400); // Reduced margins, increased max width
-      return Math.floor(maxBoardWidth / BOARD_SIZE);
-    }
-    return CELL_SIZE; // Desktop: use original size
-  }, []);
 
-  // Create responsive coordinate system
-  const responsiveCoordinateSystem = useMemo(() => ({
-    gridToCanvas: (gridX: number, gridY: number) => ({
-      x: gridX * responsiveCellSize + 2, // BOARD_CONFIG.BORDER_WIDTH
-      y: gridY * responsiveCellSize + 2,
-    }),
-    
-    canvasToGrid: (canvasX: number, canvasY: number) => ({
-      x: Math.floor((canvasX - 2) / responsiveCellSize),
-      y: Math.floor((canvasY - 2) / responsiveCellSize),
-    }),
-  }), [responsiveCellSize]);
 
   // Auto-set interaction mode based on device capabilities
   useEffect(() => {
@@ -687,6 +665,15 @@ function App() {
       
     </DndContext>
   )
+}
+
+// Main App component with coordinate system provider
+function App() {
+  return (
+    <CoordinateSystemProvider>
+      <GameApp />
+    </CoordinateSystemProvider>
+  );
 }
 
 export default App

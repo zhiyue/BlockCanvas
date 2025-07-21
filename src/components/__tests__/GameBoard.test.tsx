@@ -1,7 +1,9 @@
+import React from 'react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { DndContext } from '@dnd-kit/core'
 import GameBoard from '../GameBoard'
+import { CoordinateSystemProvider } from '../../contexts/CoordinateSystemContext'
 import { Position } from '../../types/game'
 
 // Mock react-konva components
@@ -65,11 +67,13 @@ describe('GameBoard', () => {
     onBlockSelect: vi.fn()
   }
 
-  // Wrapper component to provide DndContext
+  // Wrapper component to provide DndContext and CoordinateSystemProvider
   const TestWrapper = ({ children }: { children: React.ReactNode }) => (
-    <DndContext>
-      {children}
-    </DndContext>
+    <CoordinateSystemProvider>
+      <DndContext>
+        {children}
+      </DndContext>
+    </CoordinateSystemProvider>
   )
 
   beforeEach(() => {

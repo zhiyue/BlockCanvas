@@ -3,6 +3,7 @@ import { useDroppable, useDraggable } from '@dnd-kit/core';
 import DraggableBlock from './DraggableBlock';
 import { BlockShape, CELL_SIZE } from '../types/game';
 import { getBlockById } from '../data/blocks';
+import { useCoordinateSystemDeviceCapabilities } from '../contexts/CoordinateSystemContext';
 import './BlockInventory.css';
 
 interface BlockInventoryProps {
@@ -34,8 +35,11 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
   tapModeState,
   onTapModeSelect,
   onTapModeRotate,
-  responsiveCellSize = CELL_SIZE // Use responsive cell size or fallback
+  responsiveCellSize // Use responsive cell size from context if not provided
 }) => {
+  // Use coordinate system context if responsiveCellSize not provided
+  const { responsiveCellSize: contextCellSize } = useCoordinateSystemDeviceCapabilities();
+  const cellSize = responsiveCellSize || contextCellSize;
   const { isOver, setNodeRef } = useDroppable({
     id: 'block-inventory',
     data: {
@@ -195,11 +199,11 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
 
     if (isSmallMobile) {
       containerWidth = window.innerWidth - 30;
-      cellSize = Math.max(4, responsiveCellSize * 0.3);
+      cellSize = Math.max(4, cellSize * 0.3);
       padding = 4;
     } else {
       containerWidth = Math.min(window.innerWidth - 40, 320);
-      cellSize = Math.max(5, responsiveCellSize * 0.4);
+      cellSize = Math.max(5, cellSize * 0.4);
       padding = 6;
     }
 
@@ -377,11 +381,11 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
 
     if (isSmallMobile) {
       containerWidth = window.innerWidth - 30;
-      cellSize = Math.max(4, responsiveCellSize * 0.3);
+      cellSize = Math.max(4, cellSize * 0.3);
       padding = 4;
     } else {
       containerWidth = Math.min(window.innerWidth - 40, 320);
-      cellSize = Math.max(5, responsiveCellSize * 0.4);
+      cellSize = Math.max(5, cellSize * 0.4);
       padding = 6;
     }
 

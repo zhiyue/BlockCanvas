@@ -1,6 +1,9 @@
+import React from 'react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
+import { DndContext } from '@dnd-kit/core'
 import BlockInventory from '../BlockInventory'
+import { CoordinateSystemProvider } from '../../contexts/CoordinateSystemContext'
 import { BlockShape } from '../../types/game'
 
 // Mock DraggableBlock component
@@ -71,14 +74,27 @@ describe('BlockInventory', () => {
     onBlockRotate: vi.fn()
   }
 
+  // Wrapper component to provide CoordinateSystemProvider and DndContext
+  const TestWrapper = ({ children }: { children: React.ReactNode }) => (
+    <CoordinateSystemProvider>
+      <DndContext>
+        {children}
+      </DndContext>
+    </CoordinateSystemProvider>
+  )
+
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
   describe('Rendering', () => {
     it('should render the inventory title', () => {
-      render(<BlockInventory {...defaultProps} />)
-      
+      render(
+        <TestWrapper>
+          <BlockInventory {...defaultProps} />
+        </TestWrapper>
+      )
+
       expect(screen.getByText('Available Blocks')).toBeInTheDocument()
     })
 

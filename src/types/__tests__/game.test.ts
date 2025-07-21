@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { CoordinateSystem, BOARD_SIZE, CELL_SIZE, BOARD_CONFIG } from '../game'
+import { CoordinateSystem, EnhancedCoordinateSystem, DEFAULT_COORDINATE_CONFIG, BOARD_SIZE, CELL_SIZE, BOARD_CONFIG } from '../game'
 
 describe('CoordinateSystem', () => {
   describe('gridToCanvas', () => {
@@ -128,6 +128,123 @@ describe('CoordinateSystem', () => {
       const lastCell = CoordinateSystem.gridToCanvas(BOARD_SIZE - 1, BOARD_SIZE - 1)
       const backToGrid = CoordinateSystem.canvasToGrid(lastCell.x, lastCell.y)
       expect(backToGrid).toEqual({ x: BOARD_SIZE - 1, y: BOARD_SIZE - 1 })
+    })
+  })
+})
+
+describe('EnhancedCoordinateSystem', () => {
+  let coordinateSystem: EnhancedCoordinateSystem
+
+  beforeEach(() => {
+    coordinateSystem = new EnhancedCoordinateSystem()
+  })
+
+  describe('constructor and configuration', () => {
+    it('should use default configuration when no config provided', () => {
+      const config = coordinateSystem.getConfig()
+      expect(config).toEqual(DEFAULT_COORDINATE_CONFIG)
+    })
+
+    it('should accept custom configuration', () => {
+      const customConfig = {
+        ...DEFAULT_COORDINATE_CONFIG,
+        cellSize: 60,
+        borderWidth: 4
+      }
+      const customSystem = new EnhancedCoordinateSystem(customConfig)
+      expect(customSystem.getConfig()).toEqual(customConfig)
+    })
+
+    it('should update configuration', () => {
+      coordinateSystem.updateConfig({ cellSize: 60 })
+      expect(coordinateSystem.getConfig().cellSize).toBe(60)
+      expect(coordinateSystem.getConfig().borderWidth).toBe(BOARD_CONFIG.BORDER_WIDTH)
+    })
+  })
+
+  describe('coordinate conversion', () => {
+    it('should convert grid to canvas coordinates', () => {
+      const result = coordinateSystem.gridToCanvas(2, 3)
+      expect(result).toEqual({
+        x: 2 * CELL_SIZE + BOARD_CONFIG.BORDER_WIDTH,
+        y: 3 * CELL_SIZE + BOARD_CONFIG.BORDER_WIDTH
+      })
+    })
+
+    it('should convert canvas to grid coordinates', () => {
+      const canvasX = 2 * CELL_SIZE + BOARD_CONFIG.BORDER_WIDTH
+      const canvasY = 3 * CELL_SIZE + BOARD_CONFIG.BORDER_WIDTH
+      const result = coordinateSystem.canvasToGrid(canvasX, canvasY)
+      expect(result).toEqual({ x: 2, y: 3 })
+    })
+
+    it('should be reversible', () => {
+      for (let x = 0; x < BOARD_SIZE; x++) {
+        for (let y = 0; y < BOARD_SIZE; y++) {
+          const canvas = coordinateSystem.gridToCanvas(x, y)
+          const grid = coordinateSystem.canvasToGrid(canvas.x, canvas.y)
+          expect(grid).toEqual({ x, y })
+        }
+      }
+    })
+  })
+
+  describe('validation methods', () => {
+    it('should validate grid positions', () => {
+      expect(coordinateSystem.isValidGridPosition(0, 0)).toBe(true)
+      expect(coordinateSystem.isValidGridPosition(7, 7)).toBe(true)
+      expect(coordinateSystem.isValidGridPosition(-1, 0)).toBe(false)
+      expect(coordinateSystem.isValidGridPosition(0, -1)).toBe(false)
+      expect(coordinateSystem.isValidGridPosition(8, 0)).toBe(false)
+      expect(coordinateSystem.isValidGridPosition(0, 8)).toBe(false)
+    })
+
+    it('should validate board bounds', () => {
+      const dimensions = coordinateSystem.getBoardDimensions()
+      expect(coordinateSystem.isWithinBoardBounds(BOARD_CONFIG.BORDER_WIDTH, BOARD_CONFIG.BORDER_WIDTH)).toBe(true)
+      expect(coordinateSystem.isWithinBoardBounds(dimensions.width + BOARD_CONFIG.BORDER_WIDTH, dimensions.height + BOARD_CONFIG.BORDER_WIDTH)).toBe(true)
+      expect(coordinateSystem.isWithinBoardBounds(dimensions.width + BOARD_CONFIG.BORDER_WIDTH + 1, dimensions.height + BOARD_CONFIG.BORDER_WIDTH + 1)).toBe(false)
+      expect(coordinateSystem.isWithinBoardBounds(-1, 0)).toBe(false)
+    })
+  })
+
+  describe('responsive functionality', () => {
+    it('should calculate responsive cell size for mobile', () => {
+      const mobileSize = coordinateSystem.getResponsiveCellSize(480)
+      expect(mobileSize).toBeLessThan(CELL_SIZE)
+      expect(mobileSize).toBeGreaterThan(0)
+    })
+
+    it('should calculate responsive cell size for desktop', () => {
+      const desktopSize = coordinateSystem.getResponsiveCellSize(1024)
+      expect(desktopSize).toBe(CELL_SIZE)
+    })
+
+    it('should create responsive coordinate system', () => {
+      const responsiveSystem = coordinateSystem.createResponsiveSystem(480)
+      expect(responsiveSystem.getConfig().cellSize).toBeLessThan(CELL_SIZE)
+    })
+  })
+
+  describe('DOM coordinate conversion', () => {
+    it('should convert DOM coordinates to grid coordinates', () => {
+      const mockRect: DOMRect = {
+        left: 10,
+        top: 20,
+        width: 400,
+        height: 400,
+        right: 410,
+        bottom: 420,
+        x: 10,
+        y: 20,
+        toJSON: () => ({})
+      }
+
+      const domX = 10 + BOARD_CONFIG.BORDER_WIDTH + CELL_SIZE
+      const domY = 20 + BOARD_CONFIG.BORDER_WIDTH + CELL_SIZE
+
+      const result = coordinateSystem.domToGrid(domX, domY, mockRect)
+      expect(result).toEqual({ x: 1, y: 1 })
     })
   })
 })

@@ -46,41 +46,35 @@ const getDesktopLayoutConfig = (): LayoutConfig => ({
 
 // 移动端布局配置
 const getMobileLayoutConfig = (viewport: { width: number }, isSmallMobile: boolean): LayoutConfig => {
-  const maxBlockSize = 3; // 进一步减少最大方块尺寸以防止越界
+  const maxBlockSize = 5; // 增加到5以支持所有方块类型（包括1×5和2×5）
   const gridCols = 3;
 
   if (isSmallMobile) {
-    const containerWidth = viewport.width - 40; // 增加边距以防止越界
-    const cellSize = Math.max(8, Math.floor(containerWidth / (gridCols * (maxBlockSize + 0.5)))); // 更保守的计算
+    const containerWidth = viewport.width - 50; // 增加边距以防止越界
+    const cellSize = Math.max(6, Math.floor(containerWidth / (gridCols * (maxBlockSize + 0.8)))); // 更保守的计算
     return {
       gridCols,
       cellSize,
-      padding: 2,
+      padding: 1, // 减少padding以节省空间
       maxBlockSize,
-      blockScale: 0.7, // 进一步减少缩放比例
+      blockScale: 0.6, // 进一步减少缩放比例以适应更大的方块
       containerWidth
     };
   } else {
-    const containerWidth = Math.min(viewport.width - 40, 380); // 减少容器宽度
-    const cellSize = Math.max(10, Math.floor(containerWidth / (gridCols * (maxBlockSize + 0.5)))); // 更保守的计算
+    const containerWidth = Math.min(viewport.width - 50, 360); // 进一步减少容器宽度
+    const cellSize = Math.max(8, Math.floor(containerWidth / (gridCols * (maxBlockSize + 0.8)))); // 更保守的计算
     return {
       gridCols,
       cellSize,
       padding: 2,
       maxBlockSize,
-      blockScale: 0.75, // 减少缩放比例
+      blockScale: 0.65, // 减少缩放比例以适应更大的方块
       containerWidth
     };
   }
 };
 
-// 计算旋转后的尺寸
-const getRotatedDimensions = (block: BlockShape, rotation: number) => {
-  if (rotation % 2 === 1) {
-    return { width: block.height, height: block.width };
-  }
-  return { width: block.width, height: block.height };
-};
+
 
 const BlockInventory: React.FC<BlockInventoryProps> = ({
   availableBlocks,
@@ -132,7 +126,7 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
     const height = rows * (cellSize * blockSpacingMultiplier + padding) + padding;
 
     // 移动端增加更多的高度边距以确保完整显示，特别是第4行和避免按钮遮挡
-    const extraHeight = isMobile ? 80 : 0; // 增加到80px以确保第4行完整显示且避免按钮遮挡
+    const extraHeight = isMobile ? 120 : 0; // 增加到120px以确保大方块完整显示且避免按钮遮挡
 
     console.log('BlockInventory size calculation:', {
       allBlocksLength: allBlocks.length,
@@ -162,7 +156,6 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
   ) => {
     const { cellSize, maxBlockSize, blockScale } = layoutConfig;
     const currentRotation = getBlockRotation(block.id);
-    const rotatedDimensions = getRotatedDimensions(block, currentRotation);
 
     const handleSelect = () => {
       if (interactionMode === 'tap') {
@@ -180,9 +173,7 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
       }
     };
 
-    const centerOffsetX = (cellSize * maxBlockSize - rotatedDimensions.width * cellSize * blockScale) / 2;
-    const centerOffsetY = (cellSize * maxBlockSize - rotatedDimensions.height * cellSize * blockScale) / 2;
-
+    // 使用flex布局居中，不需要手动计算偏移
     return (
       <div key={`container-${block.id}`} style={{
         position: 'absolute',
@@ -208,8 +199,8 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
           onDoubleClick={handleDoubleClick}
           rotation={currentRotation}
           scale={blockScale}
-          x={centerOffsetX}
-          y={centerOffsetY}
+          x={0} // 在flex容器中居中，不需要偏移
+          y={0} // 在flex容器中居中，不需要偏移
           enableDrag={interactionMode === 'drag'}
           renderAsHTML={true}
           cellSize={cellSize}
@@ -278,11 +269,18 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
       return null;
     }
 
-    const { gridCols, cellSize, padding, maxBlockSize } = layoutConfig;
+    const { gridCols, cellSize, padding, maxBlockSize, containerWidth } = layoutConfig;
     const col = index % gridCols;
     const row = Math.floor(index / gridCols);
-    const blockSpacingMultiplier = isMobile ? maxBlockSize + 0.2 : maxBlockSize + 1; // 移动端进一步减少间距
-    const x = col * (cellSize * blockSpacingMultiplier + padding) + padding;
+    const blockSpacingMultiplier = isMobile ? maxBlockSize + 0.3 : maxBlockSize + 1; // 移动端适当增加间距以适应更大方块
+
+    // 计算网格的总宽度
+    const gridWidth = gridCols * (cellSize * blockSpacingMultiplier + padding) + padding;
+
+    // 计算居中偏移量
+    const centerOffset = isMobile && containerWidth ? (containerWidth - gridWidth) / 2 : 0;
+
+    const x = col * (cellSize * blockSpacingMultiplier + padding) + padding + centerOffset;
     const y = row * (cellSize * blockSpacingMultiplier + padding) + padding;
 
     const isAvailable = availableBlocks.includes(blockId);
@@ -314,8 +312,8 @@ const BlockInventory: React.FC<BlockInventoryProps> = ({
         className="inventory-wrapper"
         style={{
           width: isMobile ? '100%' : '320px',
-          height: isMobile ? `${inventorySize.height + 80}px` : '400px', // 移动端使用计算的高度加上更多padding
-          minHeight: isMobile ? `${inventorySize.height + 80}px` : '400px',
+          height: isMobile ? `${inventorySize.height + 120}px` : '400px', // 移动端使用计算的高度加上更多padding
+          minHeight: isMobile ? `${inventorySize.height + 120}px` : '400px',
           border: isOver ? '3px solid #10b981' : '2px solid #d1d5db',
           borderRadius: isMobile ? '8px' : '12px',
           backgroundColor: isOver ? '#ecfdf5' : '#ffffff',

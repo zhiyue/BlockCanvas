@@ -99,7 +99,7 @@
 /* Mode Indicator */
 .mode-indicator {
   position: absolute;
-  bottom: 120px; /* 增加底部距离以避免遮挡方块库存 */
+  bottom: 20px; /* 移到最底部，避免遮挡方块库存 */
   left: 20px;
   right: 20px;
   pointer-events: auto;
@@ -187,7 +187,7 @@
   }
 
   .mode-indicator {
-    bottom: 100px; /* 小屏幕也要避免遮挡方块库存 */
+    bottom: 16px; /* 小屏幕移到最底部 */
     left: 16px;
     right: 16px;
   }
@@ -206,7 +206,7 @@
   }
 
   .mode-indicator {
-    bottom: 6px; /* 横屏模式进一步减少底部距离 */
+    bottom: 12px; /* 横屏模式移到最底部 */
     left: 12px;
     right: 12px;
   }
